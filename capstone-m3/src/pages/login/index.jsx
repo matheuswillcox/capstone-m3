@@ -2,13 +2,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import * as yup from "yup";
-import { Container } from "../../styled-components/styled-Login";
+import { Container } from "../../styledComponents/styled-Login";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import API from "../../api";
 import { GlobalContext } from "../../providers/global";
 import { useContext } from "react";
+=======
+import API from "../../services/api";
 
 const Login = () => {
 
