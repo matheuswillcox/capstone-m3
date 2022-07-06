@@ -3,6 +3,9 @@ import { useForm } from "react-hook-form"
 import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup"
 import { useNavigate } from "react-router-dom"
+import API from "../../services/api"
+import { toast } from "react-toastify"
+
 const RegisterForm = () => {
     const formSchema = yup.object().shape({
         name: yup.string().required("Campo Obrigatório"),
@@ -19,12 +22,14 @@ const RegisterForm = () => {
     
     const redirect = useNavigate()
 
-    const FormSubmit = (data) => {delete data["passwordValid"];console.log(data);redirect("/login")}
+    const FormSubmit = (data) => {delete data["passwordValid"];API.post("/register",data)
+    .then(()=>{toast.success("Cadastro Efetuado Com Sucesso");
+    setTimeout(()=>{redirect("/login")},1000)})
+    .catch((err)=>{toast.error("Algo deu Errado");console.log(err)})}
     
     return(
     <Container>
         <img src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png" alt="logo"/>
-        
         <Form onSubmit={handleSubmit(FormSubmit)}>
         <H1>Cadastro</H1>
             <InputForm placeholder="Nome" {...register("name")}/>
