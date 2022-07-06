@@ -1,11 +1,14 @@
 
 import './App.css';
+import { GlobalProvider } from './providers/global';
+
+//o global provider vai ter todos os contextos!
 
 function App() {
   return (
-    <div className="App">
+    <GlobalProvider>
 
-    </div>
+    </GlobalProvider>
   );
 }
 
