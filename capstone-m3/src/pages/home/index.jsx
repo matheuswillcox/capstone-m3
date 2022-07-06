@@ -1,7 +1,9 @@
+import {Requisicao}from "../../components/requisicaoTroca"
 function Home() {
   return (
     <>
-      <div>HOME</div>
+      {/* <div>HOME</div> */}
+      <Requisicao/>
     </>
   );
 }
