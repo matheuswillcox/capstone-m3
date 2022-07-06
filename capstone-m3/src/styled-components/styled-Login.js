@@ -22,7 +22,7 @@ export const Container = styled.main`
     justify-content: center;
     gap: 20px;
     border-radius: 25px;
-    padding-top: 10px;
+    padding-top: 15px;
   }
   form h1 {
     color: #fe0000;
@@ -32,6 +32,8 @@ export const Container = styled.main`
     font-weight: 400;
   }
   form input {
+    background: #d9d9d9;
+    border-radius: 10px;
     border: 0;
     padding: 0;
     padding-left: 15px;
@@ -39,10 +41,14 @@ export const Container = styled.main`
     width: 90%;
     min-width: 150px;
     max-width: 200px;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
   }
   section {
     width: 100%;
-    height: 30%;
+    height: 40%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -67,7 +73,7 @@ export const Container = styled.main`
     font-size: 18px;
     width: 80%;
     border: 0;
-    max-width: 223px;
+    max-width: 150px;
     height: 38px;
     cursor: pointer;
   }
@@ -89,5 +95,23 @@ export const Container = styled.main`
     background-color: #fff;
     color: #000;
     font-size: 16px;
+  }
+  .email-error {
+    display: flex;
+    margin: 0;
+    font-size: 12px;
+    color: #f81212;
+    position: absolute;
+    left: 43.2%;
+    top: 52.4%;
+  }
+  div span {
+    display: flex;
+    margin: 0;
+    font-size: 12px;
+    color: #f81212;
+    position: absolute;
+    left: 43.2%;
+    top: 63.8%;
   }
 `;

@@ -4,12 +4,34 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import * as yup from "yup";
 import { Container } from "../../styled-components/styled-Login";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-export const Login = () => {
-  const { register, handleSubmit } = useForm();
-  const schema = yup.object().shape({});
+const Login = () => {
+  const schema = yup.object().shape({
+    email: yup.string().email("Email invalido").required("Campo vazio"),
+    password: yup.string().required("Campo vazio"),
+  });
   const [showEye, setShowEye] = useState(false);
-  const collectData = (data) => {};
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema), reValidateMode: "onSubmit" });
+  const collectData = (data) => {
+    axios
+      .post("https://api-capstone-grupo1.herokuapp.com/login", data)
+      .then((res) => {
+        toast.success("Logado!");
+        localStorage.setItem("token", res.data.accessToken);
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 1000);
+      })
+      .catch((err) => toast.error("Email ou senha incorretos!"));
+  };
   return (
     <Container>
       <img
@@ -19,13 +41,22 @@ export const Login = () => {
       <form onSubmit={handleSubmit(collectData)}>
         <h1>Login</h1>
         <section>
-          <input placeholder="Email" {...register("email")} />
+          <input
+            placeholder="Email"
+            {...register("email")}
+            autoComplete="off"
+          />
+          {errors.email && (
+            <span className="email-error">{errors.email.message}</span>
+          )}
           <div>
             <input
               placeholder="Senha"
               {...register("password")}
-              type={showEye ? "password" : "text"}
+              type={showEye ? "text" : "password"}
+              autoComplete="off"
             />
+            {errors.password && <span>{errors.password.message}</span>}
             <button
               className="Eye"
               onClick={(e) => {
@@ -39,9 +70,18 @@ export const Login = () => {
         </section>
         <button>Login</button>
         <p>
-          Não e registrado? <button className="Register">Registrar</button>
+          Não e registrado?{" "}
+          <button
+            className="Register"
+            onClick={() => {
+              navigate("/register");
+            }}
+          >
+            Registrar
+          </button>
         </p>
       </form>
     </Container>
   );
 };
+export default Login;
