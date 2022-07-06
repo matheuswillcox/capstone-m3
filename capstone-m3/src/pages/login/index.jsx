@@ -2,12 +2,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import * as yup from "yup";
-import { Container } from "../../styled-components/styled-Login";
+import { Container } from "../../styledComponents/styled-Login";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import API from "../../api";
+import API from "../../services/api";
 
 const Login = () => {
   const schema = yup.object().shape({
