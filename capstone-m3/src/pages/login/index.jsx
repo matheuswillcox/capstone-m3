@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import API from "../../api";
 
 const Login = () => {
   const schema = yup.object().shape({
@@ -21,8 +22,7 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema), reValidateMode: "onSubmit" });
   const collectData = (data) => {
-    axios
-      .post("https://api-capstone-grupo1.herokuapp.com/login", data)
+    API.post("/login", data)
       .then((res) => {
         toast.success("Logado!");
         localStorage.setItem("token", res.data.accessToken);
@@ -30,7 +30,9 @@ const Login = () => {
           navigate("/dashboard");
         }, 1000);
       })
-      .catch((err) => toast.error("Email ou senha incorretos!"));
+      .catch((err) => {
+        toast.error("Email ou senha incorretos!");
+      });
   };
   return (
     <Container>
