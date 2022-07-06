@@ -5,9 +5,11 @@ import Register from "../../pages/register";
 import Login from "../../pages/login";
 import Store from "../../pages/store";
 
+
 function Rotas() {
   return (
     <Routes>
+      
       <Route path="/" element={<Home></Home>}></Route>
       <Route path="/dashboard" element={<Dashboard></Dashboard>}></Route>
       <Route path="/login" element={<Login></Login>}></Route>
