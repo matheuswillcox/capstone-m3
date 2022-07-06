@@ -1,14 +1,12 @@
-
-import './App.css';
-import { GlobalProvider } from './providers/global';
-
-//o global provider vai ter todos os contextos!
+import Routes from "./services/routes";
+import "./App.css";
 
 function App() {
   return (
-    <GlobalProvider>
+    <div className="App">
+      <Routes />
+    </div>
 
-    </GlobalProvider>
   );
 }
 
