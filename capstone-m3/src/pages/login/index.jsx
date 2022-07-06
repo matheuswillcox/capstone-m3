@@ -5,7 +5,6 @@ import * as yup from "yup";
 import { Container } from "../../styled-components/styled-Login";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
 import API from "../../api";
 import { GlobalContext } from "../../providers/global";
