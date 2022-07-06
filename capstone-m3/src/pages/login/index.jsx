@@ -5,11 +5,18 @@ import * as yup from "yup";
 import { Container } from "../../styledComponents/styled-Login";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
+import { GlobalContext } from "../../providers/global";
+import { useContext } from "react";
+=======
 import API from "../../services/api";
 
 const Login = () => {
+
+  const { userContext } = useContext(GlobalContext)
+
+  const { setUserToken } = userContext
+
   const schema = yup.object().shape({
     email: yup.string().email("Email invalido").required("Campo vazio"),
     password: yup.string().required("Campo vazio"),
@@ -26,6 +33,7 @@ const Login = () => {
       .then((res) => {
         toast.success("Logado!");
         localStorage.setItem("token", res.data.accessToken);
+        setUserToken(res.data.accessToken)
         setTimeout(() => {
           navigate("/dashboard");
         }, 1000);
@@ -34,6 +42,7 @@ const Login = () => {
         toast.error("Email ou senha incorretos!");
       });
   };
+
   return (
     <Container>
       <img
