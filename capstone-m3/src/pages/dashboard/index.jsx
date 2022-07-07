@@ -14,8 +14,8 @@ function Dashboard() {
   
   return (
     <>
-    <Headersite/>
     <Main>
+    <Headersite/>
       <Container>
         <h1>Minha Coleção</h1>
           <Article>

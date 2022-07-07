@@ -4,8 +4,9 @@ export const Main = styled.div`
     display: flex;
     flex-direction: row;
     background: red;
-    justify-content: center;
+    justify-content: flex-start;
     height: 100vh;
+    gap: 160px;
 `
 export const Container = styled.div`
     display: flex;
@@ -107,7 +108,7 @@ export const FiltersDiv = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    margin: 20px;
+    margin-left: 25px;
     height: 555px;
     span{
         font-family: 'Roboto';
