@@ -11,18 +11,19 @@ export const TradesList =  ()  => {
 
     const { allPokemons, setAllPokemons, getPokemons } = allPokemonsContext
 
-    const { userToken } = userContext
+    const { userToken, user } = userContext
 
     const { getTrades, trades, setTrades } = tradesContext
 
     
-    useEffect(() => {
+
+    useEffect(()=> {
         getPokemons(allPokemons, setAllPokemons)
-    })
+    }, [])
 
     useEffect(() => {
         getTrades(userToken, setTrades)
-    }, [trades])
+    }, [])
 
     return (
 
@@ -31,7 +32,7 @@ export const TradesList =  ()  => {
                 <h1>Trocas</h1>
                 {trades?.map((trade, index) => 
                 <TradeCard key={index} offered={trade.pokemon.offered} wanted={trade.pokemon.wanted}></TradeCard>)}
-                <button onClick={()=> {console.log(trades)}}>teste</button>
+                <button onClick={() => {console.log(user)}}>teste</button>
             </ul>
         </StyledTradesDiv>
     )

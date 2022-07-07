@@ -8,7 +8,7 @@ export const GlobalContext = createContext([])
 export const GlobalProvider = ({ children }) => {
 
     const [userToken, setUserToken] = useState(localStorage.getItem("token") || "")
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState((JSON.parse(localStorage.getItem("@pokeCollectionUserInfo"))) || {})
 
     const userContext = {userToken, setUserToken, user, setUser}
 
