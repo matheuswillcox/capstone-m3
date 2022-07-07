@@ -7,6 +7,7 @@ import { Container, ButtonTroca } from "../../styledComponents/Modal-addTroca";
 import API from "../../services/api";
 import { GlobalContext } from "../../providers/global";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { toast } from "react-toastify";
 
 export const Requisicao = () => {
   const { userContext, allPokemonsContext } = useContext(GlobalContext);
@@ -18,11 +19,11 @@ export const Requisicao = () => {
   const [tradePokemon, setTradePokemon] = useState([]);
 
   useEffect(() => {
-    const newPokemons = allPokemons.map((poke) => {
+    const newPokemons = allPokemons.filter((poke) => {
       return poke.name !== pokemon;
     });
     setTradePokemon(newPokemons);
-  }, pokemon);
+  }, [pokemon]);
 
   const navigate = useNavigate();
 
@@ -32,13 +33,14 @@ export const Requisicao = () => {
 
     if (user.email) {
       user.pokemon = [{ name: "charmander" }, { name: "eevee" }];
-      console.log(user);
+      setPokemon(user.pokemon[0].name);
     } else {
       API.get(`users/${userID}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((res) => {
           res.data.pokemon = [{ name: "charmander" }, { name: "eevee" }];
+          setPokemon(res.data.pokemon[0].name);
           setUser(res.data);
         })
         .catch((err) => navigate("/login"));
@@ -52,7 +54,7 @@ export const Requisicao = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm({ resolver: yupResolver(schema), reValidateMode: "onSubmit" });
 
   const collectData = (data) => {
@@ -63,7 +65,12 @@ export const Requisicao = () => {
       exchange: false,
       img: user.img,
     };
-    console.log(trocaPokemons);
+
+    API.post("/troca", trocaPokemons,{
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    }).then((res)=>{
+      toast.success("Enviado com sucesso")
+    })
   };
 
   return (
@@ -100,6 +107,7 @@ export const Requisicao = () => {
             <select
               {...register("offered")}
               onChange={(e) => {
+                console.log(e.target);
                 setPokemon(e.target.value);
               }}
             >
@@ -113,7 +121,15 @@ export const Requisicao = () => {
                 return <option key={index}>{poke.name}</option>;
               })}
             </select>
-            <button onClick={() => {}} className="TrocarPokemon">
+            <button
+              onClick={() => {
+                
+                setTimeout(() => {
+                  setShowModal(false);
+                }, 2000);
+              }}
+              className="TrocarPokemon"
+            >
               Aplicar
             </button>
           </form>
