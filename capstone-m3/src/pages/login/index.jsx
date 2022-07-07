@@ -35,7 +35,7 @@ const Login = () => {
         toast.success("Logado!");
         localStorage.setItem("token", res.data.accessToken);
         localStorage.setItem("userID", res.data.user.id)
-        localStorage.setItem("@pokeCollectionUserInfo", JSON.stringify(res.data.user.id))
+        localStorage.setItem("@pokeCollectionUserInfo", JSON.stringify(res.data.user))
         setUserToken(res.data.accessToken)
         setUser(res.data.user)
         setTimeout(() => {
