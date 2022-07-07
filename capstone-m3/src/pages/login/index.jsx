@@ -15,7 +15,7 @@ const Login = () => {
 
   const { userContext } = useContext(GlobalContext)
 
-  const { setUserToken } = userContext
+  const { setUserToken, setUser } = userContext
 
   const schema = yup.object().shape({
     email: yup.string().email("Email invalido").required("Campo vazio"),
@@ -33,9 +33,11 @@ const Login = () => {
       .then((res) => {
         toast.success("Logado!");
         localStorage.setItem("token", res.data.accessToken);
+        localStorage.setItem("userID", res.data.user.id)
         setUserToken(res.data.accessToken)
+        setUser(res.data.user)
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/");
         }, 1000);
       })
       .catch((err) => {
