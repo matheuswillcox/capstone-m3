@@ -29,10 +29,9 @@ export const TradesList =  ()  => {
 
         <StyledTradesDiv>
             <ul className="tradesList">
-                <h1>Trocas</h1>
                 {trades?.map((trade, index) => 
-                <TradeCard key={index} offered={trade.pokemon.offered} wanted={trade.pokemon.wanted}></TradeCard>)}
-                <button onClick={() => {console.log(user)}}>teste</button>
+                <TradeCard key={index} offered={trade.pokemon.offered} wanted={trade.pokemon.wanted}
+                userID={trade.userID}></TradeCard>)}
             </ul>
         </StyledTradesDiv>
     )
