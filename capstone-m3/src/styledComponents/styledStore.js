@@ -8,8 +8,9 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   color: white;
+  gap: 200px;
 
   .divContainer {
     margin-top: 60px;
@@ -42,6 +43,7 @@ export const Container = styled.div`
   }
 
   @media only screen and (max-width: 900px) {
+    gap: 50px;
     .packs {
 
       flex-direction: column;

@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 98.7vw;
-  height: 98vh;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
   justify-content: center;
   align-items: center;
 
@@ -25,10 +27,11 @@ export const Container = styled.div`
     box-shadow: 5px 5px 17px -1px rgba(0, 0, 0, 0.75);
     z-index: 10;
   }
-  form input {
-    padding-left: 15px;
-    width: 90%;
+  select {
+    width: 97%;
+    padding-left: 10px;
     height: 30px;
+    font-size: 16px;
   }
   button {
     border: 0;
@@ -70,6 +73,7 @@ export const Container = styled.div`
     color: #fff;
     font-size: 16px;
   }
+  
   @keyframes AnimarModal {
     from {
       opacity: 0;
@@ -82,5 +86,28 @@ export const Container = styled.div`
   }
   form {
     animation: AnimarModal 0.3s;
+  }
+`;
+
+export const ButtonTroca = styled.div`
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 42px;
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 25%;
+  color: #f81212;
+  img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+  .pokeball {
+    transform: rotateY(180deg);
   }
 `;

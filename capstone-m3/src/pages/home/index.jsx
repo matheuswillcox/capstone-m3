@@ -1,18 +1,11 @@
-<<<<<<< HEAD
-import {Requisicao}from "../../components/requisicaoTroca"
-function Home() {
-  return (
-    <>
-      {/* <div>HOME</div> */}
-      <Requisicao/>
-=======
-import { Headersite } from "../../styledComponents/header";
+import { Requisicao } from "../../components/requisicaoTroca";
+import { Headersite } from "../../components/header";
 
 function Home() {
   return (
     <>
-      <Headersite/>
->>>>>>> 650f719719d8acbe8e91959a9ae1d810bc2aa66a
+      <Headersite />
+      <Requisicao />
     </>
   );
 }

@@ -3,15 +3,26 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Container } from "../../styledComponents/Modal-addTroca";
+import { Container, ButtonTroca } from "../../styledComponents/Modal-addTroca";
 import API from "../../services/api";
 import { GlobalContext } from "../../providers/global";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
 export const Requisicao = () => {
-  const { userContext } = useContext(GlobalContext);
+  const { userContext, allPokemonsContext } = useContext(GlobalContext);
   const { user, setUser } = userContext;
+  const { allPokemons } = allPokemonsContext;
   const [showModal, setShowModal] = useState(false);
+
+  const [pokemon, setPokemon] = useState("");
+  const [tradePokemon, setTradePokemon] = useState([]);
+
+  useEffect(() => {
+    const newPokemons = allPokemons.map((poke) => {
+      return poke.name !== pokemon;
+    });
+    setTradePokemon(newPokemons);
+  }, pokemon);
 
   const navigate = useNavigate();
 
@@ -26,14 +37,17 @@ export const Requisicao = () => {
       API.get(`users/${userID}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
-        .then((res) => setUser(res.data))
+        .then((res) => {
+          res.data.pokemon = [{ name: "charmander" }, { name: "eevee" }];
+          setUser(res.data);
+        })
         .catch((err) => navigate("/login"));
     }
   }, []);
 
   const schema = yup.object().shape({
-    offered: yup.string().required("Insira o nome do seu pokemon"),
-    wanted: yup.string().required("Insira o nome do pokemon buscado"),
+    offered: yup.string().required("Preencha com seu pokemon"),
+    wanted: yup.string().required("Preencha com seu pokemon buscado"),
   });
   const {
     register,
@@ -54,13 +68,22 @@ export const Requisicao = () => {
 
   return (
     <>
-      <button
+      <ButtonTroca
         onClick={() => {
           setShowModal(true);
         }}
       >
-        Trocar pokemons
-      </button>
+        <img
+          src="https://i.pinimg.com/originals/09/a6/ae/09a6ae937a6d9ef5cd10d132b59d6f5d.png"
+          alt="Pokeball"
+        />
+        Troque cards com outros Treinadores!
+        <img
+          className="pokeball"
+          src="https://i.pinimg.com/originals/09/a6/ae/09a6ae937a6d9ef5cd10d132b59d6f5d.png"
+          alt="Pokeball"
+        />
+      </ButtonTroca>
       {showModal && (
         <Container>
           <form onSubmit={handleSubmit(collectData)}>
@@ -74,14 +97,22 @@ export const Requisicao = () => {
                 <AiOutlineCloseCircle />
               </button>
             </div>
-            <select {...register("offered")}>
-              {user.pokemon.map((poke) => {
-                return <option>{poke.name}</option>;
+            <select
+              {...register("offered")}
+              onChange={(e) => {
+                setPokemon(e.target.value);
+              }}
+            >
+              {user.pokemon.map((poke, index) => {
+                return <option key={index}>{poke.name}</option>;
               })}
             </select>
-            {errors.offered && <span>{errors.offered.message}</span>}
-            <input placeholder="Pokemon procurado" {...register("wanted")} />
-            {errors.wanted && <span>{errors.wanted.message}</span>}
+
+            <select {...register("wanted")}>
+              {tradePokemon.map((poke, index) => {
+                return <option key={index}>{poke.name}</option>;
+              })}
+            </select>
             <button onClick={() => {}} className="TrocarPokemon">
               Aplicar
             </button>
