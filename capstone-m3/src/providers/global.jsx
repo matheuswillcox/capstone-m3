@@ -23,11 +23,23 @@ export const GlobalProvider = ({ children }) => {
 
     const tradesContext = {trades, setTrades, getTrades}
 
+    //
+
+    const [compra, setCompra] = useState(false)
+
+    const compraContext = {compra, setCompra}
+
+    //
+
+    const [itemCompra, setItemCompra]= useState("")
+
+    const itemCompraContext = {itemCompra, setItemCompra}
+
     //Aqui estarão os contextos criados por todos.
     
     return (
         <GlobalContext.Provider
-            value={{ userContext, allPokemonsContext, tradesContext }}>
+            value={{ userContext, allPokemonsContext, tradesContext, compraContext, itemCompraContext }}>
 	        {children}
         </GlobalContext.Provider>
     )
