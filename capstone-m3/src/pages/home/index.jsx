@@ -1,7 +1,9 @@
+import { Headersite } from "../../styledComponents/header";
+
 function Home() {
   return (
     <>
-      <div>HOME</div>
+      <Headersite/>
     </>
   );
 }
