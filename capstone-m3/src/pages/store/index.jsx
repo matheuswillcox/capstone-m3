@@ -1,8 +1,11 @@
+import { Headersite } from "../../components/header"
+
 import { Container } from "../../styledComponents/styledStore";
 
 const Store = () => {
   return (
     <Container>
+      <Headersite/>
       <div className="divContainer">
         <div className="loja">Loja</div>
         <div className="packs" onClick={()=>{console.log("clicou")}}>

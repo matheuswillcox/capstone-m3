@@ -1,4 +1,4 @@
-import { Headersite } from "../../styledComponents/header";
+import { Headersite } from "../../components/header";
 
 function Home() {
   return (
