@@ -17,6 +17,7 @@ const Login = () => {
 
   const { setUserToken, setUser } = userContext
 
+
   const schema = yup.object().shape({
     email: yup.string().email("Email invalido").required("Campo vazio"),
     password: yup.string().required("Campo vazio"),
