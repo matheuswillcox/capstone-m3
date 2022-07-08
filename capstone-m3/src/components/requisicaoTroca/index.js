@@ -45,7 +45,7 @@ export const Requisicao = () => {
 
         return user
       }
-      GetUser()
+      GetUser();
     }
   }, [setUser, user,  userToken]);
 
@@ -66,13 +66,17 @@ export const Requisicao = () => {
       userName: user.name,
       exchange: false,
       img: user.img,
+      userPokemons: user.pokemon
     };
 
-    API.post("/troca", trocaPokemons,{
+    API.post("/troca", trocaPokemons, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    }).then((res)=>{
-      toast.success("Enviado com sucesso")
-    })
+    }).then((res) => {
+      toast.success("Enviado com sucesso");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    });
   };
 
   return (
@@ -125,7 +129,6 @@ export const Requisicao = () => {
             </select>
             <button
               onClick={() => {
-                
                 setTimeout(() => {
                   setShowModal(false);
                 }, 2000);
