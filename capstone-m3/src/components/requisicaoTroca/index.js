@@ -35,15 +35,20 @@ export const Requisicao = () => {
       user.pokemon = [{ name: "charmander" }, { name: "eevee" }];
       setPokemon(user.pokemon[0].name);
     } else {
-      API.get(`users/${userID}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then((res) => {
-          res.data.pokemon = [{ name: "charmander" }, { name: "eevee" }];
-          setPokemon(res.data.pokemon[0].name);
-          setUser(res.data);
+      async function GetUser(){
+        const user = await API.get(`users/${userID}`, {
+          headers: { Authorization: `Bearer ${token}` },
         })
-        .catch((err) => navigate("/login"));
+          .then((res) => {
+            res.data.pokemon = [{ name: "charmander" }, { name: "eevee" }];
+            setPokemon(res.data.pokemon[0].name);
+            setUser(res.data);
+          })
+          .catch((err) => navigate("/login")); 
+
+        return user
+      }
+      GetUser()
     }
   }, []);
 
