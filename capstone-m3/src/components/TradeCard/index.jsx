@@ -30,7 +30,7 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }
         axios.get(cardToTrade.url).then((response) => {setOfferedCard(response.data)})
         axios.get(cardToGet.url).then((response) => {setWantedCard(response.data)})
 
-    }, [])
+    }, [cardToGet.url, cardToTrade.url])
 
 
     return (
@@ -42,19 +42,19 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }
             </div>
             <StyledPokemonTradeCard>
                 <img src={offeredCard?.sprites?.front_default} alt="pokimao"></img>
-                <h3>{offered}</h3>
+                <h3>{offeredCard.name}</h3>
             </StyledPokemonTradeCard>
             <div className="arrowTrade">
                 <TbArrowsLeftRight className="arrowTrade-arrow"></TbArrowsLeftRight>
             </div>
             <StyledPokemonTradeCard>
                 <img src={wantedCard?.sprites?.front_default} alt="pokimao"></img>
-                <h3>{wanted}</h3>
+                <h3>{wantedCard.name}</h3>
             </StyledPokemonTradeCard>
             {userID === user.id ? 
             <button onClick={() => {console.log(user.id, userID)}} className="deleteTrade-btn">Excluir</button> 
             : 
-            <button onClick={() => {console.log(user.id, userID)}} className="acceptTrade-btn">Aceitar troca</button>}
+            <button onClick={() => {console.log(offeredCard)}} className="acceptTrade-btn">Aceitar troca</button>}
         </StyledTradeCard>
         
     )

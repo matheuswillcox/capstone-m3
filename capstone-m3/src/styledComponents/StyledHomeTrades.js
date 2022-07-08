@@ -38,6 +38,18 @@ border-radius: 10px;
     padding: 20px;
 
     list-style: none;
+
+    .tradesList-divInput {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        min-width: 290px;
+
+        .tradesList-input {
+            padding: 10px;
+        }
+    }
 }
 
 
