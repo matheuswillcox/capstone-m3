@@ -1,5 +1,4 @@
 import { useEffect, useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,7 +10,7 @@ import { toast } from "react-toastify";
 
 export const Requisicao = () => {
   const { userContext, allPokemonsContext } = useContext(GlobalContext);
-  const { user, setUser } = userContext;
+  const { user, setUser, userToken } = userContext;
   const { allPokemons } = allPokemonsContext;
   const [showModal, setShowModal] = useState(false);
 
@@ -23,34 +22,32 @@ export const Requisicao = () => {
       return poke.name !== pokemon;
     });
     setTradePokemon(newPokemons);
-  }, [pokemon]);
-
-  const navigate = useNavigate();
+  }, [ pokemon]);
 
   useEffect(() => {
     const userID = localStorage.getItem("userID");
-    const token = localStorage.getItem("token");
 
-    if (user.email) {
+
+    if (userToken) {
       user.pokemon = [{ name: "charmander" }, { name: "eevee" }];
       setPokemon(user.pokemon[0].name);
     } else {
       async function GetUser(){
         const user = await API.get(`users/${userID}`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${userToken}` },
         })
           .then((res) => {
             res.data.pokemon = [{ name: "charmander" }, { name: "eevee" }];
             setPokemon(res.data.pokemon[0].name);
             setUser(res.data);
           })
-          .catch((err) => navigate("/login")); 
+          .catch((err) => toast.error("Email ou senha incorretos!"))
 
         return user
       }
       GetUser()
     }
-  }, []);
+  }, [setUser, user,  userToken]);
 
   const schema = yup.object().shape({
     offered: yup.string().required("Preencha com seu pokemon"),
