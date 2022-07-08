@@ -74,6 +74,7 @@ export const Requisicao = () => {
       userName: user.name,
       exchange: false,
       img: user.img,
+      userPokemons: user.pokemon
     };
 
     API.post("/troca", trocaPokemons, {
