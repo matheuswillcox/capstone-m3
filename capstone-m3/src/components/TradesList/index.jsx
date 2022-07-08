@@ -31,7 +31,7 @@ export const TradesList =  ()  => {
             <ul className="tradesList">
                 {trades?.map((trade, index) => 
                 <TradeCard key={index} offered={trade.pokemon.offered} wanted={trade.pokemon.wanted}
-                userID={trade.userID}></TradeCard>)}
+                userID={trade.userID} tradeID={trade.id} tradeUser={trade.userName} tradeUserImg={trade.img}></TradeCard>)}
             </ul>
         </StyledTradesDiv>
     )
