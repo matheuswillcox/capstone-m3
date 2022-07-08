@@ -4,6 +4,8 @@ import { GlobalContext } from "../../providers/global"
 import { StyledTradeCard } from "../../styledComponents/StyledHomeTrades"
 import { StyledPokemonTradeCard } from "../../styledComponents/StyledPokemonTradeCard"
 import { TbArrowsLeftRight } from "react-icons/tb"
+import API from "../../services/api"
+import { toast } from "react-toastify"
 
 
 const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }) => {
@@ -32,6 +34,16 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }
 
     }, [cardToGet.url, cardToTrade.url])
 
+    const DeleteRequest = (Id) =>{
+        API.delete(`troca/${Id}`, {
+            headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
+        }).then(res => {
+            toast.success("Oferta de troca excluida")
+            setTimeout(() => {
+                window.location.reload()
+            }, 1000);})
+    }
+
 
     return (
         <StyledTradeCard>
@@ -52,7 +64,7 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }
                 <h3>{wantedCard.name}</h3>
             </StyledPokemonTradeCard>
             {userID === user.id ? 
-            <button onClick={() => {console.log(user.id, userID)}} className="deleteTrade-btn">Excluir</button> 
+            <button onClick={() => {DeleteRequest(tradeID)}} className="deleteTrade-btn">Excluir</button> 
             : 
             <button onClick={() => {console.log(offeredCard)}} className="acceptTrade-btn">Aceitar troca</button>}
         </StyledTradeCard>
