@@ -16,6 +16,7 @@ export const paths = {
 };
 
 function Rotas() {
+
   const location = useLocation().pathname;
   const navigate = useNavigate();
 

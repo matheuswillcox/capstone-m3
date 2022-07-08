@@ -15,8 +15,7 @@ const Login = () => {
 
   const { userContext } = useContext(GlobalContext)
 
-  const { setUserToken, setUser } = userContext
-
+  const { setUserLoginInfo, renewToken } = userContext
 
   const schema = yup.object().shape({
     email: yup.string().email("Email invalido").required("Campo vazio"),
@@ -30,18 +29,23 @@ const Login = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema), reValidateMode: "onSubmit" });
   const collectData = (data) => {
+
     API.post("/login", data)
       .then((res) => {
         toast.success("Logado!");
+        setUserLoginInfo(data)
+
         localStorage.setItem("token", res.data.accessToken);
         localStorage.setItem("userID", res.data.user.id)
-        setUserToken(res.data.accessToken)
-        setUser(res.data.user)
+        userContext.setUserToken(res.data.accessToken)
+        userContext.setUser(res.data.user)
+        renewToken(data)
         setTimeout(() => {
           navigate("/");
         }, 1000);
       })
       .catch((err) => {
+        console.log(err)
         toast.error("Email ou senha incorretos!");
       });
   };
