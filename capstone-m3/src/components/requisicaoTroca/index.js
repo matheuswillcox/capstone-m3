@@ -35,20 +35,25 @@ export const Requisicao = () => {
       user.pokemon = [{ name: "charmander" }, { name: "eevee" }];
       setPokemon(user.pokemon[0].name);
     } else {
-      async function GetUser(){
-        const user = await API.get(`users/${userID}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-          .then((res) => {
-            res.data.pokemon = [{ name: "charmander" }, { name: "eevee" }];
-            setPokemon(res.data.pokemon[0].name);
-            setUser(res.data);
+      async function GetUser() {
+        if (token) {
+          const user = await API.get(`users/${userID}`, {
+            headers: { Authorization: `Bearer ${token}` },
           })
-          .catch((err) => navigate("/login")); 
-
-        return user
+            .then((res) => {
+              res.data.pokemon = [{ name: "charmander" }, { name: "eevee" }];
+              setPokemon(res.data.pokemon[0].name);
+              setUser(res.data);
+            })
+            .catch((err) => {
+              localStorage.removeItem("token");
+            });
+          return user;
+        } else {
+          return navigate("/login");
+        }
       }
-      GetUser()
+      GetUser();
     }
   }, []);
 
@@ -71,11 +76,14 @@ export const Requisicao = () => {
       img: user.img,
     };
 
-    API.post("/troca", trocaPokemons,{
+    API.post("/troca", trocaPokemons, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-    }).then((res)=>{
-      toast.success("Enviado com sucesso")
-    })
+    }).then((res) => {
+      toast.success("Enviado com sucesso");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    });
   };
 
   return (
@@ -128,7 +136,6 @@ export const Requisicao = () => {
             </select>
             <button
               onClick={() => {
-                
                 setTimeout(() => {
                   setShowModal(false);
                 }, 2000);
