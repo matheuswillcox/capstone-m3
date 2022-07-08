@@ -43,6 +43,30 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }
     }
 
 
+    const handleAcceptTrade = () => {
+
+        user.pokemon[0].quantity = 2
+
+        const pokeToTrade = user.pokemon.find((poke) => poke.name === wanted)
+
+        const cond = pokeToTrade && pokeToTrade.quantity > 1 ? true : false
+
+        const newUserPokes = []
+
+        cond && user.pokemon.map((poke) => {
+
+            if(poke.name === pokeToTrade.name){
+                newUserPokes.push({name: poke.name, quantity: poke.quantity -= 1})
+            }else{
+                newUserPokes.push(poke)
+            }
+        })
+
+        console.log(newUserPokes)
+        
+    }
+
+
     return (
         <StyledTradeCard>
             <div className="redLine"></div>
@@ -64,7 +88,7 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }
             {userID === user.id ? 
             <button onClick={() => {DeleteRequest(tradeID)}} className="deleteTrade-btn">Excluir</button> 
             : 
-            <button onClick={() => {console.log(offeredCard)}} className="acceptTrade-btn">Aceitar troca</button>}
+            <button onClick={() => {handleAcceptTrade()}} className="acceptTrade-btn">Aceitar troca</button>}
         </StyledTradeCard>
         
     )
