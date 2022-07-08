@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react"
 import { GlobalContext } from "../../providers/global";
@@ -7,6 +8,10 @@ import TradeCard from "../TradeCard";
 
 export const TradesList =  ()  => {
 
+    const [tradeSearch, setTradeSearch] = useState("")
+
+    const [filteredTrades, setFilteredTrades] = useState([])
+
     const { allPokemonsContext, userContext, tradesContext } = useContext(GlobalContext)
 
     const { allPokemons, setAllPokemons, getPokemons } = allPokemonsContext
@@ -15,7 +20,15 @@ export const TradesList =  ()  => {
 
     const { getTrades, trades, setTrades } = tradesContext
 
-    
+    useEffect(() => {
+
+        const filtered = trades.filter((trade) => {
+            return trade.pokemon.offered.toLowerCase().includes(tradeSearch.toLowerCase())
+        })
+
+        tradeSearch === ""  ? setFilteredTrades([]) : setFilteredTrades(filtered)
+
+    }, [tradeSearch])
 
     useEffect(()=> {
         getPokemons(allPokemons, setAllPokemons)
@@ -29,9 +42,25 @@ export const TradesList =  ()  => {
 
         <StyledTradesDiv>
             <ul className="tradesList">
-                {trades?.map((trade, index) => 
+                <div className="tradesList-divInput">
+                    <input 
+                    className="tradesList-input"
+                    placeholder="Filtre o pokemon desejado"
+                    onChange={(e) => {setTradeSearch(e.target.value)}} 
+                    />
+                    <button>addTrade</button>
+                    {/* aqui vai o botão para adicionar a nova troca */}
+                </div>
+                {tradeSearch !==  "" ?
+                (filteredTrades?.map((filteredTrade, index) => 
+                <TradeCard key={index} offered={filteredTrade.pokemon.offered} 
+                wanted={filteredTrade.pokemon.wanted}
+                userID={filteredTrade.userID} tradeID={filteredTrade.id} 
+                tradeUser={filteredTrade.userName} tradeUserImg={filteredTrade.img}></TradeCard>))
+                :
+                (trades?.map((trade, index) => 
                 <TradeCard key={index} offered={trade.pokemon.offered} wanted={trade.pokemon.wanted}
-                userID={trade.userID} tradeID={trade.id} tradeUser={trade.userName} tradeUserImg={trade.img}></TradeCard>)}
+                userID={trade.userID} tradeID={trade.id} tradeUser={trade.userName} tradeUserImg={trade.img}></TradeCard>))}
             </ul>
         </StyledTradesDiv>
     )
