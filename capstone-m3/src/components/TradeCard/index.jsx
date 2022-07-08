@@ -32,6 +32,7 @@ const TradeCard = ({ offered, wanted, userID }) => {
 
     }, [])
 
+    
 
     return (
         <StyledTradeCard>
