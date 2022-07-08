@@ -28,7 +28,7 @@ export const TradesList =  ()  => {
 
         tradeSearch === ""  ? setFilteredTrades([]) : setFilteredTrades(filtered)
 
-    }, [tradeSearch])
+    }, [tradeSearch]) 
 
     useEffect(()=> {
         getPokemons(allPokemons, setAllPokemons)
@@ -36,7 +36,7 @@ export const TradesList =  ()  => {
 
     useEffect(() => {
         getTrades(userToken, setTrades)
-    }, [])
+    }, []) 
 
     return (
 
@@ -48,7 +48,7 @@ export const TradesList =  ()  => {
                     placeholder="Filtre o pokemon desejado"
                     onChange={(e) => {setTradeSearch(e.target.value)}} 
                     />
-                    <button>addTrade</button>
+                    <button onClick={() => {console.log(allPokemons)}}>addTrade</button>
                     {/* aqui vai o botão para adicionar a nova troca */}
                 </div>
                 {tradeSearch !==  "" ?

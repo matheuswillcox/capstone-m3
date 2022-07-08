@@ -19,20 +19,18 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }
 
     const { allPokemons } = allPokemonsContext
 
-    const cardToTrade = allPokemons.find((pokemon) => {
-        return pokemon.name === offered
-    })
+    
+    
+    useEffect(()=>{
 
-    const cardToGet = allPokemons.find((pokemon) => {
-        return pokemon.name === wanted
-    })
+        const offeredPoke = allPokemons.find((pokemon) => pokemon.name === offered)
+        const wantedPoke = allPokemons.find((pokemon) => pokemon.name === wanted)
 
-    useEffect(() => {
+        setOfferedCard(offeredPoke)
+        setWantedCard(wantedPoke)
 
-        axios.get(cardToTrade.url).then((response) => {setOfferedCard(response.data)})
-        axios.get(cardToGet.url).then((response) => {setWantedCard(response.data)})
-
-    }, [cardToGet.url, cardToTrade.url])
+    },[offered, wanted])
+    
 
     const DeleteRequest = (Id) =>{
         API.delete(`troca/${Id}`, {
