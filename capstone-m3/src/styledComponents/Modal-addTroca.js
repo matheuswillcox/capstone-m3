@@ -103,15 +103,13 @@ export const ButtonTroca = styled.div`
   justify-content: center;
   top: 0;
   left: 25%;
-<<<<<<< HEAD
+
   padding: 5px;
   background-color: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  color: #f81212;
-=======
+
   color: ${props => props.theme };
->>>>>>> 6b476dd1b3015f7227eca24281636b7d41b3d3ab
   img {
     max-width: 50px;
     max-height: 50px;

@@ -12,6 +12,7 @@ import {
 } from "../../styledComponents/styledHeader";
 import { useContext } from "react";
 import { GlobalContext } from "../../providers/global";
+import { Minigame } from "../minigame";
 
 export const Headersite = () => {
   // const { userContext } = useContext(GlobalContext);
@@ -65,6 +66,7 @@ export const Headersite = () => {
           </Icons>
           <span>Loja</span>
         </Div>
+        <Minigame theme={themeSelector}/>
         <Div theme={themeSelector} onClick={handleClick4}>
           <Icons>
             <RiLogoutBoxLine />
