@@ -3,16 +3,22 @@ import { Container } from "../../styledComponents/styledStore";
 import { useContext } from "react";
 import { GlobalContext } from "../../providers/global";
 import CompraCard from "../../components/CompraCard";
+import { toast } from "react-toastify";
 
 const Store = () => {
 
-  const { compraContext, itemCompraContext } = useContext(GlobalContext);
+  const { compraContext, itemCompraContext, userContext } = useContext(GlobalContext);
 
   const { compra, setCompra } = compraContext;
 
   const  { setItemCompra } = itemCompraContext;
 
+  const { user } = userContext
+
   const handleclick = () =>{
+    if(user.credits < 100){
+      toast.error("Créditos insuficientes!")
+    }
     geraCards()
     setCompra(true)
   }

@@ -39,7 +39,7 @@ const CompraCard = () =>{
       
       const transacao = {
         pokemon: body,
-        credits: user.credits,
+        credits: user.credits-100,
       }
 
       API.patch(`/users/${localStorage.getItem("userID")}`, transacao,{
