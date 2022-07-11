@@ -13,8 +13,17 @@ const Store = () => {
   const  { setItemCompra } = itemCompraContext;
 
   const handleclick = () =>{
-    setItemCompra()
+    geraCards()
     setCompra(true)
+  }
+
+  const geraCards = () =>{
+    const array = [];
+    for (let i= 0; i<= 9; i++){
+      const result = Math.floor(Math.random() * 150)
+      array.push(result);
+    }
+    setItemCompra(array);
   }
 
   return (<>
