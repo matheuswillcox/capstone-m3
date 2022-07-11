@@ -9,7 +9,7 @@ export const GlobalProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(
     localStorage.getItem("token") || ""
   );
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("@pokeCollectionUser")) || {});
+  const [user, setUser] = useState({});
 
   const [userLoginInfo, setUserLoginInfo] = useState({});
 
@@ -60,7 +60,9 @@ export const GlobalProvider = ({ children }) => {
         localStorage.setItem("token", res.data.accessToken);
         localStorage.setItem("userID", res.data.user.id);
         setUserToken(res.data.accessToken);
+        setUser(res.data.user);
         renewToken(data);
+        console.log("Pegou");
       });
     }, 360000);
   }
@@ -75,6 +77,7 @@ export const GlobalProvider = ({ children }) => {
         tradesContext,
         compraContext,
         itemCompraContext,
+        renewToken,
         themeContext
       }}
     >

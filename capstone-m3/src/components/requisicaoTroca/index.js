@@ -31,6 +31,8 @@ export const Requisicao = () => {
 
 
     if (userToken) {
+      user.pokemon = [{ name: "charmander" }, { name: "eevee" }];
+      setPokemon(user.pokemon[0].name);
     } else {
       async function GetUser(){
         const user = await API.get(`users/${userID}`, {
@@ -39,6 +41,7 @@ export const Requisicao = () => {
           .then((res) => {
             res.data.pokemon = [{ name: "charmander" }, { name: "eevee" }];
             setPokemon(res.data.pokemon[0].name);
+            setUser(res.data);
           })
           .catch((err) => toast.error("Email ou senha incorretos!"))
 
@@ -58,28 +61,6 @@ export const Requisicao = () => {
     // formState: { errors },
   } = useForm({ resolver: yupResolver(schema), reValidateMode: "onSubmit" });
 
-  const attUserPokemons = () => {
-
-    const pokeToTrade = user.pokemon.find((poke) => poke.name === pokemon.offered)
-
-    const tradeConditional = pokeToTrade && pokeToTrade.quantity > 1 ? true : false
-
-    const attPokemons = []
-
-    tradeConditional && user.pokemon?.map((poke) => {
-      if(poke.name === pokemon.offered) {
-        attPokemons.push({name: poke.name, quantity: poke.quantity -= 1})
-      }else{
-        attPokemons.push(poke)
-      }
-    })
-
-    tradeConditional && API.patch(`users/${user.id}`, {pokemon: attPokemons}, {
-            headers: {Authorization: `Bearer ${userToken}`}
-    })
-    .then((res) => {setUser(res.data)})
-  }
-
   const collectData = (data) => {
     const trocaPokemons = {
       pokemon: data,
@@ -89,8 +70,6 @@ export const Requisicao = () => {
       img: user.img,
       userPokemons: user.pokemon
     };
-
-    attUserPokemons()
 
     API.post("/troca", trocaPokemons, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

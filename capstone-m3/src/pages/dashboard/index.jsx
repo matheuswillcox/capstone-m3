@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Headersite } from "../../components/header";
 import { GlobalContext } from "../../providers/global";
 import { Main,Container, Article, Box, Grid, Card, FiltersDiv, BoxTema, BoxRaridade, BoxTipo, BoxInput } from "../../styledComponents/DashBoardStyle";
@@ -6,13 +6,19 @@ import {AiOutlineSearch} from "react-icons/ai"
 import { useState } from "react";
 function Dashboard() {
 
-  const { allPokemonsContext, themeContext } = useContext(GlobalContext)
+  const { allPokemonsContext, themeContext, userContext } = useContext(GlobalContext)
 
   const { allPokemons, setAllPokemons, getPokemons } = allPokemonsContext
 
   const { themeSelector, setThemeSelector } = themeContext
 
   const [inputText,setInputText] = useState("")
+  
+  useEffect(()=>{
+    getPokemons(allPokemons,setAllPokemons)
+  },[])
+  
+  const {user} = userContext
   
   return (
     <>
@@ -23,54 +29,26 @@ function Dashboard() {
           <Article>
               <Box>
                 <Grid>
-                <Card>
-                    <img src=".." alt=""/>
+                { allPokemons?.map((e)=>
+                  user.pokemon?.filter(({name})=>{return e.name === name}).length > 0 ?
+                      <Card key={e.id}>
+                    <img src={e.sprites.front_default} alt=""/>
                     <div>  
-                    <h3>Pikachu</h3>
+                    <h3>{e.name}</h3>
                     <img className="type" src={require("../../image/image.png")} alt="imgType"/>
                     <span>Raridade</span>
                     </div>
                   </Card>
-                  <Card>
-                    <img src=".." alt=""/>
+                  :
+                      <Card key={e.id} color="block" >
+                    <img color = "block" src={e.sprites.front_default} alt=""/>
                     <div>  
-                    <h3>Pikachu</h3>
+                    <h3>{e.name}</h3>
                     <img className="type" src={require("../../image/image.png")} alt="imgType"/>
                     <span>Raridade</span>
                     </div>
                   </Card>
-                  <Card>
-                    <img src=".." alt=""/>
-                    <div>  
-                    <h3>Pikachu</h3>
-                    <img className="type" src={require("../../image/image.png")} alt="imgType"/>
-                    <span>Raridade</span>
-                    </div>
-                  </Card>
-                  <Card>
-                    <img src=".." alt=""/>
-                    <div>  
-                    <h3>Pikachu</h3>
-                    <img className="type" src={require("../../image/image.png")} alt="imgType"/>
-                    <span>Raridade</span>
-                    </div>
-                  </Card>
-                  <Card>
-                    <img src=".." alt=""/>
-                    <div>  
-                    <h3>Pikachu</h3>
-                    <img className="type" src={require("../../image/image.png")} alt="imgType"/>
-                    <span>Raridade</span>
-                    </div>
-                  </Card>
-                  <Card>
-                    <img src=".." alt=""/>
-                    <div>  
-                    <h3>Pikachu</h3>
-                    <img className="type" src={require("../../image/image.png")} alt="imgType"/>
-                    <span>Raridade</span>
-                    </div>
-                  </Card>
+                )}
                 </Grid>
               </Box>
                 <FiltersDiv>
