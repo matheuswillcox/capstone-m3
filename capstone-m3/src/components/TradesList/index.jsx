@@ -31,8 +31,8 @@ export const TradesList =  ()  => {
     }, [tradeSearch]) 
 
     useEffect(()=> {
-        getPokemons(allPokemons, setAllPokemons)
-    }, [])
+        
+    }, [allPokemons])
 
     useEffect(() => {
         getTrades(userToken, setTrades)

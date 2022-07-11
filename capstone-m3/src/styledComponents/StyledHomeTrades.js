@@ -14,7 +14,6 @@ flex-direction: row;
 export const StyledTradesDiv = styled.div`
 
 min-width: 300px;
-height: fit-content;
 margin-left: 50px;
 background-color: white;
 display: flex;
@@ -34,6 +33,8 @@ border-radius: 10px;
     gap: 10px;
 
     min-width: 290px;
+
+    overflow: auto;
 
     padding: 20px;
 

@@ -15,9 +15,9 @@ import { GlobalContext } from "../../providers/global";
 import { Minigame } from "../minigame";
 
 export const Headersite = () => {
-  // const { userContext } = useContext(GlobalContext);
+  const { userContext, themeContext } = useContext(GlobalContext);
 
-  // const { setUserToken } = userContext;
+  const { setUserToken, user } = userContext;
 
   const navigate = useNavigate();
 
@@ -36,8 +36,6 @@ export const Headersite = () => {
     navigate("/login");
   };
 
-  const { themeContext } = useContext(GlobalContext);
-
   const { themeSelector } = themeContext;
 
   return (
@@ -45,7 +43,7 @@ export const Headersite = () => {
       <Header>
         <Logo theme={themeSelector} src={require("../../image/logo.png")} />
         <User>
-          <ImagemUser theme={themeSelector}></ImagemUser>
+          <ImagemUser theme={themeSelector} src={user.img}></ImagemUser>
           <GiGems color="#42B4E5" /> <span>1000</span>
         </User>
         <Div theme={themeSelector} onClick={handleClick}>
