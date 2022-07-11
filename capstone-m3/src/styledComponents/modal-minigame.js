@@ -49,7 +49,7 @@ export const Container = styled.div`
     -webkit-filter: opacity(99%);
     -moz-filter: opacity(99%);
   }
-  
+
   span {
     margin-top: 10px;
   }
@@ -72,13 +72,34 @@ export const Container = styled.div`
   }
 `;
 export const DivStyled = styled.div`
-    height: 30%;
-    input{
-        height: 28px;
-    }
-    button{
-        height: 33.9px;
-        background-color: red;
-        color: #fff;
-    }
+  height: 30%;
+  width: 90%;
+  gap: 10px;
+  flex-direction: column;
+  input {
+    width: 93%;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 15px;
+  }
+  button {
+    height: 33.9px;
+    border-radius: 10px;
+    background-color: red;
+    color: #fff;
+  }
+  .ClosePopup {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 25px;
+    background-color: white;
+    color: red;
+    top: 0;
+    right: 0;
+    -webkit-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 1);
+  }
 `;
