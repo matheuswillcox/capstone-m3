@@ -41,6 +41,7 @@ const Login = () => {
         localStorage.setItem("userID", res.data.user.id)
         userContext.setUserToken(res.data.accessToken)
         userContext.setUser(res.data.user)
+        localStorage.setItem("@pokemonUser", JSON.stringify(res.data.user))
         renewToken(data)
         setTimeout(() => {
           navigate("/");
