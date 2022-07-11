@@ -5,7 +5,7 @@ export const StyledDiv = styled.div`
 
 min-width: 300px;
 height: 100vh;
-
+background-color: ${props=>props.theme};
 display: flex;
 flex-direction: row;
 
@@ -16,7 +16,7 @@ export const StyledTradesDiv = styled.div`
 min-width: 300px;
 height: fit-content;
 margin-left: 50px;
-
+background-color: white;
 display: flex;
 flex-direction: column;
 
@@ -78,7 +78,7 @@ border: solid 1px #f9f9f9;
 }
 
 .redLine {
-    background-color: #FF4E4E;
+    background-color: ${props=>props.theme};
     height: 100%;
     width: 5px;
     border-top-left-radius: 10px;
