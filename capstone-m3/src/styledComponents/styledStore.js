@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  font-family: "Roboto";
+  font-family: "Roboto",sans-serif;
   font-style: normal;
   font-weight: 400;
   background-color: ${props=>props.theme};

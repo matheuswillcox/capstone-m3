@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background-color: ${props=>props.theme};
   justify-content: flex-start;
   height: 100vh;
@@ -13,7 +13,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   h1 {
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
@@ -76,7 +76,7 @@ export const Card = styled.div`
     margin: 0px;
   }
   h3 {
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -85,7 +85,7 @@ export const Card = styled.div`
     margin: 0px;
   }
   span {
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -110,7 +110,7 @@ export const FiltersDiv = styled.div`
   margin-left: 25px;
   height: 555px;
   span {
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
@@ -143,7 +143,7 @@ export const BoxRaridade = styled.div`
     align-items: center;
     justify-content: center;
 
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;

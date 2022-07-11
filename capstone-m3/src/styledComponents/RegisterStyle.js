@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const H1 = styled.h1`
-    font-family: 'Roboto';
+    font-family: 'Roboto',sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 32px;
@@ -10,6 +10,7 @@ export const H1 = styled.h1`
 `
 
 export const Container = styled.div`
+  background-color: ${props=>props.theme};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,7 +45,7 @@ export const InputForm = styled.input`
     border-radius: 10px;
     width: 290px;
     height: 50px;
-    font-family: 'Roboto';
+    font-family: 'Roboto',sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
@@ -57,7 +58,7 @@ export const ButtonRegister = styled.button`
     height: 53px;
     background:  ${props=>props.theme};
     border-radius: 15px;
-    font-family: 'Roboto';
+    font-family: 'Roboto',sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 32px;

@@ -5,6 +5,8 @@ import {yupResolver} from "@hookform/resolvers/yup"
 import { useNavigate } from "react-router-dom"
 import API from "../../services/api"
 import { toast } from "react-toastify"
+import { useContext } from "react";
+import { GlobalContext } from "../../providers/global";
 
 
 
@@ -28,12 +30,16 @@ const RegisterForm = () => {
     .then(()=>{toast.success("Cadastro Efetuado Com Sucesso");
     setTimeout(()=>{redirect("/login")},1000)})
     .catch((err)=>{toast.error("Algo deu Errado");console.log(err)})}
+
+    const { themeContext } = useContext(GlobalContext);
+
+    const { themeSelector } = themeContext
     
     return(
-    <Container>
+    <Container theme={themeSelector}>
         <img src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png" alt="logo"/>
         <Form onSubmit={handleSubmit(FormSubmit)}>
-        <H1>Cadastro</H1>
+        <H1 theme={themeSelector}>Cadastro</H1>
             <InputForm placeholder="Nome" {...register("name")}/>
             {errors.name && <ErrorForm>{errors.name.message}</ErrorForm>}
             <InputForm placeholder="Email" {...register("email")}/>
@@ -42,7 +48,7 @@ const RegisterForm = () => {
             {errors.password && <ErrorForm>{errors.password.message}</ErrorForm>}
             <InputForm placeholder="Confirmar Senha" type="password" {...register("passwordValid")}/>
             {errors.passwordValid && <ErrorForm>{errors.passwordValid.message}</ErrorForm>}
-        <ButtonRegister type="submit">Cadastrar</ButtonRegister>
+        <ButtonRegister theme={themeSelector} type="submit">Cadastrar</ButtonRegister>
         </Form>
     </Container>
 )
