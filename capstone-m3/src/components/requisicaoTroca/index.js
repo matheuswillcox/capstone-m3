@@ -31,17 +31,13 @@ export const Requisicao = () => {
 
 
     if (userToken) {
-      user.pokemon = [{ name: "charmander" }, { name: "eevee" }];
-      setPokemon(user.pokemon[0].name);
     } else {
       async function GetUser(){
         const user = await API.get(`users/${userID}`, {
           headers: { Authorization: `Bearer ${userToken}` },
         })
           .then((res) => {
-            res.data.pokemon = [{ name: "charmander" }, { name: "eevee" }];
             setPokemon(res.data.pokemon[0].name);
-            setUser(res.data);
           })
           .catch((err) => toast.error("Email ou senha incorretos!"))
 
