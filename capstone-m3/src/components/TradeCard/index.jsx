@@ -9,7 +9,7 @@ import API from "../../services/api"
 import { toast } from "react-toastify"
 
 
-const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, tradePokes }) => {
+const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, tradePokes, isTraded }) => {
 
     const [offeredCard, setOfferedCard] = useState({})
     const [wantedCard, setWantedCard] = useState({})
@@ -77,6 +77,36 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
         
     }
 
+    const handleReceiveCard = () => {
+
+        const attPokemons = []
+        let alreadyHas = false
+
+        user.pokemon.map((poke) => {
+            if(poke.name === wanted) {
+                attPokemons.push({name: poke.name, quantity: poke.quantity += 1})
+                alreadyHas = true
+            }
+            else if(poke.name !== wanted && poke.name !== offered) {
+                attPokemons.push(poke)
+                if(!alreadyHas){
+                    attPokemons.push({name: wanted, quantity: poke.quantity = 1})
+                }
+            }
+        })
+
+        console.log(attPokemons)
+    }
+
+    const doidera = () => {
+
+        API.patch(`users/${user.id}`, {pokemon: {name:"bulbasaur", quantity: 100}}, {
+            headers: {Authorization: `Bearer ${userToken}`}
+        })
+        .then((res)=> {console.log(res)})
+        .catch((err) => console.log(err))
+    }
+
 
     return (
         <>
@@ -88,19 +118,23 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
             </div>
             <StyledPokemonTradeCard>
                 <img src={offeredCard?.sprites?.front_default} alt="pokimao"></img>
-                <h3>{offeredCard.name}</h3>
+                <h3>{offeredCard?.name}</h3>
             </StyledPokemonTradeCard>
             <div className="arrowTrade">
                 <TbArrowsLeftRight className="arrowTrade-arrow"></TbArrowsLeftRight>
             </div>
             <StyledPokemonTradeCard>
                 <img src={wantedCard?.sprites?.front_default} alt="pokimao"></img>
-                <h3>{wantedCard.name}</h3>
+                <h3>{wantedCard?.name}</h3>
             </StyledPokemonTradeCard>
             {userID === user.id ? 
+            isTraded ? 
+            <button onClick={() => {handleReceiveCard()}} className="acceptTrade-btn">Receber</button> 
+            : 
             <button onClick={() => {setShowModal(true)}} className="deleteTrade-btn">Excluir</button> 
             : 
             <button onClick={() => {handleAcceptTrade()}} className="acceptTrade-btn">Aceitar troca</button>}
+            <button onClick={()=>  {doidera()}}>teste</button>
         </StyledTradeCard>
         {showModal && <Container>
             <div className="popup">
