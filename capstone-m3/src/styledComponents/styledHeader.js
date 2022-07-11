@@ -20,12 +20,12 @@ export const Div = styled.div`
     justify-content: center;
     align-items:center;
     cursor:pointer;
-    color: #FE0000;
+    color: ${props=>props.theme};
     font-size: 18px;
 
     &:hover{
         transition: .6s;
-        background-color: #FE0000;
+        background-color: ${props=>props.theme};
         color: #ffffff
     }
 
@@ -53,6 +53,6 @@ export const Logo = styled.img`
 export const ImagemUser = styled.img`
     width:70px;
     height:70px;
-    background-color: #FE0000;
+    background-color: ${props=>props.theme};
     border-radius:50%;
 `;

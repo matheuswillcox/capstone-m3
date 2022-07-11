@@ -6,7 +6,7 @@ export const H1 = styled.h1`
     font-weight: 400;
     font-size: 32px;
     line-height: 38px;
-    color: #FE0000;
+    color:  ${props=>props.theme};
 `
 
 export const Container = styled.div`
@@ -14,6 +14,9 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    background-color:  ${props=>props.theme};
+    width: 100vw;
+    height: 100vh;
 
     img{
         margin: 15px;
@@ -52,7 +55,7 @@ export const InputForm = styled.input`
 export const ButtonRegister = styled.button`
     width: 193px;
     height: 53px;
-    background: #F81212;
+    background:  ${props=>props.theme};
     border-radius: 15px;
     font-family: 'Roboto';
     font-style: normal;

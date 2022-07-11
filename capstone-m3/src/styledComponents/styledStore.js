@@ -4,7 +4,7 @@ export const Container = styled.div`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
-  background-color: #ff4e4e;
+  background-color: ${props=>props.theme};
   width: 100vw;
   height: 100vh;
   display: flex;
