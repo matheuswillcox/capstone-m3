@@ -5,19 +5,25 @@ import { Container, DivStyled } from "../../styledComponents/modal-minigame";
 export const Minigame = () => {
   const [pokemons, setPokemons] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [newPoke, setNewPoke]= useState([])
 
   useEffect(() => {
     axios
       .get("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0a")
       .then((res) => setPokemons(res.data.results));
   }, []);
-  console.log(pokemons);
+  
+  const sortPoke= ()=>{
+    const sortNum = Math.floor(Math.random() * 150)
+    console.log(sortNum);
+  }
 
   return (
     <>
       <button
         onClick={() => {
-          setShowModal(true);
+          //setShowModal(true);
+          console.log(sortPoke);
         }}
       >
         teste Minigame

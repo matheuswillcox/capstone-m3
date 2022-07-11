@@ -9,9 +9,11 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { toast } from "react-toastify";
 
 export const Requisicao = () => {
-  const { userContext, allPokemonsContext } = useContext(GlobalContext);
+  const { userContext, allPokemonsContext, themeContext } = useContext(GlobalContext);
   const { user, setUser, userToken } = userContext;
   const { allPokemons } = allPokemonsContext;
+
+  const { themeSelector } = themeContext
   const [showModal, setShowModal] = useState(false);
 
   const [pokemon, setPokemon] = useState("");
@@ -82,6 +84,7 @@ export const Requisicao = () => {
   return (
     <>
       <ButtonTroca
+      theme={themeSelector}
         onClick={() => {
           setShowModal(true);
         }}

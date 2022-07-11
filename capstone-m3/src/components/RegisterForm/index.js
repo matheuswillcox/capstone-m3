@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom"
 import API from "../../services/api"
 import { toast } from "react-toastify"
 
+
+
 const RegisterForm = () => {
     const formSchema = yup.object().shape({
         name: yup.string().required("Campo Obrigatório"),
