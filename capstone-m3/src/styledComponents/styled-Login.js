@@ -41,7 +41,7 @@ export const Container = styled.main`
     width: 90%;
     min-width: 150px;
     max-width: 200px;
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -67,7 +67,7 @@ export const Container = styled.main`
     background: var(--theme);
     border-radius: 15px;
     color: #fff;
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;

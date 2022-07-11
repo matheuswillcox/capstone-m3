@@ -13,9 +13,11 @@ import API from "../../services/api";
 
 const Login = () => {
 
-  const { userContext } = useContext(GlobalContext)
+  const { userContext, themeContext } = useContext(GlobalContext)
 
-  const { setUserLoginInfo, renewToken } = userContext
+  const { setUserLoginInfo, renewToken  } = userContext
+
+  const { themeSelector } = themeContext
 
   const schema = yup.object().shape({
     email: yup.string().email("Email invalido").required("Campo vazio"),
@@ -50,7 +52,7 @@ const Login = () => {
   };
 
   return (
-    <Container>
+    <Container theme={themeSelector}>
       <img
         src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png"
         alt="Logo pokeAPI"

@@ -2,18 +2,20 @@ import styled from "styled-components";
 
 export const Main = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background-color: ${props=>props.theme};
   justify-content: flex-start;
-  height: 100vh;
+  height: 100%;
   gap: 160px;
 `;
 export const Container = styled.div`
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  
   h1 {
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
@@ -35,6 +37,7 @@ export const Box = styled.div`
   background: #ffffff;
   border-radius: 15px;
   overflow: auto;
+  margin-left:200px;
   ::-webkit-scrollbar {
     width: 0px;
   }
@@ -61,7 +64,7 @@ export const Card = styled.div`
   flex-direction: column;
   width: 180px;
   height: 250px;
-  background: #fefffc;
+  background: ${props => props.color === "block" ? "darkgray" : "#FFFFFF"};
   border: 5px solid #d9d9d9;
   border-radius: 4px;
   align-items: center;
@@ -69,6 +72,7 @@ export const Card = styled.div`
     width: 132.5px;
     height: 131.6px;
     margin: 10px;
+    opacity: ${props => props.color === "block" ? "0.2" : "1"};
   }
   .type {
     width: 30px;
@@ -76,7 +80,7 @@ export const Card = styled.div`
     margin: 0px;
   }
   h3 {
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -85,7 +89,7 @@ export const Card = styled.div`
     margin: 0px;
   }
   span {
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -110,7 +114,7 @@ export const FiltersDiv = styled.div`
   margin-left: 25px;
   height: 555px;
   span {
-    font-family: "Roboto";
+    font-family: "Roboto",sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
@@ -143,7 +147,7 @@ export const BoxRaridade = styled.div`
     align-items: center;
     justify-content: center;
 
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
