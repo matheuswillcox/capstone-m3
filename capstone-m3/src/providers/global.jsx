@@ -43,7 +43,7 @@ export const GlobalProvider = ({ children }) => {
 
   //
 
-  const [itemCompra, setItemCompra] = useState("");
+  const [itemCompra, setItemCompra] = useState([]);
 
   const itemCompraContext = { itemCompra, setItemCompra };
 
