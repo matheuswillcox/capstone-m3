@@ -25,8 +25,8 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
     
     useEffect(()=>{
 
-        const offeredPoke = allPokemons.find((pokemon) => pokemon.name === offered)
-        const wantedPoke = allPokemons.find((pokemon) => pokemon.name === wanted)
+        const offeredPoke = allPokemons.find((pokemon) => pokemon?.name === offered)
+        const wantedPoke = allPokemons.find((pokemon) => pokemon?.name === wanted)
 
         setOfferedCard(offeredPoke)
         setWantedCard(wantedPoke)
@@ -49,7 +49,7 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
 
     const handleAcceptTrade = () => {
 
-        const pokeToTrade = user.pokemon.find((poke) => poke.name === wanted)
+        const pokeToTrade = user.pokemon.find((poke) => poke?.name === wanted)
 
         const tradeConditional = pokeToTrade && pokeToTrade.quantity > 1 ? true : false
 
@@ -88,14 +88,14 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
             </div>
             <StyledPokemonTradeCard>
                 <img src={offeredCard?.sprites?.front_default} alt="pokimao"></img>
-                <h3>{offeredCard.name}</h3>
+                <h3>{offeredCard?.name}</h3>
             </StyledPokemonTradeCard>
             <div className="arrowTrade">
                 <TbArrowsLeftRight className="arrowTrade-arrow"></TbArrowsLeftRight>
             </div>
             <StyledPokemonTradeCard>
                 <img src={wantedCard?.sprites?.front_default} alt="pokimao"></img>
-                <h3>{wantedCard.name}</h3>
+                <h3>{wantedCard?.name}</h3>
             </StyledPokemonTradeCard>
             {userID === user.id ? 
             <button onClick={() => {setShowModal(true)}} className="deleteTrade-btn">Excluir</button> 
