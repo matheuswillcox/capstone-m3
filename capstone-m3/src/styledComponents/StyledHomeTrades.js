@@ -5,7 +5,7 @@ export const StyledDiv = styled.div`
 
 min-width: 300px;
 height: 100vh;
-background-color:  ${props=>props.theme};
+
 display: flex;
 flex-direction: row;
 
@@ -16,7 +16,7 @@ export const StyledTradesDiv = styled.div`
 min-width: 300px;
 height: fit-content;
 margin-left: 50px;
-background-color: white;
+
 display: flex;
 flex-direction: column;
 
