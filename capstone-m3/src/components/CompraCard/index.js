@@ -1,50 +1,70 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../providers/global";
-import styled from "styled-components"
-
-
-const Container = styled.div`
-    width: 370px;
-    height: 345px;
-    background-color: #ffffff;
-    color: black;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    top: 50%;
-    left: 50%;
-    transform: translate( -50%, -50%);
-    border-radius: 4px;
-    box-shadow: 0 0 1em black;
-`
-const Botoes = styled.div`
-    width: 200px;
-    display:flex;
-    justify-content: space-between;
-`
-
+import { useState } from "react";
+import API from "../../services/api";
+import { Container, Botoes } from "../../styledComponents/CompraCardStyle";
 
 const CompraCard = () =>{
 
-    const { compraContext, itemCompraContext } = useContext(GlobalContext);
+    const { compraContext, itemCompraContext, userContext, allPokemonsContext } = useContext(GlobalContext);
 
-    const { compra, setCompra } = compraContext;
+    const { setCompra } = compraContext;
 
     const { itemCompra, setItemCompra} = itemCompraContext;
 
+    const { user } = userContext
+
+    const { allPokemons } = allPokemonsContext
+
+    const [body, setBody] = useState([]);
+ 
+    const concat =[];
+
+    function pokeFilter(item){
+       const result = allPokemons.filter((_,index) => index === item);
+       concat.push(result);
+    }
+
+    function bodyProvider(array){
+        array = array.flat()
+        const result = array.map(ell => {
+          if( ell.name === user.pokemon.name){
+            return {name: user.pokemon.name, quantity: user.pokemon.quantity + 1}
+          } else
+          return {name: ell.name, quantity: 1}})
+        return result;
+    }
+    
+    const envia =() =>{
+      
+      const transacao = {
+        pokemon: body,
+        credits: user.credits,
+      }
+
+      API.patch(`/users/${localStorage.getItem("userID")}`, transacao,{
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      }).catch((err) => console.log(err));
+    }
+
     const handleclick2 = () =>{
         setCompra(false)
-        setItemCompra("")
-        console.log(compra)
+        setItemCompra([])
     }
+
+    const handleclick1 = () => {
+      itemCompra.forEach(number => pokeFilter(number))
+      setBody([...user.pokemon, ...bodyProvider(concat)])
+      envia()
+      setCompra(false)
+  };
 
     return(<>
         <Container>
             <span>Tem certeza que quer comprar?</span>
+            <img src={require("../../image/cards.png")} alt="img" />
             <Botoes>
-            <button onClick={handleclick2}>SIM</button>
+            <button onClick={handleclick1}>SIM</button>
             <button onClick={handleclick2}>NÃO</button>
             </Botoes>
         </Container>
