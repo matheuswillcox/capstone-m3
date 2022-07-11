@@ -8,14 +8,14 @@ import API from "../../services/api"
 import { toast } from "react-toastify"
 
 
-const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }) => {
+const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, tradePokes }) => {
 
     const [offeredCard, setOfferedCard] = useState({})
     const [wantedCard, setWantedCard] = useState({})
 
     const { userContext, allPokemonsContext } = useContext(GlobalContext)
 
-    const { user } = userContext
+    const { user, userToken } = userContext
 
     const { allPokemons } = allPokemonsContext
 
@@ -45,24 +45,31 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }
 
     const handleAcceptTrade = () => {
 
-        user.pokemon[0].quantity = 2
-
         const pokeToTrade = user.pokemon.find((poke) => poke.name === wanted)
 
-        const cond = pokeToTrade && pokeToTrade.quantity > 1 ? true : false
+        const tradeConditional = pokeToTrade && pokeToTrade.quantity > 1 ? true : false
 
         const newUserPokes = []
+        let alreadyHas = false
 
-        cond && user.pokemon.map((poke) => {
+        tradeConditional && user.pokemon.map((poke) => {
 
             if(poke.name === pokeToTrade.name){
                 newUserPokes.push({name: poke.name, quantity: poke.quantity -= 1})
-            }else{
+            }else if(poke.name === offered){
+                newUserPokes.push({name: offered, quantity: poke.quantity += 1})
+                alreadyHas = true
+            }else if(poke.name !== offered && poke.name !== wanted){
                 newUserPokes.push(poke)
+                if(!alreadyHas){
+                    newUserPokes.push({name: offered, quantity: poke.quantity = 1})
+                }
             }
         })
 
-        console.log(newUserPokes)
+        /*tradeConditional && API.patch(`users/${user.id}`, {pokemon: newUserPokes}, {
+            headers: {Authorization: `Bearer ${userToken}`}
+        })*/
         
     }
 

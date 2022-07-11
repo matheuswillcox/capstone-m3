@@ -48,7 +48,7 @@ export const TradesList =  ()  => {
                     placeholder="Filtre o pokemon desejado"
                     onChange={(e) => {setTradeSearch(e.target.value)}} 
                     />
-                    <button onClick={() => {console.log(trades)}}>addTrade</button>
+                    <button onClick={() => {console.log(user.pokemon)}}>addTrade</button>
                     {/* aqui vai o botão para adicionar a nova troca */}
                 </div>
                 {tradeSearch !==  "" ?
@@ -56,11 +56,13 @@ export const TradesList =  ()  => {
                 <TradeCard key={index} offered={filteredTrade.pokemon.offered} 
                 wanted={filteredTrade.pokemon.wanted}
                 userID={filteredTrade.userID} tradeID={filteredTrade.id} 
-                tradeUser={filteredTrade.userName} tradeUserImg={filteredTrade.img}></TradeCard>))
+                tradeUser={filteredTrade.userName} tradeUserImg={filteredTrade.img}
+                tradePokes={filteredTrade.userPokemons}></TradeCard>))
                 :
                 (trades?.map((trade, index) => 
                 <TradeCard key={index} offered={trade.pokemon.offered} wanted={trade.pokemon.wanted}
-                userID={trade.userID} tradeID={trade.id} tradeUser={trade.userName} tradeUserImg={trade.img}></TradeCard>))}
+                userID={trade.userID} tradeID={trade.id} tradeUser={trade.userName} tradeUserImg={trade.img}
+                tradePokes={trade.userPokemons}></TradeCard>))}
             </ul>
         </StyledTradesDiv>
     )
