@@ -49,6 +49,11 @@ export const GlobalProvider = ({ children }) => {
 
   //
 
+  const [ themeSelector, setThemeSelector ] = useState("var(--red)")
+
+  const themeContext = { themeSelector, setThemeSelector  }
+  //
+
   function renewToken(data) {
     setTimeout(() => {
       API.post("/login", data).then((res) => {
@@ -73,6 +78,7 @@ export const GlobalProvider = ({ children }) => {
         compraContext,
         itemCompraContext,
         renewToken,
+        themeContext
       }}
     >
       {children}

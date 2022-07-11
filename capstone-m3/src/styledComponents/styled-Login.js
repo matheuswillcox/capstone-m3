@@ -7,7 +7,7 @@ export const Container = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #ff4e4e;
+  background-color:var(--theme);
   gap: 20px;
 
   form {
@@ -25,7 +25,7 @@ export const Container = styled.main`
     padding-top: 15px;
   }
   form h1 {
-    color: #fe0000;
+    color: var(--theme);
     margin: 0;
     font-family: "Roboto";
     font-style: normal;
@@ -64,7 +64,7 @@ export const Container = styled.main`
     margin-left: 10px;
   }
   button {
-    background: #f81212;
+    background: var(--theme);
     border-radius: 15px;
     color: #fff;
     font-family: "Roboto";
