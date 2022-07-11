@@ -8,14 +8,11 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   color: white;
-  gap: 200px;
-
   .divContainer {
     margin-top: 60px;
   }
-
   .loja {
     padding: 40px;
     font-family: "Roboto", sans-serif;
@@ -41,11 +38,8 @@ export const Container = styled.div`
     width: 200px;
     padding: 20px;
   }
-
   @media only screen and (max-width: 900px) {
-    gap: 50px;
     .packs {
-
       flex-direction: column;
     }
   }
