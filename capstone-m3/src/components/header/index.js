@@ -12,11 +12,14 @@ import {
 } from "../../styledComponents/styledHeader";
 import { useContext } from "react";
 import { GlobalContext } from "../../providers/global";
+import { Minigame } from "../minigame";
+import { useState } from "react";
 
 export const Headersite = () => {
   // const { userContext } = useContext(GlobalContext);
 
   // const { setUserToken } = userContext;
+  const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -34,6 +37,10 @@ export const Headersite = () => {
     // setUserToken("")
     navigate("/login");
   };
+  const handleClick5 = () => {
+    setShowModal(!showModal)
+  };
+  
 
   const { themeContext } = useContext(GlobalContext);
 
@@ -64,6 +71,10 @@ export const Headersite = () => {
             <FaShoppingBag />
           </Icons>
           <span>Loja</span>
+        </Div>
+        <Div theme={themeSelector} onClick={()=>{handleClick5()}}>
+          <Minigame setShowModal={setShowModal} showModal={showModal}/>
+          <span>Minigame</span>
         </Div>
         <Div theme={themeSelector} onClick={handleClick4}>
           <Icons>

@@ -2,7 +2,6 @@ import { Requisicao } from "../../components/requisicaoTroca";
 import { Headersite } from "../../components/header";
 import TradesList from "../../components/TradesList";
 import { StyledDiv } from "../../styledComponents/StyledHomeTrades";
-import {Minigame}from "../../components/minigame"
 
 
 function Home() {
@@ -12,7 +11,6 @@ function Home() {
       <Headersite />
       <TradesList />
       <Requisicao/>
-      <Minigame/>
     </StyledDiv>
 
   );
