@@ -9,14 +9,14 @@ import API from "../../services/api"
 import { toast } from "react-toastify"
 
 
-const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }) => {
+const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, tradePokes }) => {
 
     const [offeredCard, setOfferedCard] = useState({})
     const [wantedCard, setWantedCard] = useState({})
 
     const { userContext, allPokemonsContext } = useContext(GlobalContext)
 
-    const { user } = userContext
+    const { user, userToken } = userContext
 
     const { allPokemons } = allPokemonsContext
     const [showModal, setShowModal] = useState(false)
@@ -47,6 +47,37 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }
         DeleteRequest(tradeID)
     }
 
+    const handleAcceptTrade = () => {
+
+        const pokeToTrade = user.pokemon.find((poke) => poke.name === wanted)
+
+        const tradeConditional = pokeToTrade && pokeToTrade.quantity > 1 ? true : false
+
+        const newUserPokes = []
+        let alreadyHas = false
+
+        tradeConditional && user.pokemon.map((poke) => {
+
+            if(poke.name === pokeToTrade.name){
+                newUserPokes.push({name: poke.name, quantity: poke.quantity -= 1})
+            }else if(poke.name === offered){
+                newUserPokes.push({name: offered, quantity: poke.quantity += 1})
+                alreadyHas = true
+            }else if(poke.name !== offered && poke.name !== wanted){
+                newUserPokes.push(poke)
+                if(!alreadyHas){
+                    newUserPokes.push({name: offered, quantity: poke.quantity = 1})
+                }
+            }
+        })
+
+        /*tradeConditional && API.patch(`users/${user.id}`, {pokemon: newUserPokes}, {
+            headers: {Authorization: `Bearer ${userToken}`}
+        })*/
+        
+    }
+
+
     return (
         <>
         <StyledTradeCard>
@@ -69,7 +100,7 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg }
             {userID === user.id ? 
             <button onClick={() => {setShowModal(true)}} className="deleteTrade-btn">Excluir</button> 
             : 
-            <button onClick={() => {console.log(offeredCard)}} className="acceptTrade-btn">Aceitar troca</button>}
+            <button onClick={() => {handleAcceptTrade()}} className="acceptTrade-btn">Aceitar troca</button>}
         </StyledTradeCard>
         {showModal && <Container>
             <div className="popup">
