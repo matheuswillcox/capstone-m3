@@ -53,6 +53,7 @@ export const Container = styled.div`
   div {
     display: flex;
     justify-content: space-between;
+    background-color: #fff;
   }
   svg {
     min-height: 20px;
@@ -96,7 +97,7 @@ export const ButtonTroca = styled.div`
   font-size: 36px;
   line-height: 42px;
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
