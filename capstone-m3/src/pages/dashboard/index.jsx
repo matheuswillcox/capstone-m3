@@ -24,7 +24,7 @@ function Dashboard() {
     <>
     <Main theme={themeSelector} >
     <Headersite/>
-      <Container>
+      <Container >
         <h1>Minha Coleção</h1>
           <Article>
               <Box>

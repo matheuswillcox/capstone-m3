@@ -5,11 +5,11 @@ export const Main = styled.div`
   flex-direction: column;
   background-color: ${props=>props.theme};
   justify-content: flex-start;
-  background:#FE0000;
   height: 100%;
   gap: 160px;
 `;
 export const Container = styled.div`
+
   display: flex;
   flex-direction: column;
   align-items: center;
