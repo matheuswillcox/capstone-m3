@@ -6,7 +6,9 @@ import CompraCard from "../../components/CompraCard";
 
 const Store = () => {
 
-  const { compraContext, itemCompraContext } = useContext(GlobalContext);
+  const { compraContext, itemCompraContext, themeContext } = useContext(GlobalContext);
+
+  const { themeSelector } = themeContext
 
   const { compra, setCompra } = compraContext;
 
@@ -18,7 +20,7 @@ const Store = () => {
   }
 
   return (<>
-    <Container>
+    <Container theme={themeSelector}>
       <Headersite/>
       <div className="divContainer">
         <div className="loja">Loja</div>
