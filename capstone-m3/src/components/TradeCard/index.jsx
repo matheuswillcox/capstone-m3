@@ -16,7 +16,7 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
 
     const { userContext, allPokemonsContext } = useContext(GlobalContext)
 
-    const { user, userToken } = userContext
+    const { user, userToken, setUser } = userContext
 
     const { allPokemons } = allPokemonsContext
     const [showModal, setShowModal] = useState(false)
@@ -71,9 +71,10 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
             }
         })
 
-        /*tradeConditional && API.patch(`users/${user.id}`, {pokemon: newUserPokes}, {
+        tradeConditional && API.patch(`users/${user.id}`, {pokemon: newUserPokes}, {
             headers: {Authorization: `Bearer ${userToken}`}
-        })*/
+        })
+        .then((res) => {setUser(res.data)})
         
     }
 
@@ -95,17 +96,20 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
             }
         })
 
-        console.log(attPokemons)
+        API.patch(`users/${user.id}`, {pokemon: attPokemons}, {
+            headers: {Authorization: `Bearer ${userToken}`}
+        })
+        .then((res) => {setUser(res.data)})
     }
 
-    const doidera = () => {
+    /*const doidera = () => {
 
         API.patch(`users/${user.id}`, {pokemon: {name:"bulbasaur", quantity: 100}}, {
             headers: {Authorization: `Bearer ${userToken}`}
         })
         .then((res)=> {console.log(res)})
         .catch((err) => console.log(err))
-    }
+    }*/
 
 
     return (
@@ -134,7 +138,6 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
             <button onClick={() => {setShowModal(true)}} className="deleteTrade-btn">Excluir</button> 
             : 
             <button onClick={() => {handleAcceptTrade()}} className="acceptTrade-btn">Aceitar troca</button>}
-            <button onClick={()=>  {doidera()}}>teste</button>
         </StyledTradeCard>
         {showModal && <Container>
             <div className="popup">

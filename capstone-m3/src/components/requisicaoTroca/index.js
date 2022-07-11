@@ -31,7 +31,6 @@ export const Requisicao = () => {
 
 
     if (userToken) {
-      //setPokemon(user?.pokemon[0].name);
     } else {
       async function GetUser(){
         const user = await API.get(`users/${userID}`, {
@@ -75,11 +74,10 @@ export const Requisicao = () => {
       }
     })
 
-    console.log(attPokemons)
-
-    /*tradeConditional && API.patch(`users/${user.id}`, {pokemon: attPokemons}, {
+    tradeConditional && API.patch(`users/${user.id}`, {pokemon: attPokemons}, {
             headers: {Authorization: `Bearer ${userToken}`}
-    })*/
+    })
+    .then((res) => {setUser(res.data)})
   }
 
   const collectData = (data) => {
