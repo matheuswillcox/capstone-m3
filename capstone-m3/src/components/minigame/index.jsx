@@ -7,15 +7,15 @@ import API from "../../services/api";
 import { FaGamepad } from "react-icons/fa";
 import { Div,Icons } from "../../styledComponents/styledHeader";
 
-export const Minigame = ({themeSelector}) => {
+export const Minigame = () => {
   const [pokemons, setPokemons] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [newPoke, setNewPoke] = useState([]);
   const [nomePoke, setNomePoke] = useState("");
   const [color, setColor] = useState("");
-  const { userContext } = useContext(GlobalContext);
+  const { userContext, themeContext } = useContext(GlobalContext);
   const { user } = userContext;
-
+  const {themeSelector} =themeContext
   useEffect(() => {
     async function getPokes(){
      const response = await axios
