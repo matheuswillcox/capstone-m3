@@ -3,10 +3,10 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 
 :root{
-        --theme: #f81212 ;
-        --red: #f81212;
-        --blue:  #3761A8;;
-        --yellow:#FFE76D;
+        --theme:#EF5350 ;
+        --red:#EF5350;
+        --blue: #3761A8;;
+        --yellow:#FECA1C;
 }
 
 
