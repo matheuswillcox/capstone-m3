@@ -58,8 +58,9 @@ border-radius: 10px;
 }
 
 @media (max-width:660px) {
-    height: 90%;
+    height: 85%;
     margin-top: 0;
+    margin-bottom: 50px;
     ul{
         overflow: scroll;
         max-height: 90%;
