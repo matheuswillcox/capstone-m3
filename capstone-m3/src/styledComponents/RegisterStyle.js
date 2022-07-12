@@ -20,20 +20,32 @@ export const Container = styled.div`
     height: 100vh;
 
     img{
-        margin: 15px;
+        margin: 15;
     }
 `
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 350px;
-    height: 550px;
+    width: 90%;
+    max-width: 350px;
+    height: 75%;
+    max-height: 550px;
     background: #FFFFFF;
     box-shadow: 5px 0px 8px rgba(0, 0, 0, 0.25);
-    border-radius: 40px;
+    border-radius: 25px;
     align-items: center;
-    gap: 33px;
+    gap: 10px;
+    h1{
+        margin: 0;
+        margin-top: 15px;
+    }
+    @media(min-width: 480px){
+        gap: 20px;
+        h1{
+            margin-top: 15px;
+        }
+    }
 `
 export const ErrorForm = styled.span`
     font-size: 12px;
@@ -43,7 +55,7 @@ export const ErrorForm = styled.span`
 export const InputForm = styled.input`
     background: #D9D9D9;
     border-radius: 10px;
-    width: 290px;
+    width: 90%;
     height: 50px;
     font-family: 'Roboto',sans-serif;
     font-style: normal;
@@ -54,7 +66,7 @@ export const InputForm = styled.input`
     border: none;
 `
 export const ButtonRegister = styled.button`
-    width: 193px;
+    width: 70%;
     height: 53px;
     background:  ${props=>props.theme};
     border-radius: 15px;
@@ -66,4 +78,5 @@ export const ButtonRegister = styled.button`
     color: #FFFFFF;
     cursor: pointer;
     border: none;
+    margin-bottom: 10px;
 `
