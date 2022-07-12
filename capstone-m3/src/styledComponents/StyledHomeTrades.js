@@ -39,6 +39,7 @@ border-radius: 10px;
     min-width: 290px;
     
     overflow: auto;
+    overflow-x: hidden;
 
     padding: 20px;
 
