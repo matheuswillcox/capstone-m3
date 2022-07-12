@@ -62,7 +62,6 @@ export const GlobalProvider = ({ children }) => {
         setUserToken(res.data.accessToken);
         setUser(res.data.user);
         renewToken(data);
-        console.log("Pegou");
       });
     }, 360000);
   }

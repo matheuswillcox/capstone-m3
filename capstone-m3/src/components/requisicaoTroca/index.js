@@ -9,9 +9,10 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { toast } from "react-toastify";
 
 export const Requisicao = () => {
-  const { userContext, allPokemonsContext, themeContext } = useContext(GlobalContext);
+  const { userContext, allPokemonsContext, themeContext, tradesContext } = useContext(GlobalContext);
   const { user, setUser, userToken } = userContext;
   const { allPokemons } = allPokemonsContext;
+  const { trades, setTrades } = tradesContext
 
   const { themeSelector } = themeContext
   const [showModal, setShowModal] = useState(false);
@@ -67,12 +68,32 @@ export const Requisicao = () => {
       userPokemons: user.pokemon
     };
 
+    setTrades([...trades, trocaPokemons])
+
+    const attPokemons = []
+
+    user.pokemon?.map((poke) => {
+      if(poke.name === trocaPokemons.pokemon.offered) {
+        attPokemons.push({name:poke.name ,quantity: poke.quantity - 1})
+      }else{
+        attPokemons.push(poke)
+      }
+    })
+
+    API.patch(`users/${user.id}`, {pokemon: attPokemons}, {
+            headers: {Authorization: `Bearer ${userToken}`}
+    })
+    .then((res) => {
+      setUser(res.data)
+      localStorage.setItem("@pokemonUser", JSON.stringify(res.data))
+    })
+
     API.post("/troca", trocaPokemons, {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     }).then((res) => {
       toast.success("Enviado com sucesso");
       setTimeout(() => {
-        window.location.reload();
+        
       }, 1000);
     });
   };
