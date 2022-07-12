@@ -3,11 +3,10 @@ import UserDash from "../../components/UserDash";
 
 
 const Dashboard = () => {
-
   return (
     <>
     <Headersite/>
-    <UserDash></UserDash>
+    <UserDash/>
     </>
   );
 }
