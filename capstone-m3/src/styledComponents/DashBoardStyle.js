@@ -7,6 +7,7 @@ export const Main = styled.div`
   justify-content: flex-start;
   height: 100%;
   gap: 160px;
+  
 `;
 export const Container = styled.div`
 
@@ -27,6 +28,7 @@ export const Container = styled.div`
 export const Article = styled.div`
   display: flex;
   flex-direction: row;
+  
 `;
 
 export const Box = styled.div`
@@ -68,11 +70,11 @@ export const Card = styled.div`
   border: 5px solid #d9d9d9;
   border-radius: 4px;
   align-items: center;
+  cursor: pointer;
   img {
     width: 132.5px;
     height: 131.6px;
     margin: 10px;
-    opacity: ${props => props.color === "block" ? "0.2" : "1"};
   }
   .type {
     width: 30px;

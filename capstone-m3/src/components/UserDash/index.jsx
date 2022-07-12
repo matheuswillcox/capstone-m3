@@ -3,9 +3,10 @@ import { GlobalContext } from "../../providers/global";
 import { Main,Container, Article, Box, Grid, Card, FiltersDiv, BoxTema, BoxRaridade, BoxTipo, BoxInput } from "../../styledComponents/DashBoardStyle";
 import {AiOutlineSearch} from "react-icons/ai"
 import { useState } from "react";
+import ModalDashBoard from "../ModalDashBoard"
 
 
-function UserDash() {
+function UserDash({card,setCard,obj,setObjModal}) {
 
   const { allPokemonsContext, themeContext, userContext, tradesContext } = useContext(GlobalContext)
 
@@ -18,16 +19,16 @@ function UserDash() {
   const {user, userToken} = userContext
 
   const [inputText,setInputText] = useState("")
-  
+
   useEffect(()=> {}, [allPokemons])
 
   useEffect(() => {
     getTrades(userToken, setTrades)
-}, []) 
-  
+}, [])
   return (
     <>
     <Main theme={themeSelector} >
+    <ModalDashBoard card={card} obj={obj} setCard={setCard} userPokemon={user.pokemon}/>
       <Container >
         <h1>Minha Coleção</h1>
           <Article>
@@ -35,8 +36,8 @@ function UserDash() {
                 <Grid>
                 { allPokemons?.map((e)=>
                   user.pokemon?.filter(({name})=>{return e?.name === name}).length > 0 ?
-                  <Card key={e?.id}>
-                    <img src={e?.sprites.front_default} alt=""/>
+                  <Card key={e?.id} onClick={(event)=>{event.preventDefault();setObjModal({...e,display:""});setCard(true)}}>
+                    <img src={e?.sprites.front_default} alt="PokeImg"/>
                     <div>  
                     <h3>{e?.name}</h3>
                     <img className="type" src={require("../../image/image.png")} alt="imgType"/>
@@ -44,8 +45,8 @@ function UserDash() {
                     </div>
                   </Card>
                   :
-                  <Card key={e?.id} color="block" >
-                    <img color = "block" src={e?.sprites.front_default} alt=""/>
+                  <Card key={e?.id} color="block" onClick={(event)=>{event.preventDefault();setObjModal({...e,display:"block"});setCard(true)}}>
+                    <img color = "block" img={card} src={e?.sprites.front_default} alt=""/>
                     <div>  
                     <h3>{e?.name}</h3>
                     <img className="type" src={require("../../image/image.png")} alt="imgType"/>
