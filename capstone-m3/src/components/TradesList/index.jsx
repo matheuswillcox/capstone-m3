@@ -48,7 +48,7 @@ export const TradesList =  ()  => {
                     placeholder="Filtre o pokemon desejado"
                     onChange={(e) => {setTradeSearch(e.target.value)}} 
                     />
-                    <button onClick={() => {console.log(user)}}>addTrade</button>
+                    <button onClick={() => {console.log(user.pokemon)}}>addTrade</button>
                     {/* aqui vai o botão para adicionar a nova troca */}
                 </div>
                 {tradeSearch !==  "" ?

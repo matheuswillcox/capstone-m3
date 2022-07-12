@@ -3,6 +3,7 @@ import { Container } from "../../styledComponents/styledStore";
 import { useContext } from "react";
 import { GlobalContext } from "../../providers/global";
 import CompraCard from "../../components/CompraCard";
+import { GiCardPick, GiGems } from "react-icons/gi";
 
 const Store = () => {
 
@@ -22,7 +23,7 @@ const Store = () => {
   const geraCards = () =>{
     const array = [];
     for (let i= 0; i<= 9; i++){
-      const result = Math.floor(Math.random() * 150)
+      const result = Math.floor(Math.random() * 129)
       array.push(result);
     }
     setItemCompra(array);
@@ -35,19 +36,19 @@ const Store = () => {
         <div className="loja">Loja</div>
         <div className="packs" >
           <div className="card" onClick={handleclick}>
-            <div>Pack 1</div>
+            <div>Pack Comum</div>
             <img src={require("../../image/cards.png")} alt="img" />
-            <div>Preço R$ 99.99</div>
+            <div><GiGems color="#42B4E5" /> <span>500</span></div>
           </div>
-          <div className="card" onClick={handleclick}>
-            <div>Pack 2</div>
+          <div className="card" >
+            <div>Pack Raro</div>
             <img src={require("../../image/cards.png")} alt="img" />
-            <div>Preço R$ 99.99</div>
+            <div><GiGems color="#42B4E5" /> <span>2000</span></div>
           </div>
-          <div className="card" onClick={handleclick}>
-            <div>Pack 3</div>
+          <div className="card" >
+            <div>Pack Lendário</div>
             <img src={require("../../image/cards.png")} alt="img" />
-            <div>Preço R$ 99.99</div>
+            <div><GiGems color="#42B4E5" /> <span>6000</span></div>
           </div>
         </div>
       </div>
