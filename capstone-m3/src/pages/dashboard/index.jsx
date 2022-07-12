@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     <>
     <Headersite/>
-    <UserDash/>
+    <UserDash></UserDash>
     </>
   );
 }
