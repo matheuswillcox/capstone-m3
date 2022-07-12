@@ -34,6 +34,7 @@ export const Article = styled.div`
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 884px;
   height: 580px;
   background: #ffffff;
@@ -70,6 +71,7 @@ export const Card = styled.div`
   border: 5px solid #d9d9d9;
   border-radius: 4px;
   align-items: center;
+  margin: 11px;
   cursor: pointer;
   img {
     width: 132.5px;

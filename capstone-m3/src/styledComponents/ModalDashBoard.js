@@ -20,6 +20,7 @@ display: flex;
   border: 5px solid #d9d9d9;
   border-radius: 4px;
   align-items: center;
+  transition: 3s ease-in;
 
   img {
     width: 182.5px;
