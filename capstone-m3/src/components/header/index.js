@@ -60,7 +60,7 @@ export const Headersite = () => {
           </div>
           <User>
             <ImagemUser theme={themeSelector} src={user.img}></ImagemUser>
-            <GiGems color="#42B4E5" /> <span style={{color: "black"}}>1000</span>
+            <GiGems color="#42B4E5" /> <span style={{color: "black"}}>{user.credits}</span>
           </User>
           <Div theme={themeSelector} onClick={handleClick}>
             <Icons>
@@ -93,7 +93,7 @@ export const Headersite = () => {
         <Logo theme={themeSelector} src={require("../../image/logo.png")} />
         <User>
           <ImagemUser theme={themeSelector} src={user.img}></ImagemUser>
-          <GiGems color="#42B4E5" /> <span>1000</span>
+          <GiGems color="#42B4E5" /> <span>{user.credits}</span>
         </User>
         <Div theme={themeSelector} onClick={handleClick}>
           <Icons>
