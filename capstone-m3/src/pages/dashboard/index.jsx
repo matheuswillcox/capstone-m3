@@ -13,6 +13,57 @@ function Dashboard() {
   const { themeSelector, setThemeSelector } = themeContext
 
   const [inputText,setInputText] = useState("")
+
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  const [filtro, setFiltro]=useState("");
+
+  const filtroNome = () =>{
+    if(inputText !== ''){
+      setFilteredProducts(allPokemons.filter((element) => { 
+        return element.name.toLowerCase().includes(inputText);
+      }))
+    } else {
+        setFilteredProducts([])
+    };
+  }
+
+  const filtroRaridade = (input) =>{
+    if(input === filtro){
+      setFiltro('');
+    } else if (input === "comum"){
+      setFiltro(input)
+      setFilteredProducts(allPokemons.filter((element) => { 
+        return element.base_experience < 100;
+      })) 
+    } else if (input === "raro"){
+      setFiltro(input)
+      setFilteredProducts(allPokemons.filter((element) => { 
+        return element.base_experience >= 100 && element.base_experience < 151;
+      })) 
+    } else if (input === "super_raro"){
+      setFiltro(input)
+      setFilteredProducts(allPokemons.filter((element) => { 
+        return element.base_experience >= 151 && element.base_experience < 251;
+      })) 
+    } else if (input === "ultra_raro"){
+      setFiltro(input)
+      setFilteredProducts(allPokemons.filter((element) => { 
+        return element.base_experience >= 251;
+      })) 
+    }
+  }  
+
+  const filtroTipo = (input) =>{
+    if(filtro !== input){
+      setFiltro('');
+    } else {
+      setFiltro(input)
+      setFilteredProducts(allPokemons.filter((element) => { 
+        return element.type.includes(input);
+      }))
+    }
+  }
   
   return (
     <>
@@ -20,6 +71,7 @@ function Dashboard() {
     <Headersite/>
       <Container>
         <h1>Minha Coleção</h1>
+        {/* <button onClick={() => }></button> */}
           <Article>
               <Box>
                 <Grid>
