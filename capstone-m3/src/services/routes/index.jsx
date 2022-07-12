@@ -4,8 +4,9 @@ import Home from "../../pages/home";
 import Register from "../../pages/register";
 import Login from "../../pages/login";
 import Store from "../../pages/store";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useMemo } from "react";
+import { GlobalContext } from "../../providers/global";
 
 export const paths = {
   login: "/login",
@@ -22,6 +23,10 @@ function Rotas() {
 
   const protect = useMemo(() => [paths.home, paths.store, paths.dashboard], []);
 
+  const { allPokemonsContext, userContext, tradesContext } = useContext(GlobalContext)
+
+  const { allPokemons, setAllPokemons, getPokemons } = allPokemonsContext
+
   useEffect(() => {
     if (protect.includes(location) && !localStorage.getItem("token")) {
       navigate(paths.login);
@@ -32,6 +37,10 @@ function Rotas() {
       navigate(paths.home);
     }
   }, [navigate, location, protect]);
+
+  useEffect(()=> {
+        getPokemons(allPokemons, setAllPokemons)
+  }, [])
 
   return (
     <Routes>

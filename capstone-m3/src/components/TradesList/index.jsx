@@ -31,8 +31,8 @@ export const TradesList =  ()  => {
     }, [tradeSearch]) 
 
     useEffect(()=> {
-        getPokemons(allPokemons, setAllPokemons)
-    }, [])
+        
+    }, [allPokemons])
 
     useEffect(() => {
         getTrades(userToken, setTrades)
@@ -48,7 +48,7 @@ export const TradesList =  ()  => {
                     placeholder="Filtre o pokemon desejado"
                     onChange={(e) => {setTradeSearch(e.target.value)}} 
                     />
-                    <button onClick={() => {console.log(user.pokemon)}}>addTrade</button>
+                    <button onClick={() => {console.log(user)}}>addTrade</button>
                     {/* aqui vai o botão para adicionar a nova troca */}
                 </div>
                 {tradeSearch !==  "" ?
@@ -57,12 +57,12 @@ export const TradesList =  ()  => {
                 wanted={filteredTrade.pokemon.wanted}
                 userID={filteredTrade.userID} tradeID={filteredTrade.id} 
                 tradeUser={filteredTrade.userName} tradeUserImg={filteredTrade.img}
-                tradePokes={filteredTrade.userPokemons}></TradeCard>))
+                tradePokes={filteredTrade.userPokemons} exchange={filteredTrade.exchange}></TradeCard>))
                 :
                 (trades?.map((trade, index) => 
-                <TradeCard key={index} offered={trade.pokemon.offered} wanted={trade.pokemon.wanted}
+                <TradeCard key={index} offered={trade?.pokemon?.offered} wanted={trade?.pokemon?.wanted}
                 userID={trade.userID} tradeID={trade.id} tradeUser={trade.userName} tradeUserImg={trade.img}
-                tradePokes={trade.userPokemons}></TradeCard>))}
+                tradePokes={trade.userPokemons} exchange={trade.exchange} ></TradeCard>))}
             </ul>
         </StyledTradesDiv>
     )

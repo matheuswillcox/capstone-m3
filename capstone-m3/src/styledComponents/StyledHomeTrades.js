@@ -5,7 +5,7 @@ export const StyledDiv = styled.div`
 
 min-width: 300px;
 height: 100vh;
-
+background-color: ${props=>props.theme};
 display: flex;
 flex-direction: row;
 
@@ -14,9 +14,8 @@ flex-direction: row;
 export const StyledTradesDiv = styled.div`
 
 min-width: 300px;
-height: fit-content;
 margin-left: 50px;
-
+background-color: white;
 display: flex;
 flex-direction: column;
 
@@ -34,6 +33,8 @@ border-radius: 10px;
     gap: 10px;
 
     min-width: 290px;
+
+    overflow: auto;
 
     padding: 20px;
 
@@ -60,6 +61,7 @@ export const StyledTradeCard = styled.li`
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+background-color: #fff;
 
 font-family: 'Roboto', sans-serif;
 

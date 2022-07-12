@@ -9,7 +9,7 @@ export const GlobalProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(
     localStorage.getItem("token") || ""
   );
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState( JSON.parse(localStorage.getItem("@pokemonUser")) || {});
 
   const [userLoginInfo, setUserLoginInfo] = useState({});
 
@@ -62,7 +62,6 @@ export const GlobalProvider = ({ children }) => {
         setUserToken(res.data.accessToken);
         setUser(res.data.user);
         renewToken(data);
-        console.log("Pegou");
       });
     }, 360000);
   }
