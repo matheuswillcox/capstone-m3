@@ -32,5 +32,14 @@ img {
 }
 
 
-
+@media(max-width: 660){
+    img{
+        margin-top: 5px;
+        background-color: grey !important;
+        width: 100px;
+        height: 80px;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+    }
+}
 `
