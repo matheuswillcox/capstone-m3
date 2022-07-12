@@ -62,12 +62,38 @@ border-radius: 10px;
     margin-top: 0;
     margin-bottom: 50px;
     ul{
-        overflow: scroll;
+        overflow-y: scroll;
         max-height: 90%;
     }
+    ul::-webkit-scrollbar {
+        width: 5px !important;
+    }
+    ul::-webkit-scrollbar-track{
+        background: none;
+        
+    }
+    ul::-webkit-scrollbar-thumb{
+        background: linear-gradient(red,blue);
+        border-radius: 15px;
+    }
+    
 }
 @media (min-width:660px) {
     width: 70%;
+    ul{
+        overflow-y: scroll;
+    }
+    ul::-webkit-scrollbar {
+        width: 5px;
+    }
+    ul::-webkit-scrollbar-track{
+        background: none;
+        
+    }
+    ul::-webkit-scrollbar-thumb{
+        background: linear-gradient(red,blue);
+        border-radius: 15px;
+    }
 }
 
 `
