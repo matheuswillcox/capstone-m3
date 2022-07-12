@@ -65,7 +65,7 @@ export const Card = styled.div`
   width: 180px;
   height: 250px;
   background: ${props => props.color === "block" ? "darkgray" : "#FFFFFF"};
-  border: 5px solid #d9d9d9;
+  border: ${props => props.raridade < 100 ? "5px solid #d9d9d9" : props.raridade >= 100 && props.raridade < 151 ? "5px solid #006FC9": props.raridade >= 151 && props.raridade < 251 ? "5px solid #FBD100":"5px solid #FB89EB"};
   border-radius: 4px;
   align-items: center;
   img {
@@ -106,6 +106,14 @@ export const Card = styled.div`
     margin-top: 10px;
   }
 `;
+
+export const Double = styled.section`
+  display:flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  width:180px;
+`;
+
 export const FiltersDiv = styled.div`
   display: flex;
   flex-direction: column;
