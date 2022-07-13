@@ -35,10 +35,6 @@ export const GlobalProvider = ({ children }) => {
 
   const tradesContext = { trades, setTrades, getTrades };
 
-  const [showModal, setShowModal] = useState(false)
-  const [newCards, setNewCards] = useState([])
-  const CardModalContext = {showModal, setShowModal, newCards, setNewCards}
-
   //
 
   const [compra, setCompra] = useState(false);
@@ -105,11 +101,8 @@ export const GlobalProvider = ({ children }) => {
         compraContext,
         itemCompraContext,
         renewToken,
-        popup-pokemonsGanhos
-        CardModalContext,
         themeContext,
         rarityContext
-
       }}
     >
       {children}
