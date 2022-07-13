@@ -8,7 +8,10 @@ height: 100vh;
 background-color: ${props=>props.theme};
 display: flex;
 flex-direction: row;
-
+@media (max-width:660px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 `
 
 export const StyledTradesDiv = styled.div`
@@ -18,7 +21,8 @@ margin-left: 50px;
 background-color: white;
 display: flex;
 flex-direction: column;
-
+width: 90%;
+max-width: 1000px;
 margin-left: auto;
 margin-right: auto;
 margin-top: 100px;
@@ -33,8 +37,9 @@ border-radius: 10px;
     gap: 10px;
 
     min-width: 290px;
-
+    
     overflow: auto;
+    overflow-x: hidden;
 
     padding: 20px;
 
@@ -53,6 +58,44 @@ border-radius: 10px;
     }
 }
 
+@media (max-width:660px) {
+    height: 85%;
+    margin-top: 0;
+    margin-bottom: 50px;
+    ul{
+        overflow-y: scroll;
+        max-height: 90%;
+    }
+    ul::-webkit-scrollbar {
+        width: 5px !important;
+    }
+    ul::-webkit-scrollbar-track{
+        background: none;
+        
+    }
+    ul::-webkit-scrollbar-thumb{
+        background: linear-gradient(red,blue);
+        border-radius: 15px;
+    }
+    
+}
+@media (min-width:660px) {
+    width: 70%;
+    ul{
+        overflow-y: scroll;
+    }
+    ul::-webkit-scrollbar {
+        width: 5px;
+    }
+    ul::-webkit-scrollbar-track{
+        background: none;
+        
+    }
+    ul::-webkit-scrollbar-thumb{
+        background: linear-gradient(red,blue);
+        border-radius: 15px;
+    }
+}
 
 `
 
@@ -87,7 +130,7 @@ border: solid 1px #f9f9f9;
 }
 
 @media (min-width: 1024px) {
-    min-width: 824px;
+    width: 96%;
 }
 
 .acceptTrade-btn {
@@ -180,6 +223,11 @@ border: solid 1px #f9f9f9;
         font-size: 30px;
     }
 }
-
+    @media(max-width:660px){
+        width: 95%;
+        .userInfo{
+            display: none;
+        }
+    }
 
 `

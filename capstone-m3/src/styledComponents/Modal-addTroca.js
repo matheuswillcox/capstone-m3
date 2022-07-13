@@ -75,6 +75,7 @@ export const Container = styled.div`
     font-size: 16px;
   }
   
+  
   @keyframes AnimarModal {
     from {
       opacity: 0;
@@ -88,13 +89,16 @@ export const Container = styled.div`
   form {
     animation: AnimarModal 0.3s;
   }
+  @media(max-width: 430px){
+    
+  }
 `;
 
 export const ButtonTroca = styled.div`
   font-family: "Roboto",sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 36px;
+  
   line-height: 42px;
   cursor: pointer;
   position: fixed;
@@ -102,7 +106,8 @@ export const ButtonTroca = styled.div`
   align-items: center;
   justify-content: center;
   top: 0;
-  left: 25%;
+  left: 40%;
+  
 
   padding: 5px;
   background-color: #fff;
@@ -110,11 +115,20 @@ export const ButtonTroca = styled.div`
   border-bottom-right-radius: 10px;
 
   color: ${props => props.theme };
+  span{
+    font-size: 20px;
+  }
   img {
     max-width: 50px;
     max-height: 50px;
   }
   .pokeball {
     transform: rotateY(180deg);
+  }
+  @media(max-width: 660px){
+    span{
+      font-size: 36px;
+    }
+    display: none;
   }
 `;

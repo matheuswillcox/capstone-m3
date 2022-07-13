@@ -4,7 +4,7 @@ export const Container = styled.div`
   position: fixed;
   justify-content: center;
   align-items: center;
-  width: 98.7vw;
+  width: 100vw;
   height: 100%;
   display: flex;
   left: 0;
@@ -17,13 +17,13 @@ export const Container = styled.div`
     width: 90%;
     height: 80%;
     max-width: 400px;
-    max-height: 900px;
+    max-height: 550px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
     gap: 25px;
-    justify-content: flex-start;
+    justify-content: center;
   }
   .popup div {
     display: flex;
@@ -70,6 +70,16 @@ export const Container = styled.div`
     border: 0;
     cursor: pointer;
   }
+
+  @media (max-width: 660px){
+    width: 100vw !important;
+    height: 100vh !important;
+    justify-content: center !important;
+    padding-left: 0 !important;
+    .popup{
+      padding-left: 0 !important;
+    }
+  }
 `;
 export const DivStyled = styled.div`
   height: 30%;
@@ -102,4 +112,6 @@ export const DivStyled = styled.div`
     -moz-box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 1);
     box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 1);
   }
+  
+  
 `;

@@ -3,6 +3,7 @@ import { GlobalContext } from "../../providers/global";
 import { useState } from "react";
 import API from "../../services/api";
 import { Container, Botoes } from "../../styledComponents/CompraCardStyle";
+import { toast } from "react-toastify"
 
 const CompraCard = () =>{
 
@@ -12,39 +13,41 @@ const CompraCard = () =>{
 
     const { itemCompra, setItemCompra} = itemCompraContext;
 
-    const { user } = userContext
+    const { user, userToken, setUser } = userContext
 
     const { allPokemons } = allPokemonsContext
 
     const [body, setBody] = useState([]);
- 
-    const concat =[];
 
-    function pokeFilter(item){
-       const result = allPokemons.filter((_,index) => index === item);
-       concat.push(result);
-    }
+    const [userPokes , setUserPokes] = useState(user.pokemon)
+ 
+    const randomCards =[];
 
     function bodyProvider(array){
         array = array.flat()
         const result = array.map(ell => {
           if( ell.name === user.pokemon.name){
-            return {name: user.pokemon.name, quantity: user.pokemon.quantity + 1}
+            return {name: ell.name, quantity: ell.quantity + 1}
           } else
           return {name: ell.name, quantity: 1}})
         return result;
     }
     
-    const envia =() =>{
+    const envia =(userNewPokes) =>{
       
       const transacao = {
-        pokemon: body,
-        credits: user.credits,
+        pokemon: userNewPokes,
       }
 
       API.patch(`/users/${localStorage.getItem("userID")}`, transacao,{
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      }).catch((err) => console.log(err));
+        headers: { Authorization: `Bearer ${userToken}` },
+      })
+      .then((res) => {
+        toast.success("Compra realizada!")
+        setUser(res.data)
+        localStorage.setItem("@pokemonUser", JSON.stringify(res.data))
+      })
+      .catch((err) => console.log(err));
     }
 
     const handleclick2 = () =>{
@@ -53,9 +56,92 @@ const CompraCard = () =>{
     }
 
     const handleclick1 = () => {
-      itemCompra.forEach(number => pokeFilter(number))
-      setBody([...user.pokemon, ...bodyProvider(concat)])
-      envia()
+
+      const canBuy = user.credits >= 500 ? true : false
+
+      allPokemons.filter((poke ,index) => {
+        for(let i = 0; i < itemCompra.length; i++){
+          if(poke.id === itemCompra[i]){
+            randomCards.push(poke)
+          }
+        }
+      });
+
+      const toSum = randomCards
+
+      const toReceive = []
+
+      for(let i = 0; i < toSum.length; i++){
+        let count = 0
+        for(let j = 0; j < toSum.length; j++){
+          if(toSum[i].name === toSum[j].name){
+            count += 1
+          }
+        }
+        toReceive.push({name: toSum[i].name, quantity: count})
+      }
+
+      const filteredToReceive = [toReceive[0]]
+
+      for(let i = 0; i < toReceive.length; i++){
+        let cond = true
+
+        for(let j = 0; j < filteredToReceive.length; j++){
+          if(toReceive[i].name === filteredToReceive[j].name){
+            cond = false
+          }
+        }
+
+        if(cond){
+          filteredToReceive.push(toReceive[i])
+        }
+      }
+
+      const userPokes = []
+
+      if(user.pokemon.length > 0){
+        for(let i = 0; i < user.pokemon.length; i++){
+          const userPoke = user.pokemon[i]
+          let totalCount = userPoke.quantity
+
+          for(let j = 0; j < filteredToReceive.length; j++){
+            const pokeToGain = filteredToReceive[j]
+
+            if(userPoke.name === pokeToGain.name){
+              totalCount += pokeToGain.quantity
+            }
+          }
+
+          userPokes.push({name: userPoke.name, quantity: totalCount})
+
+        }
+      }
+
+      const newPokes = []
+
+      for(let i = 0; i < filteredToReceive.length; i++){
+
+        const pokeToGain = filteredToReceive[i]
+        let cond = true
+
+        for(let j = 0; j < user.pokemon.length; j++){
+
+          const userPoke = user.pokemon[j]
+
+          if(pokeToGain.name === userPoke.name){
+            cond = false
+          }
+        }
+
+        if(cond){
+          newPokes.push({name: pokeToGain.name, quantity: pokeToGain.quantity})
+        }
+      }
+
+      const attPokemons = userPokes.concat(newPokes)
+      
+      //canBuy && setBody([...user.pokemon, ...randomCards])
+      envia(attPokemons)
       setCompra(false)
   };
 
