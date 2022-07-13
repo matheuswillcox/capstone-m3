@@ -44,8 +44,9 @@ export const GlobalProvider = ({ children }) => {
   //
 
   const [itemCompra, setItemCompra] = useState([]);
+  const [packType, setPackType] = useState(0)
 
-  const itemCompraContext = { itemCompra, setItemCompra };
+  const itemCompraContext = { itemCompra, setItemCompra, packType, setPackType };
 
   //
 
