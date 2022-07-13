@@ -115,8 +115,6 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
             newUserPokes.push({name: offered, quantity: 1})
         }
 
-        //{pokemon: [{name:"bulbasaur", quantity: 100}]}, {pokemon: newUserPokes}
-
         tradeConditional && API.patch(`users/${user.id}`, {pokemon: newUserPokes}, {
             headers: {Authorization: `Bearer ${userToken}`}
         })
@@ -188,26 +186,26 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
                 <img src={tradeUserImg} alt="userImg"></img>
                 <h3>{tradeUser}</h3>
             </div>
-            <StyledPokemonTradeCard>
-                <img src={offeredCard?.sprites?.front_default} alt="pokimao"></img>
-                <h3>{offeredCard?.name}</h3>
-            </StyledPokemonTradeCard>
-            <div className="arrowTrade">
-                <TbArrowsLeftRight className="arrowTrade-arrow"></TbArrowsLeftRight>
-            </div>
-            <StyledPokemonTradeCard>
-                <img src={wantedCard?.sprites?.front_default} alt="pokimao"></img>
-                <h3>{wantedCard?.name}</h3>
-            </StyledPokemonTradeCard>
-            {userID === user.id ? 
-            exchange ?
-            <button onClick={()=> {handleConcludeTrade()}} className="acceptTrade-btn">Receber</button>
-            :<button onClick={() => {setShowModal(true)}} className="deleteTrade-btn">Excluir</button> 
-            : 
-            exchange ?
-            <button className="deleteTrade-btn" disabled style={{"cursor": "default"}}>Bloqueado</button>
-            :
-            <button onClick={() => {handleAcceptTrade()}} className="acceptTrade-btn">Aceitar troca</button>}
+                <StyledPokemonTradeCard>
+                    <img src={offeredCard?.sprites?.front_default} alt="pokimao"></img>
+                    <h3>{offeredCard?.name}</h3>
+                </StyledPokemonTradeCard>
+                <div className="arrowTrade">
+                    <TbArrowsLeftRight className="arrowTrade-arrow"></TbArrowsLeftRight>
+                </div>
+                <StyledPokemonTradeCard>
+                    <img src={wantedCard?.sprites?.front_default} alt="pokimao"></img>
+                    <h3>{wantedCard?.name}</h3>
+                </StyledPokemonTradeCard>
+                {userID === user.id ? 
+                exchange ?
+                <button onClick={()=> {handleConcludeTrade()}} className="receiveTrade-btn">Receber</button>
+                :<button onClick={() => {setShowModal(true)}} className="deleteTrade-btn">Excluir</button> 
+                : 
+                exchange ?
+                <button className="deleteTrade-btn" disabled style={{"cursor": "default"}}>Bloqueado</button>
+                :
+                <button onClick={() => {handleAcceptTrade()}} className="acceptTrade-btn">Aceitar troca</button>}
         </StyledTradeCard>
         {showModal && <Container>
             <div className="popup">

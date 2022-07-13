@@ -4,6 +4,7 @@ import { useContext } from "react"
 import { GlobalContext } from "../../providers/global";
 import { StyledTradesDiv } from "../../styledComponents/StyledHomeTrades";
 import TradeCard from "../TradeCard";
+import { Requisicao } from "../../components/requisicaoTroca";
 
 
 export const TradesList =  ()  => {
@@ -48,8 +49,7 @@ export const TradesList =  ()  => {
                     placeholder="Filtre o pokemon desejado"
                     onChange={(e) => {setTradeSearch(e.target.value)}} 
                     />
-                    <button onClick={() => {console.log(user.pokemon)}}>addTrade</button>
-                    {/* aqui vai o botão para adicionar a nova troca */}
+                    <Requisicao/>
                 </div>
                 {tradeSearch !==  "" ?
                 (filteredTrades?.map((filteredTrade, index) => 
