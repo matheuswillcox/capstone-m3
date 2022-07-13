@@ -7,6 +7,8 @@ import Store from "../../pages/store";
 import { useContext, useEffect } from "react";
 import { useMemo } from "react";
 import { GlobalContext } from "../../providers/global";
+import API from "../api";
+import { toast } from "react-toastify";
 
 export const paths = {
   login: "/login",
@@ -26,6 +28,8 @@ function Rotas() {
   const { allPokemonsContext, userContext, tradesContext } = useContext(GlobalContext)
 
   const { allPokemons, setAllPokemons, getPokemons } = allPokemonsContext
+
+  const { user, setUser, userToken } = userContext
 
   useEffect(() => {
     if (protect.includes(location) && !localStorage.getItem("token")) {
