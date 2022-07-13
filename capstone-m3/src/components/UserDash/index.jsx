@@ -44,8 +44,8 @@ const filtroNome = () =>{
 }
 
 const filtroRaridade = (input) =>{
-  if(input === filtro){
-    setFiltro('');
+  if(input === ''){
+    setFilteredPokemons([])
   } else if (input === "normal"){
     setFiltro(input)
     setFilteredPokemons(allPokemons.filter((element) => { 
@@ -155,6 +155,7 @@ const filtroTipo = (input) =>{
                   </BoxInput>
                   <span>Raridade:</span>
                   <BoxRaridade>
+                    <div style={{backgroundColor:"#FFFFFF"}} onClick={()=> filtroRaridade('')}>Todos</div>
                     <div style={{backgroundColor:"#D9D9D9"}} onClick={()=> filtroRaridade('normal')}>Normal</div>
                     <div style={{backgroundColor:"#006FC9"}} onClick={()=> filtroRaridade('raro')}>Raro</div>
                     <div style={{backgroundColor:"#FBD100"}} onClick={()=> filtroRaridade('super_raro')}>Super Raro</div>

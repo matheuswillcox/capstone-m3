@@ -169,7 +169,7 @@ export const FiltersDiv = styled.div`
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;
-    color: #000000;
+    color: #FFFFFF;
   }
   @media(max-width: 400px){
     width: 350px;
@@ -186,11 +186,16 @@ export const BoxTema = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
+  cursor: pointer;
   div {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    cursor: pointer;
+    box-shadow: 3px 3px 5px black;
+  }
+  div:hover{
+    transform: scale(1.1);
+    transition: .4s;
   }
   @media(max-width: 400px){
     div{
