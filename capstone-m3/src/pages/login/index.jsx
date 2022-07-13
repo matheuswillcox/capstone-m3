@@ -48,7 +48,7 @@ const Login = () => {
         }, 1000);
       })
       .catch((err) => {
-        toast.error("Email ou senha incorretos!");
+        toast.error("Email ou senha incorretos!")
       });
   };
 

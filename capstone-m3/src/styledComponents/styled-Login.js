@@ -7,7 +7,7 @@ export const Container = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color:var(--theme);
+  background-color:${props=>props.theme};
   gap: 20px;
 
   form {
