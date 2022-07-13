@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 98.7vw;
+  width: 100vw;
   height: 100%;
   display: flex;
   background-color: rgba(0, 0, 0, 0.4);
-  position: absolute;
+  position: fixed;
   top: 0;
+  right: 0%;
   justify-content: center;
   align-items: center;
 
@@ -101,18 +102,47 @@ export const ButtonTroca = styled.div`
   
   line-height: 42px;
   cursor: pointer;
-  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 0;
-  left: 40%;
   
 
   padding: 5px;
   background-color: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+
+  .acceptTrade-btn {
+
+  display: flex;
+
+  width: 100px;
+  height: 40px;
+
+  align-items: center;
+  justify-content: center;
+
+  align-self: center;
+  justify-self: center;
+
+  border: none;
+  border-radius: 5px;
+
+  margin-right: 10px;
+
+  background-color: #FF4E4E;
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.6;
+
+  :hover {
+      background-color: red;
+      transition: 0.6;
+  }
+
+  }
 
   color: ${props => props.theme };
   span{
@@ -129,6 +159,40 @@ export const ButtonTroca = styled.div`
     span{
       font-size: 36px;
     }
-    display: none;
+    display: flex;
+
+
+    .acceptTrade-btn {
+
+      display: flex;
+
+      width: 60px;
+      height: 40px;
+
+      align-items: center;
+      justify-content: center;
+
+      align-self: center;
+      justify-self: center;
+
+      border: none;
+      border-radius: 5px;
+
+      margin-right: 10px;
+
+      background-color: #FF4E4E;
+      color: white;
+
+      cursor: pointer;
+
+      transition: 0.6;
+
+      :hover {
+          background-color: red;
+          transition: 0.6;
+      }
+
+    }
+
   }
 `;

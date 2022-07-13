@@ -109,12 +109,15 @@ background-color: #fff;
 font-family: 'Roboto', sans-serif;
 
 min-width: 280px;
-height: 150px;
+height: fit-content;
+
 
 border-radius: 10px;
 transition: 0.6;
 
 border: solid 1px #f9f9f9;
+
+gap: 10px;
 
 :hover {
     transition: 0.6;
@@ -163,6 +166,37 @@ border: solid 1px #f9f9f9;
         transition: 0.6;
     }
 
+}
+
+.receiveTrade-btn {
+    display: flex;
+
+    width: 100px;
+    height: 40px;
+
+    align-items: center;
+    justify-content: center;
+
+    align-self: center;
+    justify-self: center;
+
+    border: none;
+    border-radius: 5px;
+
+    margin-right: 10px;
+
+    background-color: #85FF9E;
+    color: #000;
+
+    cursor: pointer;
+
+    transition: 0.6;
+
+    :hover {
+        background-color: #337357;
+        color: white;
+        transition: 0.6;
+    }
 }
 
 .deleteTrade-btn {
