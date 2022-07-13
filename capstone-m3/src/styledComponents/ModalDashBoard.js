@@ -17,7 +17,7 @@ display: flex;
   width: 250px;
   height: 350px;
   background: ${props => props.color === "block" ? "darkgray" : "#FFFFFF"};
-  border: 5px solid #d9d9d9;
+  border: ${props => props.raridade < 100 ? "5px solid #d9d9d9" : props.raridade >= 100 && props.raridade < 151 ? "5px solid #006FC9": props.raridade >= 151 && props.raridade < 251 ? "5px solid #FBD100":"5px solid #FB89EB"};
   border-radius: 4px;
   align-items: center;
   transition: 3s ease-in;
@@ -25,7 +25,7 @@ display: flex;
   img {
     width: 182.5px;
     height: 181.6px;
-    margin: 10px;
+    margin: 0px;
     background: #FFFFFF;
     background: ${props => props.color === "block" ? "darkgray" : "#FFFFFF"};
   }
@@ -58,14 +58,18 @@ display: flex;
     align-items: flex-start;
     width: inherit;
     margin-left: 35px;
-    gap: 15px;
+    gap: 10px;
+  }
+
+  p{
+    font-weight: 800;
   }
 `
 
 export const ButtonDismont = styled.button`
     width: 200px;
     height: 53px;
-    background: #F81212;
+    background-color: ${props=>props.theme};
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -93,7 +97,14 @@ export const Trash = styled.button`
     background: none;
     width: 241px;
     height: 0px;
-    margin: 12px;
+    margin: 0px;
     font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
     `
+    export const Double = styled.section`
+    display:flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    width:180px;
+  `;

@@ -91,7 +91,7 @@ const filtroTipo = (input) =>{
   return (
     <>
     <Main theme={themeSelector} >
-    <ModalDashBoard card={card} obj={obj} setCard={setCard} userPokemon={user.pokemon}/>
+    <ModalDashBoard card={card} obj={obj} setCard={setCard} userPokemon={user}/>
       <Container >
         <h1>Minha Coleção</h1>
           <Article>
@@ -108,7 +108,7 @@ const filtroTipo = (input) =>{
                     <img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>}
                     <span>Raridade</span>
                     </div>
-                  </Card> : <Card key={e?.id} color="block" raridade={e?.base_experience}>
+                  </Card> : <Card key={e?.id} color="block" raridade={e?.base_experience} onClick={(event)=>{event.preventDefault();setObjModal({...e,display:""});setCard(true)}}>
                     <img color = "block" src={e?.sprites.front_default} alt=""/>
                     <div>
                     <h3>{e?.name}</h3>
@@ -119,7 +119,7 @@ const filtroTipo = (input) =>{
                     </div>
                   </Card>) : allPokemons?.map((e)=>
                   user.pokemon?.filter(({name})=>{return e?.name === name}).length > 0 ?
-                  <Card key={e?.id} raridade={e?.base_experience}>
+                  <Card key={e?.id} raridade={e?.base_experience} onClick={(event)=>{event.preventDefault();setObjModal({...e,display:""});setCard(true)}}>
                     <img src={e?.sprites.front_default} alt=""/>
                     <div>  
                     <h3>{e?.name}</h3>
