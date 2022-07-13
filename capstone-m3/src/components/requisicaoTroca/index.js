@@ -40,7 +40,7 @@ export const Requisicao = () => {
           .then((res) => {
             setPokemon(res.data.pokemon[0].name);
           })
-          .catch((err) => toast.error("Email ou senha incorretos!"))
+          
 
         return user
       }
