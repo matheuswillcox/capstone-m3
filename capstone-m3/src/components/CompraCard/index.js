@@ -122,6 +122,7 @@ const CompraCard = () =>{
       }
 
       const newPokes = []
+      console.log(filteredToReceive);
 
       for(let i = 0; i < filteredToReceive.length; i++){
 
