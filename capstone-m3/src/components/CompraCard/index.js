@@ -13,6 +13,8 @@ const CompraCard = () =>{
 
     const { itemCompra, setItemCompra, packType} = itemCompraContext;
 
+    const { setShowModal, setNewCards } = CardModalContext
+
     const { user, userToken, setUser } = userContext
 
     const { allPokemons } = allPokemonsContext
@@ -40,7 +42,8 @@ const CompraCard = () =>{
         credits: user.credits - packType
       }
 
-      console.log(transacao)
+
+      setShowModal(true)
 
       API.patch(`/users/${localStorage.getItem("userID")}`, transacao,{
         headers: { Authorization: `Bearer ${userToken}` },
@@ -101,6 +104,7 @@ const CompraCard = () =>{
       }
 
       const userPokes = []
+      setNewCards(filteredToReceive)
 
       if(user.pokemon.length > 0){
         for(let i = 0; i < user.pokemon.length; i++){
@@ -121,7 +125,7 @@ const CompraCard = () =>{
       }
 
       const newPokes = []
-      console.log(filteredToReceive);
+ 
 
       for(let i = 0; i < filteredToReceive.length; i++){
 

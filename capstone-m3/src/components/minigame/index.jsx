@@ -51,6 +51,7 @@ export const Minigame = () => {
         localStorage.setItem("@pokemonUser", JSON.stringify(res.data))
       });
       setTimeout(() => {
+        setColor("")
         setShowModal(false);
       }, 2500);
     } else {
