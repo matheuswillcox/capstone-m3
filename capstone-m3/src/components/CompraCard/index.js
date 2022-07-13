@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { GlobalContext } from "../../providers/global";
 import { useState } from "react";
 import API from "../../services/api";
-import { Container, Botoes, ModalPokemons } from "../../styledComponents/CompraCardStyle";
+import { Container, Botoes } from "../../styledComponents/CompraCardStyle";
 import { toast } from "react-toastify"
 
 const CompraCard = () =>{
 
-    const { compraContext, itemCompraContext, userContext, allPokemonsContext } = useContext(GlobalContext);
+    const { compraContext, itemCompraContext, userContext, allPokemonsContext, CardModalContext } = useContext(GlobalContext);
 
     const { setCompra } = compraContext;
 
@@ -16,13 +16,13 @@ const CompraCard = () =>{
     const { user, userToken, setUser } = userContext
 
     const { allPokemons } = allPokemonsContext
+    const {showModal, setShowModal, newCards, setNewCards} = CardModalContext
 
     const [body, setBody] = useState([]);
 
     const [userPokes , setUserPokes] = useState(user.pokemon)
  
     const randomCards =[];
-    const [showModal, setShowModal]= useState(false)
 
     function bodyProvider(array){
         array = array.flat()
@@ -40,7 +40,7 @@ const CompraCard = () =>{
         pokemon: userNewPokes,
         credits: user.credits - packType
       }
-
+      setShowModal(true)
       console.log(transacao)
 
       API.patch(`/users/${localStorage.getItem("userID")}`, transacao,{
@@ -122,7 +122,9 @@ const CompraCard = () =>{
       }
 
       const newPokes = []
-      console.log(filteredToReceive);
+      setNewCards(filteredToReceive)
+      console.log()
+
 
       for(let i = 0; i < filteredToReceive.length; i++){
 
@@ -158,9 +160,6 @@ const CompraCard = () =>{
             <button onClick={handleclick2}>NÃO</button>
             </Botoes>
         </Container>
-        {showModal && <ModalPokemons>
-          {filteredToReceive.map(())}
-          </ModalPokemons>}
     </>)
 
 }
