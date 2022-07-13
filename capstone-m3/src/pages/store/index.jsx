@@ -13,7 +13,7 @@ const Store = () => {
 
   const { compra, setCompra } = compraContext;
 
-  const { setItemCompra } = itemCompraContext;
+  const { setItemCompra, setPackType } = itemCompraContext;
 
   const raros = [
     2, 3, 5, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 22, 24, 26, 28, 30, 31, 33,
@@ -27,7 +27,8 @@ const Store = () => {
   
   const ultraRare = []
 
-  const handleclick = (data) => {
+  const handleclick = (data, packType) => {
+    setPackType(packType)
     shuffleCards(data);
     setCompra(true);
   };
@@ -45,7 +46,7 @@ const Store = () => {
         result.push(shuffledNumber);
       }
     }
-    console.log(result);
+
     setItemCompra(result) 
   }, []);
 
@@ -65,17 +66,17 @@ const Store = () => {
         <div className="divContainer">
           <div className="loja">Loja</div>
           <div className="packs">
-            <div className="card" onClick={()=>handleclick(raros)}>
+            <div className="card" onClick={()=>handleclick(raros, 500)}>
               <div>Normais</div>
               <img src={require("../../image/cards.png")} alt="img" />
               <div>Preço 500</div>
             </div>
-            <div className="card" onClick={()=>handleclick(superRare)}>
+            <div className="card" onClick={()=>handleclick(superRare, 1000)}>
               <div>Raros</div>
               <img src={require("../../image/cards.png")} alt="img" />
               <div>Preço 1000</div>
             </div>
-            <div className="card" onClick={()=>handleclick(ultraRare)}>
+            <div className="card" onClick={()=>handleclick(ultraRare, 5000)}>
               <div>Ultra Raros</div>
               <img src={require("../../image/cards.png")} alt="img" />
               <div>Preço 5000</div>

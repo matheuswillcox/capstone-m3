@@ -16,9 +16,10 @@ import {
 } from "../../styledComponents/DashBoardStyle";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useState } from "react";
+import ModalDashBoard from "../ModalDashBoard";
 
 function UserDash() {
-  const { allPokemonsContext, themeContext, userContext, tradesContext } =
+  const { allPokemonsContext, themeContext, userContext, tradesContext, rarityContext  } =
     useContext(GlobalContext);
 
   const { allPokemons, setAllPokemons, getPokemons } = allPokemonsContext;
@@ -34,6 +35,8 @@ function UserDash() {
   const [filteredPokemons, setFilteredPokemons] = useState([]);
 
   const [filtro, setFiltro] = useState("");
+
+  const { rarity } = rarityContext
 
   useEffect(() => {}, [allPokemons]);
 
@@ -56,72 +59,55 @@ function UserDash() {
       setFilteredPokemons([]);
     }
   };
-  const normals = [
-    1, 4, 7, 10, 13, 16, 19, 21, 23, 25, 27, 29, 32, 35, 37, 39, 41, 43, 46, 48,
-    50, 52, 54, 56, 58, 60, 63, 66, 69, 72, 74, 77, 79, 81, 83, 84, 86, 88, 90,
-    92, 95, 96, 98, 100, 102, 104, 106, 107, 108, 109, 111, 113, 114, 116, 118,
-    120, 122, 123, 124, 125, 126, 127, 128, 129,
-  ];
 
-  const rares = [
-    2, 5, 8, 11, 12, 14, 15, 17, 18, 20, 22, 24, 26, 28, 30, 31, 33, 34, 36, 38,
-    40, 42, 44, 45, 47, 49, 51, 53, 55, 57, 59, 61, 62, 64, 65, 67, 68, 70, 71,
-    73, 75, 76, 78, 80, 82, 85, 87, 89, 91, 93, 94, 97, 99, 101, 103, 105, 110,
-    112, 115, 117, 119, 121, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139,
-    140, 141, 142, 143, 147, 148,
-  ];
+  const rarityFilter = (data) => {
 
-  const superRare = [3, 6, 9, 144, 145, 146, 149];
+    const type = rarity[data]
+    
+    setFilteredPokemons(allPokemons.filter(item => type.includes(item.id)))
 
-  const ultraRare = [150, 151];
-
-  // const rarityFilter = (data) => {
-  //   if (data === filtro) {
-  //     setFiltro("");
-  //   } else if (data === "normal") {
-  //     setFiltro(data);
-  //     setFilteredPokemons(
-
-  //     );}
-  const filtroRaridade = (input) => {
-    if (input === filtro) {
-      setFiltro("");
-    } else if (input === "normal") {
-      setFiltro(input);
-      setFilteredPokemons(
-        allPokemons.filter((element) => {
-          console.log(allPokemons);
-
-          return element.base_experience < 100;
-        })
-      );
-    } else if (input === "raro") {
-      setFiltro(input);
-      setFilteredPokemons(
-        allPokemons.filter((element) => {
-          return (
-            element.base_experience >= 100 && element.base_experience < 151
-          );
-        })
-      );
-    } else if (input === "super_raro") {
-      setFiltro(input);
-      setFilteredPokemons(
-        allPokemons.filter((element) => {
-          return (
-            element.base_experience >= 151 && element.base_experience < 251
-          );
-        })
-      );
-    } else if (input === "ultra_raro") {
-      setFiltro(input);
-      setFilteredPokemons(
-        allPokemons.filter((element) => {
-          return element.base_experience >= 251;
-        })
-      );
-    }
   };
+
+
+  // const filtroRaridade = (input) => {
+  //   if (input === filtro) {
+  //     setFiltro("");
+  //   } else if (input === "normal") {
+  //     setFiltro(input);
+  //     setFilteredPokemons(
+  //       allPokemons.filter((element) => {
+  //         console.log(allPokemons);
+
+  //         return element.base_experience < 100;
+  //       })
+  //     );
+  //   } else if (input === "raro") {
+  //     setFiltro(input);
+  //     setFilteredPokemons(
+  //       allPokemons.filter((element) => {
+  //         return (
+  //           element.base_experience >= 100 && element.base_experience < 151
+  //         );
+  //       })
+  //     );
+  //   } else if (input === "super_raro") {
+  //     setFiltro(input);
+  //     setFilteredPokemons(
+  //       allPokemons.filter((element) => {
+  //         return (
+  //           element.base_experience >= 151 && element.base_experience < 251
+  //         );
+  //       })
+  //     );
+  //   } else if (input === "ultra_raro") {
+  //     setFiltro(input);
+  //     setFilteredPokemons(
+  //       allPokemons.filter((element) => {
+  //         return element.base_experience >= 251;
+  //       })
+  //     );
+  //   }
+  // };
 
   const filtroTipo = (input) => {
     if (filtro === input) {
@@ -332,19 +318,19 @@ function UserDash() {
               <BoxRaridade>
                 <div
                   style={{ backgroundColor: "#D9D9D9" }}
-                  onClick={() => filtroRaridade("normal")}
+                  onClick={() => rarityFilter("normal")}
                 >
                   Normal
                 </div>
                 <div
                   style={{ backgroundColor: "#006FC9" }}
-                  onClick={() => filtroRaridade("raro")}
+                  onClick={() => rarityFilter("raro")}
                 >
                   Raro
                 </div>
                 <div
                   style={{ backgroundColor: "#FBD100" }}
-                  onClick={() => filtroRaridade("super_raro")}
+                  onClick={() => rarityFilter("super_raro")}
                 >
                   Super Raro
                 </div>
@@ -352,7 +338,7 @@ function UserDash() {
                   style={{
                     backgroundImage: "linear-gradient(#FB89EB, #4C6AB2)",
                   }}
-                  onClick={() => filtroRaridade("ultra_raro")}
+                  onClick={() => rarityFilter("ultra_raro")}
                 >
                   Ultra Raro
                 </div>

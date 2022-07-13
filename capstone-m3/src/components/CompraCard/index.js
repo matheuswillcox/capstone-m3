@@ -11,7 +11,7 @@ const CompraCard = () =>{
 
     const { setCompra } = compraContext;
 
-    const { itemCompra, setItemCompra} = itemCompraContext;
+    const { itemCompra, setItemCompra, packType} = itemCompraContext;
 
     const { user, userToken, setUser } = userContext
 
@@ -37,7 +37,10 @@ const CompraCard = () =>{
       
       const transacao = {
         pokemon: userNewPokes,
+        credits: user.credits - packType
       }
+
+      console.log(transacao)
 
       API.patch(`/users/${localStorage.getItem("userID")}`, transacao,{
         headers: { Authorization: `Bearer ${userToken}` },
@@ -57,7 +60,7 @@ const CompraCard = () =>{
 
     const handleclick1 = () => {
 
-      const canBuy = user.credits >= 500 ? true : false
+      const canBuy = user.credits >= packType ? true : false
 
       allPokemons.filter((poke ,index) => {
         for(let i = 0; i < itemCompra.length; i++){
@@ -140,8 +143,7 @@ const CompraCard = () =>{
 
       const attPokemons = userPokes.concat(newPokes)
       
-      //canBuy && setBody([...user.pokemon, ...randomCards])
-      envia(attPokemons)
+      canBuy ? envia(attPokemons) : toast.error("Créditos insuficientes")
       setCompra(false)
   };
 

@@ -9,6 +9,7 @@ export const Main = styled.div`
   height: 100%;
   width: 100vw;
   gap: 160px;
+  
 `;
 
 export const Container = styled.div`
@@ -35,6 +36,7 @@ export const Container = styled.div`
 export const Article = styled.div`
   display: flex;
   flex-direction: row;
+  
 
   @media(max-width: 400px){
     flex-direction: column;
@@ -74,6 +76,7 @@ export const Box = styled.div`
 
 export const Grid = styled.div`
   display: flex;
+  justify-content: center;
   flex-flow: row wrap;
   overflow-y: scroll;
   gap: 20px;
@@ -112,11 +115,12 @@ export const Card = styled.div`
   border: ${props => props.raridade < 100 ? "5px solid #d9d9d9" : props.raridade >= 100 && props.raridade < 151 ? "5px solid #006FC9": props.raridade >= 151 && props.raridade < 251 ? "5px solid #FBD100":"5px solid #FB89EB"};
   border-radius: 4px;
   align-items: center;
+  margin: 11px;
+  cursor: pointer;
   img {
     width: 132.5px;
     height: 131.6px;
     margin: 10px;
-    opacity: ${props => props.color === "block" ? "0.2" : "1"};
   }
   .type {
     width: 30px;
