@@ -53,7 +53,7 @@ const CompraCard = () =>{
         setUser(res.data)
         localStorage.setItem("@pokemonUser", JSON.stringify(res.data))
       })
-      .catch((err) => console.log(err));
+
     }
 
     const handleclick2 = () =>{

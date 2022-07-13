@@ -55,7 +55,6 @@ export const Requisicao = () => {
   const {
     register,
     handleSubmit,
-    // formState: { errors },
   } = useForm({ resolver: yupResolver(schema), reValidateMode: "onSubmit" });
 
   const filterPokemonToTrade = (e) => {

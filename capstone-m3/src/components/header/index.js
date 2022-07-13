@@ -36,7 +36,7 @@ export const Headersite = () => {
   };
   const handleClick4 = () => {
     localStorage.removeItem("token");
-    // setUserToken("")
+
     navigate("/login");
   };
 
@@ -47,7 +47,7 @@ export const Headersite = () => {
       <DivHeader>
         <AiOutlineMenu onClick={()=>{
           setShowModal(true)
-          console.log(showModal);
+    
         }}/>
           <span>Menu</span>
       </DivHeader>
@@ -80,7 +80,7 @@ export const Headersite = () => {
             </Icons>
             <span>Loja</span>
           </Div>
-          <Minigame theme={themeSelector} onClick={()=>{console.log("click")}}/>
+          <Minigame theme={themeSelector} />
           <Div theme={themeSelector} onClick={handleClick4}>
             <Icons>
               <RiLogoutBoxLine />
@@ -88,7 +88,7 @@ export const Headersite = () => {
             <span>Logout</span>
           </Div>
           </ModalMenu>}
-      {/* header pc */}
+
       <Header>
         <Logo theme={themeSelector} src={require("../../image/logo.png")} />
         <User>

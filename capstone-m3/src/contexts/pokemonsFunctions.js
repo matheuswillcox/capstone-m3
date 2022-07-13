@@ -1,4 +1,3 @@
-//esse arquivo se refere APENAS a função de requisição de todos os 151 pokemons para o state global
 
 import axios from "axios"
 

@@ -33,7 +33,7 @@ const RegisterForm = () => {
     API.post("/register",data)
     .then(()=>{toast.success("Cadastro Efetuado Com Sucesso");
     setTimeout(()=>{redirect("/login")},1000)})
-    .catch((err)=>{toast.error("Algo deu Errado");console.log(err)})}
+    .catch((err)=>{toast.error("Algo deu Errado");})}
 
     const { themeContext } = useContext(GlobalContext);
 

@@ -1,4 +1,4 @@
-import axios from "axios"
+
 import { useContext, useEffect, useState } from "react"
 import { GlobalContext } from "../../providers/global"
 import { StyledTradeCard } from "../../styledComponents/StyledHomeTrades"
@@ -98,7 +98,7 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
 
         tradeConditional && user.pokemon.map((poke) => {
 
-            console.log(alreadyHas)
+     
 
             if(poke.name === pokeToTrade.name){
                 newUserPokes.push({name: poke.name, quantity: poke.quantity - 1})
@@ -160,7 +160,6 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
             setUser(res.data)
             localStorage.setItem("@pokemonUser", JSON.stringify(res.data))
         })
-        const teste = []
 
         const newTrades = trades.filter((trade) => trade.id !== tradeID)
 
@@ -170,17 +169,6 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
 
     }
 
-    /*const doidera = () => {
-
-        API.patch(`users/${user.id}`, {pokemon: [{name:"charmander", quantity: 100}]}, {
-            headers: {Authorization: `Bearer ${userToken}`}
-        })
-        .then((res) => {
-            setUser(res.data)
-            localStorage.setItem("@pokemonUser", JSON.stringify(res.data))
-            console.log(res)
-        })
-    }*/
 
 
     return (

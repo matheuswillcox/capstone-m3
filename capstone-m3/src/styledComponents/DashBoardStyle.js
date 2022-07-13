@@ -112,7 +112,6 @@ export const Card = styled.div`
   height: 250px;
   text-transform: capitalize;
   background: ${props => props.color === "block" ? "darkgray" : "#FFFFFF"};
-
   border: ${(props) => {
     const isNormal = props.raridade?.normal?.find((item) => item === props.id);
     const isRares = props.raridade?.raro?.find((item) => item === props.id);
@@ -125,9 +124,22 @@ export const Card = styled.div`
       ? "5px solid #006FC9"
       : isSuperRares
       ? "5px solid #FBD100"
-      : "5px solid #FB89EB";
+      : "4px solid #FB89EB";
   }};
-  //box-shadow: ${props=> props.raridade.ultra_raro.find(id => id === !props.id) ? "none":"0px 0px 4px 5px rgba(93,32,158,1)"};
+  box-shadow:${(props) => {
+    const isNormal = props.raridade?.normal?.find((item) => item === props.id);
+    const isRares = props.raridade?.raro?.find((item) => item === props.id);
+    const isSuperRares = props.raridade?.super_raro?.find(
+      (item) => item === props.id
+    );
+    return isNormal
+      ? "none"
+      : isRares
+      ? "none"
+      : isSuperRares
+      ? "none"
+      : "0px 0px 4px 5px rgba(93,32,158,1)";
+  }};
   border-radius: 4px;
   align-items: center;
   margin: 11px;

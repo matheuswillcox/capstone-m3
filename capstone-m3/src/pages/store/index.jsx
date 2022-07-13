@@ -3,7 +3,6 @@ import { Container } from "../../styledComponents/styledStore";
 import { useCallback, useContext } from "react";
 import { GlobalContext } from "../../providers/global";
 import CompraCard from "../../components/CompraCard";
-import { GiCardPick, GiGems } from "react-icons/gi";
 
 import { ModalPokemons } from "../../styledComponents/CompraCardStyle";
 
@@ -99,7 +98,6 @@ const Store = () => {
                 const pokemonFiltrado = allPokemons.filter((pokemon)=>{
                   return pokemon.species.name.includes(poke.name)
                 })
-                console.log(pokemonFiltrado)
                 return(<li>
                   <figure>
                     <img src={pokemonFiltrado[0].sprites.front_default} alt="pokemon sprite" />

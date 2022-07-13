@@ -43,7 +43,7 @@ export const Minigame = () => {
         return (res.data.credits += 500);
       });
       creditsUser.credits = valor;
-      console.log(creditsUser);
+   
       API.patch(`users/${user.id}`, creditsUser, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       }).then((res) => {
