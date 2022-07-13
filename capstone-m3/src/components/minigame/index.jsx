@@ -102,7 +102,7 @@ export const Minigame = () => {
               >
                 Enviar
               </button>
-              <button
+              <button className="cheater"
                 onClick={() => {
                   toast.info(newPoke.species.name);
                 }}

@@ -26,7 +26,11 @@ const RegisterForm = () => {
     
     const redirect = useNavigate()
 
-    const FormSubmit = (data) => {delete data["passwordValid"];API.post("/register",data)
+    const FormSubmit = (data) => {delete data["passwordValid"];
+    data.credits= 0
+    data.pokemon= []
+    data.img= "https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg"
+    API.post("/register",data)
     .then(()=>{toast.success("Cadastro Efetuado Com Sucesso");
     setTimeout(()=>{redirect("/login")},1000)})
     .catch((err)=>{toast.error("Algo deu Errado");console.log(err)})}
