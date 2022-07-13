@@ -105,7 +105,6 @@ export const GlobalProvider = ({ children }) => {
         compraContext,
         itemCompraContext,
         renewToken,
-        popup-pokemonsGanhos
         CardModalContext,
         themeContext,
         rarityContext
