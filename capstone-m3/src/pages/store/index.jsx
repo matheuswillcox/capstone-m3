@@ -4,10 +4,9 @@ import { useCallback, useContext } from "react";
 import { GlobalContext } from "../../providers/global";
 import CompraCard from "../../components/CompraCard";
 import { GiCardPick, GiGems } from "react-icons/gi";
-import {ModalPokemons} from "../../styledComponents/CompraCardStyle"
 
 const Store = () => {
-  const { compraContext, itemCompraContext, themeContext, allPokemonsContext,CardModalContext } =
+  const { compraContext, itemCompraContext, themeContext, allPokemonsContext } =
     useContext(GlobalContext);
 
   const { themeSelector } = themeContext;
@@ -15,8 +14,6 @@ const Store = () => {
   const { compra, setCompra } = compraContext;
 
   const { setItemCompra, setPackType } = itemCompraContext;
-  const {allPokemons} = allPokemonsContext
-  const {showModal, setShowModal, newCards} = CardModalContext
 
   const raros = [
     2, 3, 5, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 22, 24, 26, 28, 30, 31, 33,
@@ -29,7 +26,6 @@ const Store = () => {
   const superRare = [3, 6, 9, 144, 145, 146, 149, 150, 151];
   
   const ultraRare = []
-
 
   const handleclick = (data, packType) => {
     setPackType(packType)
@@ -88,27 +84,6 @@ const Store = () => {
           </div>
         </div>
         {compra && <CompraCard></CompraCard>}
-        {showModal && <ModalPokemons>
-          {console.log(newCards)}
-            <ul>
-              {newCards?.map((poke)=>{
-                const pokemonFiltrado = allPokemons.filter((pokemon)=>{
-                  return pokemon.species.name.includes(poke.name)
-                })
-                console.log(pokemonFiltrado)
-                return(<li>
-                  <figure>
-                    <img src={pokemonFiltrado[0].sprites.front_default} alt="pokemon sprite" />
-                  </figure>
-                  <div>
-                    <span>{pokemonFiltrado[0].species.name}</span>
-                    <span>Quantidade x{poke.quantity}</span>
-                  </div>
-                </li>)
-              })}
-            </ul>
-            <button onClick={()=>{setShowModal(false)}}>X</button>
-          </ModalPokemons>}
       </Container>
     </>
   );

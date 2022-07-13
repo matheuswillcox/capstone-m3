@@ -7,7 +7,7 @@ import { toast } from "react-toastify"
 
 const CompraCard = () =>{
 
-    const { compraContext, itemCompraContext, userContext, allPokemonsContext, CardModalContext } = useContext(GlobalContext);
+    const { compraContext, itemCompraContext, userContext, allPokemonsContext } = useContext(GlobalContext);
 
     const { setCompra } = compraContext;
 
@@ -16,7 +16,6 @@ const CompraCard = () =>{
     const { user, userToken, setUser } = userContext
 
     const { allPokemons } = allPokemonsContext
-    const {showModal, setShowModal, newCards, setNewCards} = CardModalContext
 
     const [body, setBody] = useState([]);
 
@@ -40,7 +39,7 @@ const CompraCard = () =>{
         pokemon: userNewPokes,
         credits: user.credits - packType
       }
-      setShowModal(true)
+
       console.log(transacao)
 
       API.patch(`/users/${localStorage.getItem("userID")}`, transacao,{
@@ -122,9 +121,7 @@ const CompraCard = () =>{
       }
 
       const newPokes = []
-      setNewCards(filteredToReceive)
-      console.log()
-
+      console.log(filteredToReceive);
 
       for(let i = 0; i < filteredToReceive.length; i++){
 

@@ -1,29 +1,32 @@
 import styled from "styled-components";
 
+
 export const Main = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${(props) => props.theme};
+  background-color: ${props=>props.theme};
   justify-content: flex-start;
   height: 100%;
   width: 100vw;
   gap: 160px;
+  
 `;
 
 export const Container = styled.div`
+
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  
   h1 {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto",sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
     line-height: 42px;
     color: #ffffff;
   }
-  @media (max-width: 400px) {
+  @media(max-width: 400px){
     height: 100vh;
     font-size: 32px;
     line-height: 38px;
@@ -33,11 +36,13 @@ export const Container = styled.div`
 export const Article = styled.div`
   display: flex;
   flex-direction: row;
+  
 
-  @media (max-width: 400px) {
+  @media(max-width: 400px){
     flex-direction: column;
     height: 85%;
   }
+
 `;
 
 export const Box = styled.div`
@@ -48,7 +53,7 @@ export const Box = styled.div`
   background: #ffffff;
   border-radius: 15px;
   overflow-y: auto;
-  margin-left: 200px;
+  margin-left:200px;
   ::-webkit-scrollbar {
     width: 0px;
   }
@@ -62,7 +67,7 @@ export const Box = styled.div`
     border-radius: 10px;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   }
-  @media (max-width: 400px) {
+  @media(max-width: 400px){
     height: 430px;
     width: 290px;
     margin-left: 40px;
@@ -90,13 +95,14 @@ export const Grid = styled.div`
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   }
 
-  @media (max-width: 400px) {
+  @media(max-width: 400px){
     flex-flow: row;
-    height: 380px;
+    height:380px;
     overflow-x: scroll;
     overflow-y: hidden;
     margin: 15px 15px 15px 15px;
   }
+
 `;
 
 export const Card = styled.div`
@@ -105,7 +111,7 @@ export const Card = styled.div`
   width: 180px;
   height: 250px;
   text-transform: capitalize;
-  background: ${(props) => (props.color === "block" ? "darkgray" : "#FFFFFF")};
+  background: ${props => props.color === "block" ? "darkgray" : "#FFFFFF"};
   border: ${(props) => {
     const isNormal = props.raridade?.normal?.find((item) => item === props.id);
     const isRares = props.raridade?.raro?.find((item) => item === props.id);
@@ -113,14 +119,14 @@ export const Card = styled.div`
       (item) => item === props.id
     );
     return isNormal
-      ? "5px solid #d9d9d9"
+      ? "5px solid #D9D9D9"
       : isRares
       ? "5px solid #006FC9"
       : isSuperRares
       ? "5px solid #FBD100"
       : "5px solid #FB89EB";
   }};
-
+  //box-shadow: ${props=> props.raridade.ultra_raro.find(id => id === !props.id) ? "none":"0px 0px 4px 5px rgba(93,32,158,1)"};
   border-radius: 4px;
   align-items: center;
   margin: 11px;
@@ -164,10 +170,10 @@ export const Card = styled.div`
 `;
 
 export const Double = styled.section`
-  display: flex;
+  display:flex;
   flex-direction: row;
   flex-flow: row wrap;
-  width: 180px;
+  width:180px;
 `;
 
 export const FiltersDiv = styled.div`
@@ -178,19 +184,19 @@ export const FiltersDiv = styled.div`
   margin-left: 25px;
   height: 555px;
   span {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto",sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;
-    color: #ffffff;
+    color: #FFFFFF;
   }
-  @media (max-width: 400px) {
+  @media(max-width: 400px){
     width: 350px;
     height: 400px;
-    margin-top: 10px;
-    gap: 15px;
-    span {
+    margin-top:10px;
+    gap:15px;
+    span{
       display: none;
     }
   }
@@ -207,12 +213,12 @@ export const BoxTema = styled.div`
     border-radius: 50%;
     box-shadow: 3px 3px 5px black;
   }
-  div:hover {
+  div:hover{
     transform: scale(1.1);
-    transition: 0.4s;
+    transition: .4s;
   }
-  @media (max-width: 400px) {
-    div {
+  @media(max-width: 400px){
+    div{
       width: 30px;
       height: 30px;
     }
@@ -239,11 +245,11 @@ export const BoxRaridade = styled.div`
     color: #000000;
     cursor: pointer;
   }
-  @media (max-width: 400px) {
+  @media(max-width: 400px){
     display: flex;
     flex-direction: row;
-    height: 40px;
-    width: 350px;
+    height:40px;
+    width:350px;
     overflow-x: scroll;
   }
 `;
@@ -272,11 +278,11 @@ export const BoxTipo = styled.div`
     height: 63px;
     cursor: pointer;
   }
-  @media (max-width: 400px) {
+  @media(max-width: 400px){
     display: flex;
     flex-direction: row;
-    height: 85px;
-    width: 350px;
+    height:85px;
+    width:350px;
     overflow-x: scroll;
   }
 `;
@@ -297,9 +303,9 @@ export const BoxInput = styled.div`
       outline: none;
     }
   }
-  @media (max-width: 400px) {
-    width: 300px;
-    input {
+  @media(max-width: 400px){
+    width:300px;
+    input{
       width: 250px;
     }
   }
