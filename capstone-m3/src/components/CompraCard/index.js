@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { GlobalContext } from "../../providers/global";
 import { useState } from "react";
 import API from "../../services/api";
-import { Container, Botoes } from "../../styledComponents/CompraCardStyle";
+import { Container, Botoes, ModalPokemons } from "../../styledComponents/CompraCardStyle";
 import { toast } from "react-toastify"
 
 const CompraCard = () =>{
@@ -22,6 +22,7 @@ const CompraCard = () =>{
     const [userPokes , setUserPokes] = useState(user.pokemon)
  
     const randomCards =[];
+    const [showModal, setShowModal]= useState(false)
 
     function bodyProvider(array){
         array = array.flat()
@@ -156,6 +157,9 @@ const CompraCard = () =>{
             <button onClick={handleclick2}>NÃO</button>
             </Botoes>
         </Container>
+        {showModal && <ModalPokemons>
+          {filteredToReceive.map(())}
+          </ModalPokemons>}
     </>)
 
 }
