@@ -36,6 +36,7 @@ export const Minigame = () => {
       const creditsUser = { credits: 0 };
       toast.success("Você acertou");
       setNomePoke("");
+      setColor("color");
       const valor = await API.get(`users/${user.id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       }).then((res) => {
