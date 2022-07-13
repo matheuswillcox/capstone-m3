@@ -75,6 +75,7 @@ export const Box = styled.div`
 
 export const Grid = styled.div`
   display: flex;
+  justify-content: center;
   flex-flow: row wrap;
   overflow-y: scroll;
   gap: 20px;

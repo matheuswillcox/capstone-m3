@@ -24,7 +24,7 @@ function UserDash({card,setCard,obj,setObjModal}) {
 
   const [filtro, setFiltro]=useState("");
   
-  useEffect(()=> {}, [allPokemons])
+  useEffect(()=> {}, [allPokemons,user])
 
   useEffect(()=>{
     filtroNome()

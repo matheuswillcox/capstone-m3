@@ -63,6 +63,7 @@ display: flex;
 
   p{
     font-weight: 800;
+    margin: 2px;
   }
 `
 
@@ -97,7 +98,7 @@ export const Trash = styled.button`
     background: none;
     width: 241px;
     height: 0px;
-    margin: 0px;
+    margin: 15px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
