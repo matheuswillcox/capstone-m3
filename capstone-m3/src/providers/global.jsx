@@ -87,7 +87,7 @@ export const GlobalProvider = ({ children }) => {
         setUser(res.data.user);
         renewToken(data);
       });
-    }, 360000);
+    }, 60000);
   }
 
   //Aqui estarão os contextos criados por todos.

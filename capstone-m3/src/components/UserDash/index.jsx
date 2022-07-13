@@ -65,8 +65,9 @@ function UserDash() {
     const type = rarity[data]
     
     setFilteredPokemons(allPokemons.filter(item => type.includes(item.id)))
-
+   
   };
+
 
 
   // const filtroRaridade = (input) => {
@@ -142,7 +143,8 @@ function UserDash() {
                       user.pokemon?.filter(({ name }) => {
                         return e?.name === name;
                       }).length > 0 ? (
-                        <Card key={e?.id} raridade={e?.base_experience}>
+                        <Card key={e?.id} raridade={rarity} id={e.id}>
+                          
                           <img src={e?.sprites.front_default} alt="" />
                           <div>
                             <h3>{e?.name}</h3>
@@ -173,7 +175,7 @@ function UserDash() {
                         <Card
                           key={e?.id}
                           color="block"
-                          raridade={e?.base_experience}
+                          raridade={rarity} id={e.id}
                         >
                           <img
                             color="block"
@@ -211,7 +213,7 @@ function UserDash() {
                       user.pokemon?.filter(({ name }) => {
                         return e?.name === name;
                       }).length > 0 ? (
-                        <Card key={e?.id} raridade={e?.base_experience}>
+                        <Card key={e?.id} raridade={rarity} id={e.id}>
                           <img src={e?.sprites.front_default} alt="" />
                           <div>
                             <h3>{e?.name}</h3>
@@ -242,7 +244,8 @@ function UserDash() {
                         <Card
                           key={e?.id}
                           color="block"
-                          raridade={e?.base_experience}
+                          id={e.id}
+                          raridade={rarity}
                         >
                           <img
                             color="block"
