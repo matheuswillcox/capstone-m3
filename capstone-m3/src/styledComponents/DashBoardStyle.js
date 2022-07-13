@@ -112,8 +112,8 @@ export const Card = styled.div`
   height: 250px;
   text-transform: capitalize;
   background: ${props => props.color === "block" ? "darkgray" : "#FFFFFF"};
-  border: ${props => props.raridade < 100 ? "5px solid #d9d9d9" : props.raridade >= 100 && props.raridade < 151 ? "5px solid #006FC9": props.raridade >= 151 && props.raridade < 251 ? "5px solid #FBD100":"2.5px solid #FB89EB"};
-  box-shadow: ${props=> props.raridade < 251 ? "none":"0px 0px 0px 2.5px #5d209e"};
+  border: ${props => props.raridade < 100 ? "5px solid #d9d9d9" : props.raridade >= 100 && props.raridade < 151 ? "5px solid #006FC9": props.raridade >= 151 && props.raridade < 251 ? "5px solid #FBD100":"4px solid #FB89EB"};
+  box-shadow: ${props=> props.raridade < 251 ? "none":"0px 0px 4px 5px rgba(93,32,158,1)"};
   border-radius: 4px;
   align-items: center;
   margin: 11px;
