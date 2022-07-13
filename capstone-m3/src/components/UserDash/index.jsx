@@ -48,14 +48,17 @@ const filtroNome = () =>{
 }
 
 const rarityFilter = (data) => {
+  if(data === ''){
+    setFilteredPokemons([]);
+  }
   const type = rarity[data]
   setFilteredPokemons(allPokemons.filter(item => type.includes(item.id)))
 }; 
 
 
 const filtroTipo = (input) =>{
-  if(filtro === input){
-    setFiltro('');
+  if(input === ''){
+    setFilteredPokemons([]);
   } else {
     setFiltro(input)
     setFilteredPokemons(allPokemons.filter((element) => { 
