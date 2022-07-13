@@ -6,8 +6,10 @@ export const Main = styled.div`
   background-color: ${props=>props.theme};
   justify-content: flex-start;
   height: 100%;
+  width: 100vw;
   gap: 160px;
 `;
+
 export const Container = styled.div`
 
   display: flex;
@@ -22,21 +24,32 @@ export const Container = styled.div`
     line-height: 42px;
     color: #ffffff;
   }
+  @media(max-width: 400px){
+    height: 100vh;
+    font-size: 32px;
+    line-height: 38px;
+  }
 `;
 
 export const Article = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media(max-width: 400px){
+    flex-direction: column;
+    height: 85%;
+  }
+
 `;
 
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
-  width: 884px;
+  width: 880px;
   height: 580px;
   background: #ffffff;
   border-radius: 15px;
-  overflow: auto;
+  overflow-y: auto;
   margin-left:200px;
   ::-webkit-scrollbar {
     width: 0px;
@@ -51,14 +64,43 @@ export const Box = styled.div`
     border-radius: 10px;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   }
+  @media(max-width: 400px){
+    height: 430px;
+    width: 290px;
+    margin-left: 40px;
+  }
 `;
 
 export const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 350px;
+  display: flex;
+  flex-flow: row wrap;
+  overflow-y: scroll;
+  gap: 20px;
   margin: 15px;
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+
+  @media(max-width: 400px){
+    flex-flow: row;
+    height:380px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    margin: 15px 15px 15px 15px;
+  }
+
 `;
+
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -129,6 +171,15 @@ export const FiltersDiv = styled.div`
     line-height: 28px;
     color: #000000;
   }
+  @media(max-width: 400px){
+    width: 350px;
+    height: 400px;
+    margin-top:10px;
+    gap:15px;
+    span{
+      display: none;
+    }
+  }
 `;
 
 export const BoxTema = styled.div`
@@ -140,6 +191,12 @@ export const BoxTema = styled.div`
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
+  }
+  @media(max-width: 400px){
+    div{
+      width: 30px;
+      height: 30px;
+    }
   }
 `;
 
@@ -162,6 +219,13 @@ export const BoxRaridade = styled.div`
     line-height: 19px;
     color: #000000;
     cursor: pointer;
+  }
+  @media(max-width: 400px){
+    display: flex;
+    flex-direction: row;
+    height:40px;
+    width:350px;
+    overflow-x: scroll;
   }
 `;
 export const BoxTipo = styled.div`
@@ -189,6 +253,13 @@ export const BoxTipo = styled.div`
     height: 63px;
     cursor: pointer;
   }
+  @media(max-width: 400px){
+    display: flex;
+    flex-direction: row;
+    height:85px;
+    width:350px;
+    overflow-x: scroll;
+  }
 `;
 
 export const BoxInput = styled.div`
@@ -205,6 +276,12 @@ export const BoxInput = styled.div`
     border: none;
     :focus {
       outline: none;
+    }
+  }
+  @media(max-width: 400px){
+    width:300px;
+    input{
+      width: 250px;
     }
   }
 `;
