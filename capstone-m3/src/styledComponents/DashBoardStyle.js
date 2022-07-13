@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const Main = styled.div`
   display: flex;
   flex-direction: column;
@@ -106,6 +107,7 @@ export const Card = styled.div`
   flex-direction: column;
   width: 180px;
   height: 250px;
+  text-transform: capitalize;
   background: ${props => props.color === "block" ? "darkgray" : "#FFFFFF"};
   border: ${props => props.raridade < 100 ? "5px solid #d9d9d9" : props.raridade >= 100 && props.raridade < 151 ? "5px solid #006FC9": props.raridade >= 151 && props.raridade < 251 ? "5px solid #FBD100":"5px solid #FB89EB"};
   border-radius: 4px;
@@ -122,9 +124,9 @@ export const Card = styled.div`
     margin: 0px;
   }
   h3 {
-    font-family: "Inter", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 14px;
     line-height: 17px;
     color: #000000;
