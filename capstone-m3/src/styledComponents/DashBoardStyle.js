@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const Main = styled.div`
   display: flex;
   flex-direction: column;
@@ -8,6 +9,7 @@ export const Main = styled.div`
   height: 100%;
   width: 100vw;
   gap: 160px;
+  
 `;
 
 export const Container = styled.div`
@@ -34,6 +36,7 @@ export const Container = styled.div`
 export const Article = styled.div`
   display: flex;
   flex-direction: row;
+  
 
   @media(max-width: 400px){
     flex-direction: column;
@@ -73,6 +76,7 @@ export const Box = styled.div`
 
 export const Grid = styled.div`
   display: flex;
+  justify-content: center;
   flex-flow: row wrap;
   overflow-y: scroll;
   gap: 20px;
@@ -106,15 +110,17 @@ export const Card = styled.div`
   flex-direction: column;
   width: 180px;
   height: 250px;
+  text-transform: capitalize;
   background: ${props => props.color === "block" ? "darkgray" : "#FFFFFF"};
   border: ${props => props.raridade < 100 ? "5px solid #d9d9d9" : props.raridade >= 100 && props.raridade < 151 ? "5px solid #006FC9": props.raridade >= 151 && props.raridade < 251 ? "5px solid #FBD100":"5px solid #FB89EB"};
   border-radius: 4px;
   align-items: center;
+  margin: 11px;
+  cursor: pointer;
   img {
     width: 132.5px;
     height: 131.6px;
     margin: 10px;
-    opacity: ${props => props.color === "block" ? "0.2" : "1"};
   }
   .type {
     width: 30px;
@@ -122,9 +128,9 @@ export const Card = styled.div`
     margin: 0px;
   }
   h3 {
-    font-family: "Inter", sans-serif;
+    font-family: "Nunito", sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 14px;
     line-height: 17px;
     color: #000000;
@@ -169,7 +175,7 @@ export const FiltersDiv = styled.div`
     font-weight: 400;
     font-size: 24px;
     line-height: 28px;
-    color: #000000;
+    color: #FFFFFF;
   }
   @media(max-width: 400px){
     width: 350px;
@@ -186,11 +192,16 @@ export const BoxTema = styled.div`
   display: flex;
   flex-direction: row;
   gap: 10px;
+  cursor: pointer;
   div {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    cursor: pointer;
+    box-shadow: 3px 3px 5px black;
+  }
+  div:hover{
+    transform: scale(1.1);
+    transition: .4s;
   }
   @media(max-width: 400px){
     div{

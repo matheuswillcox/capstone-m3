@@ -3,9 +3,10 @@ import { GlobalContext } from "../../providers/global";
 import { Main,Container, Article, Box, Grid, Card, FiltersDiv, BoxTema, BoxRaridade, BoxTipo, BoxInput, Double } from "../../styledComponents/DashBoardStyle";
 import {AiOutlineSearch} from "react-icons/ai"
 import { useState } from "react";
+import ModalDashBoard from "../ModalDashBoard"
 
 
-function UserDash() {
+function UserDash({card,setCard,obj,setObjModal}) {
 
   const { allPokemonsContext, themeContext, userContext, tradesContext } = useContext(GlobalContext)
 
@@ -23,7 +24,7 @@ function UserDash() {
 
   const [filtro, setFiltro]=useState("");
   
-  useEffect(()=> {}, [allPokemons])
+  useEffect(()=> {}, [allPokemons,user])
 
   useEffect(()=>{
     filtroNome()
@@ -44,8 +45,8 @@ const filtroNome = () =>{
 }
 
 const filtroRaridade = (input) =>{
-  if(input === filtro){
-    setFiltro('');
+  if(input === ''){
+    setFilteredPokemons([])
   } else if (input === "normal"){
     setFiltro(input)
     setFilteredPokemons(allPokemons.filter((element) => { 
@@ -90,6 +91,7 @@ const filtroTipo = (input) =>{
   return (
     <>
     <Main theme={themeSelector} >
+    <ModalDashBoard card={card} obj={obj} setCard={setCard} userPokemon={user}/>
       <Container >
         <h1>Minha Coleção</h1>
           <Article>
@@ -97,45 +99,61 @@ const filtroTipo = (input) =>{
                 <Grid>
                 { filteredPokemons.length >= 1 ? filteredPokemons?.map((e)=>
                   user.pokemon?.filter(({name})=>{return e?.name === name}).length > 0 ?
-                  <Card key={e?.id} raridade={e?.base_experience}>
-                    <img src={e?.sprites.front_default} alt=""/>
+                  <Card key={e?.id} onClick={(event)=>{event.preventDefault();setObjModal({...e,display:""});setCard(true)}}>
+                    <img src={e?.sprites.front_default} alt="PokeImg"/>
                     <div>  
                     <h3>{e?.name}</h3>
                     {e.types.length > 1 ? <Double><img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>
                     <img className="type" src={require(`../../image/${e.types[1].type.name}.png`)} alt="imgType"/></Double>:
                     <img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>}
-                    <span>Raridade</span>
+                    <span>Quantidade x{
+                    user.pokemon?.map(({name}, index)=>{
+                      if(e?.name === name){
+                        
+                        return user.pokemon[index]?.quantity
+                      }
+                    })}</span>
                     </div>
-                  </Card> : <Card key={e?.id} color="block" raridade={e?.base_experience}>
+                  </Card> : <Card key={e?.id} color="block" raridade={e?.base_experience} onClick={(event)=>{event.preventDefault();setObjModal({...e,display:""});setCard(true)}}>
                     <img color = "block" src={e?.sprites.front_default} alt=""/>
                     <div>
                     <h3>{e?.name}</h3>
                     {e.types.length > 1 ? <Double><img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>
                     <img className="type" src={require(`../../image/${e.types[1].type.name}.png`)} alt="imgType"/></Double>:
                     <img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>}
-                    <span>Raridade</span>
+                    <span>Raridade {
+                        e?.base_experience > 251 ? <>Ultra raro</>: e?.base_experience > 151 ? <>Super raro</> : e?.base_experience > 100 ? <>Raro</>: <>Normal</>
+                      }</span>
                     </div>
                   </Card>) : allPokemons?.map((e)=>
                   user.pokemon?.filter(({name})=>{return e?.name === name}).length > 0 ?
-                  <Card key={e?.id} raridade={e?.base_experience}>
+                  <Card key={e?.id} raridade={e?.base_experience} onClick={(event)=>{event.preventDefault();setObjModal({...e,display:""});setCard(true)}}>
                     <img src={e?.sprites.front_default} alt=""/>
                     <div>  
                     <h3>{e?.name}</h3>
                     {e.types.length > 1 ? <Double><img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>
                     <img className="type" src={require(`../../image/${e.types[1].type.name}.png`)} alt="imgType"/></Double>:
                     <img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>}
-                    <span>Raridade</span>
+                    <span>Quantidade x{
+                    user.pokemon?.map(({name}, index)=>{
+                      if(e?.name === name){
+                        return user.pokemon[index]?.quantity
+                      }
+                    })}
+                    </span>
                     </div>
                   </Card>
                   :
-                  <Card key={e?.id} color="block" raridade={e?.base_experience}>
-                    <img color = "block" src={e?.sprites.front_default} alt=""/>
+                  <Card key={e?.id} color="block" onClick={(event)=>{event.preventDefault();setObjModal({...e,display:"block"});setCard(true)}}>
+                    <img color = "block" img={card} src={e?.sprites.front_default} alt=""/>
                     <div>  
                     <h3>{e?.name}</h3>
                     {e.types.length > 1 ? <Double><img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>
                     <img className="type" src={require(`../../image/${e.types[1].type.name}.png`)} alt="imgType"/></Double>:
                     <img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>}
-                    <span>Raridade</span>
+                    <span>Raridade {
+                        e?.base_experience > 251 ? <>Ultra raro</>: e?.base_experience > 151 ? <>Super raro</> : e?.base_experience > 100 ? <>Raro</>: <>Normal</>
+                      }</span>
                     </div>
                   </Card>
                 )}
@@ -155,6 +173,7 @@ const filtroTipo = (input) =>{
                   </BoxInput>
                   <span>Raridade:</span>
                   <BoxRaridade>
+                    <div style={{backgroundColor:"#FFFFFF"}} onClick={()=> filtroRaridade('')}>Todos</div>
                     <div style={{backgroundColor:"#D9D9D9"}} onClick={()=> filtroRaridade('normal')}>Normal</div>
                     <div style={{backgroundColor:"#006FC9"}} onClick={()=> filtroRaridade('raro')}>Raro</div>
                     <div style={{backgroundColor:"#FBD100"}} onClick={()=> filtroRaridade('super_raro')}>Super Raro</div>

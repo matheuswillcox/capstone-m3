@@ -13,6 +13,7 @@ export const Container = styled.div`
   background-color: ${props=>props.theme};
     display: flex;
     flex-direction: column;
+    justify-content:center;
     align-items: center;
     gap: 20px;
     background-color:  ${props=>props.theme};
@@ -29,7 +30,7 @@ export const Form = styled.form`
     gap: 20px;
     width: 90%;
     max-width: 350px;
-    height: 75%;
+    height: 55%;
     max-height: 550px;
     background: #FFFFFF;
     box-shadow: 5px 0px 8px rgba(0, 0, 0, 0.25);
@@ -42,6 +43,7 @@ export const Form = styled.form`
     }
     @media(min-width: 480px){
         gap: 20px;
+        height:55%;
         h1{
             margin-top: 15px;
         }
