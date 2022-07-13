@@ -104,7 +104,7 @@ const filtroTipo = (input) =>{
                     {e.types.length > 1 ? <Double><img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>
                     <img className="type" src={require(`../../image/${e.types[1].type.name}.png`)} alt="imgType"/></Double>:
                     <img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>}
-                    <span>Quantidade {
+                    <span>Quantidade x{
                     user.pokemon?.map(({name}, index)=>{
                       if(e?.name === name){
                         
@@ -132,10 +132,9 @@ const filtroTipo = (input) =>{
                     {e.types.length > 1 ? <Double><img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>
                     <img className="type" src={require(`../../image/${e.types[1].type.name}.png`)} alt="imgType"/></Double>:
                     <img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>}
-                    <span>Quantidade {
+                    <span>Quantidade x{
                     user.pokemon?.map(({name}, index)=>{
                       if(e?.name === name){
-                        
                         return user.pokemon[index]?.quantity
                       }
                     })}
