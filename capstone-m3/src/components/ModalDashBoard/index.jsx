@@ -5,14 +5,15 @@ import { GlobalContext } from "../../providers/global";
 import { useContext } from "react";
 
 const ModalDashBoard = ({obj,userPokemon,setCard,card}) => {
-    const { themeContext,userContext } = useContext(GlobalContext)
+    const { themeContext,userContext,rarityContext  } = useContext(GlobalContext)
     const { themeSelector } = themeContext
     const {setUser} = userContext
+    const { rarity } = rarityContext
     
     const pokemonFind = userPokemon?.pokemon.filter(e => e.name === obj?.name)
     
     const pokemonObjFilter = userPokemon?.pokemon.filter(e => e.name !== obj?.name)
-
+   
     const desmontar = {
         credits: userPokemon?.credits + 50,
         pokemon: [...pokemonObjFilter,{name: obj?.name, quantity: pokemonFind[0]?.quantity - 1}]
@@ -27,7 +28,7 @@ const handleSubmit = () => {
    
     return(
         <Container display={String(card)}>
-            <Card color={obj?.display} raridade={obj?.base_experience}>
+            <Card color={obj?.display} raridade={rarity}>
             <Trash onClick={(e)=>{e.preventDefault();setCard(false)}}>X</Trash>
             <img src={obj?.sprites.front_default} alt=""/>
                     <div>  
