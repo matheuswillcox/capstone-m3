@@ -16,7 +16,7 @@ flex-direction: row;
 
 export const StyledTradesDiv = styled.div`
 
-min-width: 300px;
+min-width: 280px;
 margin-left: 50px;
 background-color: white;
 display: flex;
@@ -35,13 +35,11 @@ border-radius: 10px;
     flex-direction: column;
 
     gap: 10px;
-
-    min-width: 290px;
     
     overflow: auto;
     overflow-x: hidden;
 
-    padding: 20px;
+    padding: 20px 10px;
 
     list-style: none;
 
@@ -50,7 +48,7 @@ border-radius: 10px;
         flex-direction: row;
         justify-content: space-between;
 
-        min-width: 290px;
+        min-width: 260px;
 
         .tradesList-input {
             padding: 10px;
@@ -77,10 +75,16 @@ border-radius: 10px;
         background: linear-gradient(red,blue);
         border-radius: 15px;
     }
-    
+    .tradesList-divInput {
+        .tradesList-input {
+            padding: 5px;
+        }
+    }
 }
+
 @media (min-width:660px) {
     width: 70%;
+    padding: 20px;
     ul{
         overflow-y: scroll;
     }
@@ -108,7 +112,7 @@ background-color: #fff;
 
 font-family: 'Roboto', sans-serif;
 
-min-width: 280px;
+min-width: 260px;
 height: fit-content;
 
 
@@ -165,7 +169,6 @@ gap: 10px;
         background-color: red;
         transition: 0.6;
     }
-
 }
 
 .receiveTrade-btn {
@@ -210,6 +213,8 @@ gap: 10px;
 
     align-self: center;
     justify-self: center;
+    overflow: hidden;
+    word-wrap: break-word;
 
     background-color: #828282;
     color: white;
@@ -262,6 +267,12 @@ gap: 10px;
         .userInfo{
             display: none;
         }
+        .arrowTrade{
+            .arrowTrade-arrow  {
+                font-size: 15px;
+            }
+        }
+        gap:5px;
     }
 
 `

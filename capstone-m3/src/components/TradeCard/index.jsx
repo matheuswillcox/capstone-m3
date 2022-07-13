@@ -14,9 +14,11 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
     const [offeredCard, setOfferedCard] = useState({})
     const [wantedCard, setWantedCard] = useState({})
 
-    const { userContext, allPokemonsContext, tradesContext } = useContext(GlobalContext)
+    const { userContext, allPokemonsContext, tradesContext, themeContext } = useContext(GlobalContext)
 
     const { user, userToken, setUser } = userContext
+
+    const { themeSelector } = themeContext;
 
     const { allPokemons } = allPokemonsContext
     const [showModal, setShowModal] = useState(false)
@@ -183,7 +185,7 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
     return (
         <>
         <StyledTradeCard>
-            <div className="redLine"></div>
+            <div className="redLine" style={{backgroundColor: `${themeSelector}`}}></div>
             <div className="userInfo">
                 <img src={tradeUserImg} alt="userImg"></img>
                 <h3>{tradeUser}</h3>
