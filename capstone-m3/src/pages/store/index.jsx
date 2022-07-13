@@ -3,6 +3,7 @@ import { Container } from "../../styledComponents/styledStore";
 import { useCallback, useContext } from "react";
 import { GlobalContext } from "../../providers/global";
 import CompraCard from "../../components/CompraCard";
+import { GiCardPick, GiGems } from "react-icons/gi";
 
 const Store = () => {
   const { compraContext, itemCompraContext, themeContext, allPokemonsContext } =
@@ -14,7 +15,7 @@ const Store = () => {
 
   const { setItemCompra } = itemCompraContext;
 
-  const normal = [
+  const raros = [
     2, 3, 5, 6, 8, 9, 11, 12, 14, 15, 17, 18, 20, 22, 24, 26, 28, 30, 31, 33,
     34, 36, 38, 40, 42, 44, 45, 47, 49, 51, 53, 55, 57, 59, 61, 62, 64, 65, 67,
     68, 70, 71, 73, 75, 76, 78, 80, 82, 85, 87, 89, 91, 93, 94, 97, 99, 101,
@@ -22,10 +23,12 @@ const Store = () => {
     137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151,
   ];
 
-  const rare = [3, 6, 9, 144, 145, 146, 149, 150, 151];
+  const superRare = [3, 6, 9, 144, 145, 146, 149, 150, 151];
+  
+  const ultraRare = []
 
-  const handleclick = () => {
-    shuffleCards(normal);
+  const handleclick = (data) => {
+    shuffleCards(data);
     setCompra(true);
   };
 
@@ -43,6 +46,7 @@ const Store = () => {
       }
     }
     console.log(result);
+    setItemCompra(result) 
   }, []);
 
   const geraCards = () => {
@@ -61,20 +65,20 @@ const Store = () => {
         <div className="divContainer">
           <div className="loja">Loja</div>
           <div className="packs">
-            <div className="card" onClick={handleclick}>
-              <div>Pack 1</div>
+            <div className="card" onClick={()=>handleclick(raros)}>
+              <div>Normais</div>
               <img src={require("../../image/cards.png")} alt="img" />
-              <div>Preço R$ 99.99</div>
+              <div>Preço 500</div>
             </div>
-            <div className="card" onClick={handleclick}>
-              <div>Pack 2</div>
+            <div className="card" onClick={()=>handleclick(superRare)}>
+              <div>Raros</div>
               <img src={require("../../image/cards.png")} alt="img" />
-              <div>Preço R$ 99.99</div>
+              <div>Preço 1000</div>
             </div>
-            <div className="card" onClick={handleclick}>
-              <div>Pack 3</div>
+            <div className="card" onClick={()=>handleclick(ultraRare)}>
+              <div>Ultra Raros</div>
               <img src={require("../../image/cards.png")} alt="img" />
-              <div>Preço R$ 99.99</div>
+              <div>Preço 5000</div>
             </div>
           </div>
         </div>
