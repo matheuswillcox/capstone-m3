@@ -14,7 +14,7 @@ export const Minigame = () => {
   const [nomePoke, setNomePoke] = useState("");
   const [color, setColor] = useState("");
   const { userContext, themeContext } = useContext(GlobalContext);
-  const { user } = userContext;
+  const { user, setUser } = userContext;
   const {themeSelector} =themeContext
   useEffect(() => {
     async function getPokes(){
@@ -46,7 +46,10 @@ export const Minigame = () => {
       console.log(creditsUser);
       API.patch(`users/${user.id}`, creditsUser, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      }).then((res) => res);
+      }).then((res) => {
+        setUser(res.data)
+        localStorage.setItem("@pokemonUser", JSON.stringify(res.data))
+      });
       setTimeout(() => {
         setShowModal(false);
       }, 2500);
