@@ -104,7 +104,13 @@ const filtroTipo = (input) =>{
                     {e.types.length > 1 ? <Double><img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>
                     <img className="type" src={require(`../../image/${e.types[1].type.name}.png`)} alt="imgType"/></Double>:
                     <img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>}
-                    <span>Raridade</span>
+                    <span>Quantidade x{
+                    user.pokemon?.map(({name}, index)=>{
+                      if(e?.name === name){
+                        
+                        return user.pokemon[index]?.quantity
+                      }
+                    })}</span>
                     </div>
                   </Card> : <Card key={e?.id} color="block" raridade={e?.base_experience}>
                     <img color = "block" src={e?.sprites.front_default} alt=""/>
@@ -113,7 +119,9 @@ const filtroTipo = (input) =>{
                     {e.types.length > 1 ? <Double><img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>
                     <img className="type" src={require(`../../image/${e.types[1].type.name}.png`)} alt="imgType"/></Double>:
                     <img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>}
-                    <span>Raridade</span>
+                    <span>Raridade {
+                        e?.base_experience > 251 ? <>Ultra raro</>: e?.base_experience > 151 ? <>Super raro</> : e?.base_experience > 100 ? <>Raro</>: <>Normal</>
+                      }</span>
                     </div>
                   </Card>) : allPokemons?.map((e)=>
                   user.pokemon?.filter(({name})=>{return e?.name === name}).length > 0 ?
@@ -124,7 +132,13 @@ const filtroTipo = (input) =>{
                     {e.types.length > 1 ? <Double><img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>
                     <img className="type" src={require(`../../image/${e.types[1].type.name}.png`)} alt="imgType"/></Double>:
                     <img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>}
-                    <span>Raridade</span>
+                    <span>Quantidade x{
+                    user.pokemon?.map(({name}, index)=>{
+                      if(e?.name === name){
+                        return user.pokemon[index]?.quantity
+                      }
+                    })}
+                    </span>
                     </div>
                   </Card>
                   :
@@ -135,7 +149,9 @@ const filtroTipo = (input) =>{
                     {e.types.length > 1 ? <Double><img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>
                     <img className="type" src={require(`../../image/${e.types[1].type.name}.png`)} alt="imgType"/></Double>:
                     <img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>}
-                    <span>Raridade</span>
+                    <span>Raridade {
+                        e?.base_experience > 251 ? <>Ultra raro</>: e?.base_experience > 151 ? <>Super raro</> : e?.base_experience > 100 ? <>Raro</>: <>Normal</>
+                      }</span>
                     </div>
                   </Card>
                 )}
