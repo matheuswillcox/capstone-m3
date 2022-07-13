@@ -115,12 +115,15 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
             newUserPokes.push({name: offered, quantity: 1})
         }
 
+        !tradeConditional && toast.error(`Você deve ter mais de 1 ${wanted} para realizar a troca`)
+
         tradeConditional && API.patch(`users/${user.id}`, {pokemon: newUserPokes}, {
             headers: {Authorization: `Bearer ${userToken}`}
         })
         .then((res) => {
             setUser(res.data)
             localStorage.setItem("@pokemonUser", JSON.stringify(res.data))
+            toast.success("Troca Realizada!")
         })
 
         tradeConditional && !exchange && API.patch(`troca/${tradeID}`, {exchange: true}, {
@@ -154,7 +157,6 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
         .then((res) => {
             setUser(res.data)
             localStorage.setItem("@pokemonUser", JSON.stringify(res.data))
-            console.log(res.data)
         })
 
         const newTrades = trades.filter((trade) => trade.id !== tradeID)
