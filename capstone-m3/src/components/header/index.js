@@ -93,7 +93,9 @@ export const Headersite = () => {
         <Logo theme={themeSelector} src={require("../../image/logo.png")} />
         <User>
           <ImagemUser theme={themeSelector} src={user.img}></ImagemUser>
+          <div>
           <GiGems color="#42B4E5" /> <span>{user.credits}</span>
+          </div>
         </User>
         <Div theme={themeSelector} onClick={handleClick}>
           <Icons>

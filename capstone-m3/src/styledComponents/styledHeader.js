@@ -37,7 +37,7 @@ export const Div = styled.div`
 export const User = styled.div`
     width: 90px;
     height: 110px;
-    font-size: 24px;
+    font-size: 14px;
     display:flex;
     flex-wrap:wrap;
     align-items:center;
