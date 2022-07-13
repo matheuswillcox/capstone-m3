@@ -158,6 +158,7 @@ const TradeCard = ({ offered, wanted, userID, tradeID, tradeUser, tradeUserImg, 
             setUser(res.data)
             localStorage.setItem("@pokemonUser", JSON.stringify(res.data))
         })
+        const teste = []
 
         const newTrades = trades.filter((trade) => trade.id !== tradeID)
 
