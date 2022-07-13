@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { FaHome, FaShoppingBag } from "react-icons/fa";
+import {AiOutlineMenu}from "react-icons/ai"
 import { GiCardPick, GiGems } from "react-icons/gi";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import {
@@ -9,8 +10,10 @@ import {
   Div,
   Icons,
   ImagemUser,
+  DivHeader,
+  ModalMenu,
 } from "../../styledComponents/styledHeader";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../../providers/global";
 import { Minigame } from "../minigame";
 
@@ -18,6 +21,7 @@ export const Headersite = () => {
   const { userContext, themeContext } = useContext(GlobalContext);
 
   const { setUserToken, user } = userContext;
+  const [showModal, setShowModal]= useState(false)
 
   const navigate = useNavigate();
 
@@ -40,11 +44,56 @@ export const Headersite = () => {
 
   return (
     <>
+      <DivHeader>
+        <AiOutlineMenu onClick={()=>{
+          setShowModal(true)
+          console.log(showModal);
+        }}/>
+          <span>Menu</span>
+      </DivHeader>
+        {showModal && <ModalMenu>
+          <div>
+            <Logo theme={themeSelector} src={require("../../image/logo.png")} />
+            <button className="closeHeader" onClick={()=>{
+              setShowModal(false)
+            }}>X</button>
+          </div>
+          <User>
+            <ImagemUser theme={themeSelector} src={user.img}></ImagemUser>
+            <GiGems color="#42B4E5" /> <span style={{color: "black"}}>{user.credits}</span>
+          </User>
+          <Div theme={themeSelector} onClick={handleClick}>
+            <Icons>
+              <FaHome />
+            </Icons>
+            <span>Home</span>
+          </Div>
+          <Div theme={themeSelector} onClick={handleClick2}>
+            <Icons>
+              <GiCardPick />
+            </Icons>
+            <span>Coleção</span>
+          </Div>
+          <Div theme={themeSelector} onClick={handleClick3}>
+            <Icons>
+              <FaShoppingBag />
+            </Icons>
+            <span>Loja</span>
+          </Div>
+          <Minigame theme={themeSelector} onClick={()=>{console.log("click")}}/>
+          <Div theme={themeSelector} onClick={handleClick4}>
+            <Icons>
+              <RiLogoutBoxLine />
+            </Icons>
+            <span>Logout</span>
+          </Div>
+          </ModalMenu>}
+      {/* header pc */}
       <Header>
         <Logo theme={themeSelector} src={require("../../image/logo.png")} />
         <User>
           <ImagemUser theme={themeSelector} src={user.img}></ImagemUser>
-          <GiGems color="#42B4E5" /> <span>1000</span>
+          <GiGems color="#42B4E5" /> <span>{user.credits}</span>
         </User>
         <Div theme={themeSelector} onClick={handleClick}>
           <Icons>
