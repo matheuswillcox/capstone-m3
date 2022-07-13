@@ -7,7 +7,7 @@ import { toast } from "react-toastify"
 
 const CompraCard = () =>{
 
-    const { compraContext, itemCompraContext, userContext, allPokemonsContext } = useContext(GlobalContext);
+    const { compraContext, itemCompraContext, userContext, allPokemonsContext, CardModalContext } = useContext(GlobalContext);
 
     const { setCompra } = compraContext;
 

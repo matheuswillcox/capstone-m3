@@ -19,12 +19,7 @@ function UserDash({card,setCard,obj,setObjModal}) {
 
   const {user, userToken} = userContext
 
-
-  const [inputText,setInputText] = useState("")
-
-
-  const [filteredPokemons, setFilteredPokemons] = useState([]);
-
+  const { rarity } = rarityContext
 
   const [inputText,setInputText] = useState("")
 
@@ -89,9 +84,8 @@ const filtroTipo = (input) =>{
                   user.pokemon?.filter(({name})=>{return e?.name === name}).length > 0 ?
 
                   <Card raridade={rarity} id={e?.id} key={e?.id} onClick={(event)=>{event.preventDefault();setObjModal({...e,display:""});setCard(true)}}>
-
                     <img src={e?.sprites.front_default} alt="PokeImg"/>
-                    <div>  
+                    <div>
                     <h3>{e?.name}</h3>
                     {e.types.length > 1 ? <Double><img className="type" src={require(`../../image/${e.types[0].type.name}.png`)} alt="imgType"/>
                     <img className="type" src={require(`../../image/${e.types[1].type.name}.png`)} alt="imgType"/></Double>:

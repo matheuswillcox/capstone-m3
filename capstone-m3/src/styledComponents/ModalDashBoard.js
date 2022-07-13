@@ -17,7 +17,20 @@ display: flex;
   width: 250px;
   height: 350px;
   background: ${props => props.color === "block" ? "darkgray" : "#FFFFFF"};
-  border: ${props => props.raridade < 100 ? "5px solid #d9d9d9" : props.raridade >= 100 && props.raridade < 151 ? "5px solid #006FC9": props.raridade >= 151 && props.raridade < 251 ? "5px solid #FBD100":"5px solid #FB89EB"};
+  border: ${(props) => {
+    const isNormal = props.raridade?.normal?.find((item) => item === props.id);
+    const isRares = props.raridade?.raro?.find((item) => item === props.id);
+    const isSuperRares = props.raridade?.super_raro?.find(
+      (item) => item === props.id
+    );
+    return isNormal
+      ? "5px solid #D9D9D9"
+      : isRares
+      ? "5px solid #006FC9"
+      : isSuperRares
+      ? "5px solid #FBD100"
+      : "5px solid #FB89EB";
+  }};
   border-radius: 4px;
   align-items: center;
   transition: 3s ease-in;
