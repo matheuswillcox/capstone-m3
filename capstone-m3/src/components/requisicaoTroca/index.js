@@ -25,7 +25,7 @@ export const Requisicao = () => {
       return poke.name !== pokemon;
     });
     setTradePokemon(newPokemons);
-  }, [ pokemon]);
+  }, [pokemon]);
 
   useEffect(() => {
     const userID = localStorage.getItem("userID");
@@ -58,6 +58,10 @@ export const Requisicao = () => {
     // formState: { errors },
   } = useForm({ resolver: yupResolver(schema), reValidateMode: "onSubmit" });
 
+  const filterPokemonToTrade = (e) => {
+    setPokemon(e.target.value)
+  }
+
   const collectData = (data) => {
     const trocaPokemons = {
       pokemon: data,
@@ -72,8 +76,10 @@ export const Requisicao = () => {
 
     const attPokemons = []
 
+    let canTrade = false
+
     user.pokemon?.map((poke) => {
-      if(poke.name === trocaPokemons.pokemon.offered) {
+      if(poke.name === trocaPokemons.pokemon.offered && poke.quantity > 1) {
         attPokemons.push({name:poke.name ,quantity: poke.quantity - 1})
       }else{
         attPokemons.push(poke)
@@ -123,21 +129,23 @@ export const Requisicao = () => {
                 <AiOutlineCloseCircle />
               </button>
             </div>
+            <span style={{color:"#828282"}}>Pokemon para trocar</span>
             <select
               {...register("offered")}
               onChange={(e) => {
-                console.log(e.target);
-                setPokemon(e.target.value);
+                filterPokemonToTrade(e);
               }}
             >
               {user.pokemon.map((poke, index) => {
-                return <option key={index}>{poke.name}</option>;
+                if(poke.quantity > 1){return <option key={index}>{poke.name}</option>;}
               })}
             </select>
 
-            <select {...register("wanted")}>
+            <span style={{color:"#828282"}}>Pokemon que deseja receber</span>
+            <select {...register("wanted")}
+            >
               {tradePokemon.map((poke, index) => {
-                return <option key={index}>{poke.name}</option>;
+                if(poke.name !== pokemon){return <option key={index}>{poke.name}</option>;}
               })}
             </select>
             <button
