@@ -78,9 +78,11 @@ export const GlobalProvider = ({ children }) => {
   const themeContext = { themeSelector, setThemeSelector  }
   //
 
+
   const [showModal, setShowModal] = useState(false)
   const [newCards, setNewCards] = useState([])
   const CardModalContext = {showModal, setShowModal, newCards, setNewCards}
+
 
   function renewToken(data) {
     setTimeout(() => {
@@ -108,6 +110,7 @@ export const GlobalProvider = ({ children }) => {
         themeContext,
         rarityContext,
         CardModalContext
+
       }}
     >
       {children}

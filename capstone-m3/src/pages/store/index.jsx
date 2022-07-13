@@ -4,10 +4,12 @@ import { useCallback, useContext } from "react";
 import { GlobalContext } from "../../providers/global";
 import CompraCard from "../../components/CompraCard";
 import { GiCardPick, GiGems } from "react-icons/gi";
+
 import { ModalPokemons } from "../../styledComponents/CompraCardStyle";
 
 const Store = () => {
   const { compraContext, itemCompraContext, themeContext, allPokemonsContext, CardModalContext } =
+
     useContext(GlobalContext);
 
   const { themeSelector } = themeContext;
@@ -16,7 +18,9 @@ const Store = () => {
 
   const { setItemCompra, setPackType } = itemCompraContext;
 
+
   const {showModal, setShowModal, newCards} = CardModalContext
+
 
   const { allPokemons } = allPokemonsContext
 

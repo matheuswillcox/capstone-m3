@@ -112,6 +112,7 @@ export const Card = styled.div`
   height: 250px;
   text-transform: capitalize;
   background: ${props => props.color === "block" ? "darkgray" : "#FFFFFF"};
+
   border: ${(props) => {
     const isNormal = props.raridade?.normal?.find((item) => item === props.id);
     const isRares = props.raridade?.raro?.find((item) => item === props.id);

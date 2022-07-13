@@ -7,7 +7,7 @@ import { toast } from "react-toastify"
 
 const CompraCard = () =>{
 
-    const { compraContext, itemCompraContext, userContext, allPokemonsContext, CardModalContext } = useContext(GlobalContext);
+    const { compraContext, itemCompraContext, userContext, allPokemonsContext } = useContext(GlobalContext);
 
     const { setCompra } = compraContext;
 
@@ -41,6 +41,7 @@ const CompraCard = () =>{
         pokemon: userNewPokes,
         credits: user.credits - packType
       }
+
 
       setShowModal(true)
 
@@ -124,7 +125,7 @@ const CompraCard = () =>{
       }
 
       const newPokes = []
-      
+ 
 
       for(let i = 0; i < filteredToReceive.length; i++){
 

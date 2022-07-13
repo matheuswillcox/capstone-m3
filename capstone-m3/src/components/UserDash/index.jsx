@@ -10,6 +10,7 @@ function UserDash({card,setCard,obj,setObjModal}) {
 
   const { allPokemonsContext, themeContext, userContext, tradesContext, rarityContext } = useContext(GlobalContext)
 
+
   const { allPokemons, setAllPokemons, getPokemons } = allPokemonsContext
 
   const { getTrades, trades, setTrades } = tradesContext
@@ -18,7 +19,12 @@ function UserDash({card,setCard,obj,setObjModal}) {
 
   const {user, userToken} = userContext
 
-  const { rarity } = rarityContext
+
+  const [inputText,setInputText] = useState("")
+
+
+  const [filteredPokemons, setFilteredPokemons] = useState([]);
+
 
   const [inputText,setInputText] = useState("")
 
@@ -51,6 +57,7 @@ const rarityFilter = (data) => {
   setFilteredPokemons(allPokemons.filter(item => type.includes(item.id)))
 }; 
 
+
 const filtroTipo = (input) =>{
   if(filtro === input){
     setFiltro('');
@@ -80,7 +87,9 @@ const filtroTipo = (input) =>{
                 <Grid>
                 { filteredPokemons.length >= 1 ? filteredPokemons?.map((e)=>
                   user.pokemon?.filter(({name})=>{return e?.name === name}).length > 0 ?
+
                   <Card raridade={rarity} id={e?.id} key={e?.id} onClick={(event)=>{event.preventDefault();setObjModal({...e,display:""});setCard(true)}}>
+
                     <img src={e?.sprites.front_default} alt="PokeImg"/>
                     <div>  
                     <h3>{e?.name}</h3>
@@ -95,7 +104,9 @@ const filtroTipo = (input) =>{
                       }
                     })}</span>
                     </div>
+
                   </Card> : <Card raridade={rarity} id={e?.id} key={e?.id} color="block" onClick={(event)=>{event.preventDefault();setObjModal({...e,display:""});setCard(true)}}>
+
                     <img color = "block" src={e?.sprites.front_default} alt=""/>
                     <div>
                     <h3>{e?.name}</h3>
@@ -108,7 +119,9 @@ const filtroTipo = (input) =>{
                     </div>
                   </Card>) : allPokemons?.map((e)=>
                   user.pokemon?.filter(({name})=>{return e?.name === name}).length > 0 ?
+
                   <Card raridade={rarity} id={e?.id} key={e?.id} onClick={(event)=>{event.preventDefault();setObjModal({...e,display:""});setCard(true)}}>
+
                     <img src={e?.sprites.front_default} alt=""/>
                     <div>  
                     <h3>{e?.name}</h3>
@@ -125,7 +138,9 @@ const filtroTipo = (input) =>{
                     </div>
                   </Card>
                   :
+
                   <Card raridade={rarity} id={e?.id} key={e?.id} color="block" onClick={(event)=>{event.preventDefault();setObjModal({...e,display:"block"});setCard(true)}}>
+
                     <img color = "block" img={card} src={e?.sprites.front_default} alt=""/>
                     <div>  
                     <h3>{e?.name}</h3>
@@ -154,11 +169,13 @@ const filtroTipo = (input) =>{
                   </BoxInput>
                   <span>Raridade:</span>
                   <BoxRaridade>
+
                     <div style={{backgroundColor:"#FFFFFF"}} onClick={()=> rarityFilter('')}>Todos</div>
                     <div style={{backgroundColor:"#D9D9D9"}} onClick={()=> rarityFilter('normal')}>Normal</div>
                     <div style={{backgroundColor:"#006FC9"}} onClick={()=> rarityFilter('raro')}>Raro</div>
                     <div style={{backgroundColor:"#FBD100"}} onClick={()=> rarityFilter('super_raro')}>Super Raro</div>
                     <div style={{backgroundImage:"linear-gradient(#FB89EB, #4C6AB2)"}} onClick={()=> rarityFilter('ultra_raro')}>Ultra Raro</div>
+
                   </BoxRaridade>
                   <span>Tipo:</span>
                   <BoxTipo>

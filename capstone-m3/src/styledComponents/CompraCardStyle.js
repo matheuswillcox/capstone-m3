@@ -34,6 +34,7 @@ export const Botoes = styled.div`
       transform: scale(1.1);
       transition: .4s;
     }
+
 `
 export const ModalPokemons = styled.div`
   width: 100vw;
