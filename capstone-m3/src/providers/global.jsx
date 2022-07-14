@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { getPokemons } from "../contexts/pokemonsFunctions";
 import { getTrades } from "../contexts/tradesFunctions";
-import API from "../services/api";
+
 
 export const GlobalContext = createContext([]);
 
@@ -43,7 +43,7 @@ export const GlobalProvider = ({ children }) => {
     setUser,
     userLoginInfo,
     setUserLoginInfo,
-    renewToken,
+
   };
 
   //
@@ -83,21 +83,6 @@ export const GlobalProvider = ({ children }) => {
   const [newCards, setNewCards] = useState([])
   const CardModalContext = {showModal, setShowModal, newCards, setNewCards}
 
-
-  function renewToken(data) {
-    setTimeout(() => {
-      API.post("/login", data).then((res) => {
-        localStorage.setItem("token", res.data.accessToken);
-        localStorage.setItem("userID", res.data.user.id);
-        setUserToken(res.data.accessToken);
-        setUser(res.data.user);
-        renewToken(data);
-      });
-    }, 60000000000000000000000000000000000000000);
-  }
-
-  //Aqui estarão os contextos criados por todos.
-
   return (
     <GlobalContext.Provider
       value={{
@@ -106,7 +91,6 @@ export const GlobalProvider = ({ children }) => {
         tradesContext,
         compraContext,
         itemCompraContext,
-        renewToken,
         themeContext,
         rarityContext,
         CardModalContext

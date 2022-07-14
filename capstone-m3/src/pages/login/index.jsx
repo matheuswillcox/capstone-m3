@@ -15,7 +15,7 @@ const Login = () => {
 
   const { userContext, themeContext } = useContext(GlobalContext)
 
-  const { setUserLoginInfo, renewToken  } = userContext
+  const { setUserLoginInfo  } = userContext
 
   const { themeSelector } = themeContext
 
@@ -42,12 +42,13 @@ const Login = () => {
         userContext.setUserToken(res.data.accessToken)
         userContext.setUser(res.data.user)
         localStorage.setItem("@pokemonUser", JSON.stringify(res.data.user))
-        renewToken(data)
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
+      
+   
+        navigate("/");
+     
       })
       .catch((err) => {
+        console.log(err)
         toast.error("Email ou senha incorretos!")
       });
   };

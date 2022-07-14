@@ -9,7 +9,7 @@ export const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  color: white;
+
   .divContainer {
     margin-top: 60px;
   }
@@ -19,6 +19,7 @@ export const Container = styled.div`
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
+    color: white;
   }
   .packs {
     display: flex;
